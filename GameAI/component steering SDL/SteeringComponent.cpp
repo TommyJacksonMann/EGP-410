@@ -1,5 +1,6 @@
 #include "ComponentManager.h"
 #include "SteeringComponent.h"
+#include "ArriveSteering.h"
 #include "SeekSteering.h"
 
 SteeringComponent::SteeringComponent(const ComponentID& id, const ComponentID& physicsComponentID) 
@@ -48,6 +49,7 @@ void SteeringComponent::setData(const SteeringData& data)
 		}
 		case Steering::ARRIVE:
 		{
+			mpSteering = new ArriveSteering(data.ownerID, data.targetLoc, data.targetID, false);
 			break;
 		}
 		default:
