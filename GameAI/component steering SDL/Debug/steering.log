@@ -1,4 +1,4 @@
-﻿  ArriveSteering.cpp
-c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\arrivesteering.cpp(69): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+﻿  WanderAndChaseSteering.cpp
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\wanderandchasesteering.cpp(69): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   steering.vcxproj -> C:\Users\tommy mann\Documents\GitHub\EGP-410\GameAI\component steering SDL\Debug\steering.exe
   steering.vcxproj -> C:\Users\tommy mann\Documents\GitHub\EGP-410\GameAI\component steering SDL\Debug\steering.pdb (Full PDB)

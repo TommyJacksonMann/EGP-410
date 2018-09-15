@@ -5,9 +5,6 @@
 #include "Game.h"
 #include "UnitManager.h"
 #include "Unit.h"
-#include <iostream>
-
-using namespace std;
 
 
 ArriveSteering::ArriveSteering(const UnitID& ownerID, const Vector2D& targetLoc, const UnitID& targetID, bool shouldFlee /*= false*/)

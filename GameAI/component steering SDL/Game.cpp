@@ -108,9 +108,9 @@ bool Game::init()
 	pUnit->setSteering(Steering::ARRIVE, ZERO_VECTOR2D);
 
 	//create 2 enemies
-	/*pUnit = mpUnitManager->createUnit(*pEnemyArrow, true, PositionData(Vector2D((float)gpGame->getGraphicsSystem()->getWidth()-1, 0.0f), 0.0f));
+	pUnit = mpUnitManager->createUnit(*pEnemyArrow, true, PositionData(Vector2D((float)gpGame->getGraphicsSystem()->getWidth()-1, 0.0f), 0.0f));
 	pUnit->setShowTarget(true);
-	pUnit->setSteering(Steering::ARRIVE, ZERO_VECTOR2D, PLAYER_UNIT_ID);
+	pUnit->setSteering(Steering::WANDERANDCHASE, ZERO_VECTOR2D, PLAYER_UNIT_ID);
 
 	/*pUnit = mpUnitManager->createUnit(*pEnemyArrow, true, PositionData(Vector2D(0.0f, (float)gpGame->getGraphicsSystem()->getHeight()-1), 0.0f));
 	pUnit->setShowTarget(false);
