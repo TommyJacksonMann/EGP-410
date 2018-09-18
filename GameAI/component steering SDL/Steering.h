@@ -48,6 +48,10 @@ protected:
 	float mSlowRadius = 100;
 	float mTimeToTarget = .1f;
 
+	float mTargetRotationRadius = .05;
+	float mSlowRotationRadius = .3;
+	float mTimeToTargetRotation = .1f;
+
 	virtual Steering* getSteering() { return this; };//overridden by sub-classes
 
 };
