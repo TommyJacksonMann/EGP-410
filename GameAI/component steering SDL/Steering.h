@@ -44,6 +44,10 @@ protected:
 	UnitID mOwnerID;
 	PhysicsData mData;
 
+	float mTargetRadius = 10;
+	float mSlowRadius = 100;
+	float mTimeToTarget = .1f;
+
 	virtual Steering* getSteering() { return this; };//overridden by sub-classes
 
 };
