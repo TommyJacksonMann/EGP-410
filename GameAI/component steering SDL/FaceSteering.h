@@ -10,4 +10,5 @@ public:
 
 protected:
 	virtual Steering* getSteering();
+
 };

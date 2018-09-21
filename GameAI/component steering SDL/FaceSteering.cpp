@@ -34,7 +34,6 @@ Steering* FaceSteering::getSteering()
 	/*Vector2D diff;
 	Unit* pOwner = gpGame->getUnitManager()->getUnit(mOwnerID);
 
-
 	if (mTargetID != INVALID_UNIT_ID)
 	{
 		//seeking unit
@@ -59,7 +58,7 @@ Steering* FaceSteering::getSteering()
 
 	PhysicsData data = pOwner->getPhysicsComponent()->getData();
 
-	float targetDirection = (atan2(diff.getY(), diff.getX()) + .5f*PI) ;
+	float targetDirection = (atan2(diff.getY(), diff.getX()) + .5f*PI);
 	float currentDirection = fmod(pOwner->getFacing(), 2.0*PI);
 
 	if (abs(targetDirection - currentDirection) < 3*DEG2RAD)
@@ -69,11 +68,11 @@ Steering* FaceSteering::getSteering()
 	}
 	else if(targetDirection - currentDirection < 0)
 	{
-		data.rotAcc = -1;
+		data.rotAcc = -2;
 	}
 	else if (targetDirection - currentDirection > 0)
 	{
-		data.rotAcc = 1;
+		data.rotAcc = 2;
 	}
 
 	this->mData = data;
@@ -103,12 +102,21 @@ Steering* FaceSteering::getSteering()
 
 	float targetDirection = (atan2(diff.getY(), diff.getX()) + .5f*PI);
 	float currentDirection = fmod(pOwner->getFacing(), 2.0*PI);
+	if (currentDirection < 0)
+	{
+		currentDirection = 2 * PI + currentDirection;
+	}
+	if (targetDirection < 0)
+	{
+		targetDirection = 2 * PI + targetDirection;
+	}
 	float rotationSize = targetDirection - currentDirection;
-
+	cout << currentDirection*RAD2DEG << "\t" << targetDirection*RAD2DEG << endl;
 	float targetRotation;
 
 	if (abs(rotationSize) < mTargetRotationRadius)
 	{
+		
 		data.rotVel = 0;
 		data.rotAcc = 0;
 		this->mData = data;
@@ -124,19 +132,26 @@ Steering* FaceSteering::getSteering()
 		targetRotation = data.maxRotVel * abs(rotationSize) / mSlowRadius;
 	}
 
-	targetDirection *= pOwner->getFacing() / abs(rotationSize);
-
 	data.rotAcc = targetDirection - data.rotVel;
 	data.rotAcc /= mTimeToTargetRotation;
 
 	float angularAcceleration = abs(data.rotAcc);
 	if (data.rotAcc > data.maxRotAcc)
 	{
-		data.rotAcc /= angularAcceleration;
+		data.rotAcc /= abs(data.rotAcc);
 		data.rotAcc *= data.maxRotAcc;
 	}
 
+	if (rotationSize > 0)
+	{
+		data.rotAcc = abs(data.rotAcc);
+	}
+	else if (rotationSize < 0)
+	{
+		data.rotAcc = -abs(data.rotAcc);
+	}
+
 	this->mData = data;
-	return this;
+	return this;/**/
 }
 

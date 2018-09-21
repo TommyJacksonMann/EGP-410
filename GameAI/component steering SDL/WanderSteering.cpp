@@ -7,7 +7,7 @@
 #include "Unit.h"
 
 
-WanderSteering::WanderSteering(const UnitID& ownerID, const Vector2D& targetLoc, bool shouldFlee /*= false*/)
+WanderSteering::WanderSteering(const UnitID& ownerID, const Vector2D& targetLoc, const UnitID& targetID, bool shouldFlee /*= false*/)
 	: Steering()
 {
 	if (shouldFlee)
@@ -19,6 +19,7 @@ WanderSteering::WanderSteering(const UnitID& ownerID, const Vector2D& targetLoc,
 		mType = Steering::WANDER;
 	}
 	setOwnerID(ownerID);
+	setTargetID(targetID);
 	setTargetLoc(targetLoc);
 }
 
