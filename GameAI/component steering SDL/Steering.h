@@ -52,9 +52,7 @@ protected:
 	float mSlowRotationRadius = .3;
 	float mTimeToTargetRotation = .1f;
 
-	float mWanderOffSet = 200;
-	float mWanderRadius = 200;
-	float mWanderRate = .1f;
+	
 
 	virtual Steering* getSteering() { return this; };
 

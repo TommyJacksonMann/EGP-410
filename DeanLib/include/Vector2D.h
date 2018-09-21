@@ -28,6 +28,7 @@ public:
 	Vector2D& operator *= ( float mult );
 	Vector2D& operator /= ( float div );
 	Vector2D& operator = ( const Vector2D& rhs );
+	Vector2D& operator * (float scale);
 	
 	bool operator == ( const Vector2D& rhs ) const;
 	bool operator != ( const Vector2D& rhs ) const;

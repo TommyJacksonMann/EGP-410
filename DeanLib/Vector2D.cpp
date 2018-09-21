@@ -51,6 +51,13 @@ Vector2D& Vector2D::operator *= ( float mult )
 	return *this;
 }
 
+Vector2D& Vector2D::operator * (float scale)
+{
+	mX *= scale;
+	mY *= scale;
+	return *this;
+}
+
 Vector2D& Vector2D::operator /= ( float div )
 {
 	mX /= div;

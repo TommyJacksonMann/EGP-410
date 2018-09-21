@@ -9,4 +9,12 @@ public:
 
 protected:
 	virtual Steering* getSteering();
+
+private:
+	float mWanderOffSet = 200;
+	float mWanderRadius = 200;
+	float mWanderRate = .5f;
+	float mWanderOrientation = 0;
+
+	Vector2D getDirectionVector(float direction);
 };
