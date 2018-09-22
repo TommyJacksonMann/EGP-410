@@ -44,9 +44,9 @@ Steering* WanderSteering::getSteering()
 
 	mWanderOrientation += genRandomBinomial() * mWanderRate;
 	float targetOrientation = mWanderOrientation + pOwner->getFacing() ;
-	Vector2D facingVector = getDirectionVector(pOwner->getFacing() - .5*PI);
+	Vector2D facingVector = getDirectionAsVector(pOwner->getFacing() - .5*PI);
 	Vector2D target = pOwner->getPositionComponent()->getPosition() + facingVector*mWanderOffSet;
-	target += getDirectionVector(targetOrientation) * mWanderRadius;
+	target += getDirectionAsVector(targetOrientation) * mWanderRadius;
 	mTargetLoc = target;
 	mpFaceSteering->setTargetLoc(mTargetLoc);
 	diff = mTargetLoc - pOwner->getPositionComponent()->getPosition();
@@ -62,7 +62,7 @@ Steering* WanderSteering::getSteering()
 	return this;
 }
 
-Vector2D WanderSteering::getDirectionVector(float direction)
+Vector2D WanderSteering::getDirectionAsVector(float direction)
 {
 	float x = cos(direction);
 	float y = sin(direction);

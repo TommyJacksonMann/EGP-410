@@ -66,6 +66,7 @@ Steering* ArriveAndFaceSteering::getSteering()
 
 	float targetSpeed;
 	Vector2D targetVelocity;
+	Vector2D facingVector = getDirectionAsVector(pOwner->getFacing() - .5*PI);
 
 	if (diff.getLength() < mTargetRadius)
 	{
@@ -78,14 +79,13 @@ Steering* ArriveAndFaceSteering::getSteering()
 	if (diff.getLength() > mSlowRadius)
 	{
 		targetSpeed = data.maxSpeed;
-
 	}
 	else
 	{
 		targetSpeed = data.maxSpeed * diff.getLength() / mSlowRadius;
 	}
 
-	targetVelocity = diff;
+	targetVelocity = facingVector;
 	targetVelocity.normalize();
 	targetVelocity *= targetSpeed;
 
@@ -100,11 +100,14 @@ Steering* ArriveAndFaceSteering::getSteering()
 
 	}
 
-
-	float velocityDirection = atan2(diff.getY(), diff.getX()) + .5f*3.14;
-	pOwner->getPositionComponent()->setFacing(velocityDirection);
-
 	this->mData = data;
 	return this;
 }
 
+Vector2D ArriveAndFaceSteering::getDirectionAsVector(float direction)
+{
+	float x = cos(direction);
+	float y = sin(direction);
+
+	return Vector2D(x, y);
+}

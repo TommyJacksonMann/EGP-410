@@ -14,4 +14,6 @@ protected:
 private:
 	FaceSteering* mpFaceSteering;
 	ArriveSteering* mpArriveSteering;
+
+	Vector2D getDirectionAsVector(float direction);
 };

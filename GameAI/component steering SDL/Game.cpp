@@ -229,4 +229,3 @@ float genRandomFloat()
 	float r = (float)rand()/(float)RAND_MAX;
 	return r;
 }
-

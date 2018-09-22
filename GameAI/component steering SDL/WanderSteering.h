@@ -20,5 +20,5 @@ private:
 
 	FaceSteering* mpFaceSteering;
 
-	Vector2D getDirectionVector(float direction);
+	Vector2D getDirectionAsVector(float direction);
 };

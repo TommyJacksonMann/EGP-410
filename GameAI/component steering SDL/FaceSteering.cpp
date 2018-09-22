@@ -27,53 +27,6 @@ FaceSteering::FaceSteering(const UnitID& ownerID, const Vector2D& targetLoc, con
 
 Steering* FaceSteering::getSteering()
 {
-	/*Vector2D diff;
-	Unit* pOwner = gpGame->getUnitManager()->getUnit(mOwnerID);
-
-	if (mTargetID != INVALID_UNIT_ID)
-	{
-		//seeking unit
-		Unit* pTarget = gpGame->getUnitManager()->getUnit(mTargetID);
-		assert(pTarget != NULL);
-		mTargetLoc = pTarget->getPositionComponent()->getPosition();
-	}
-
-	if (mType == Steering::FACE)
-	{
-		diff = mTargetLoc - pOwner->getPositionComponent()->getPosition();
-	}
-	else
-	{
-		diff = pOwner->getPositionComponent()->getPosition() - mTargetLoc;
-	}
-
-	Vector2D unnormalizedDiff = diff;
-
-	diff.normalize();
-	diff *= pOwner->getMaxAcc();
-
-	PhysicsData data = pOwner->getPhysicsComponent()->getData();
-
-	float targetDirection = (atan2(diff.getY(), diff.getX()) + .5f*PI);
-	float currentDirection = fmod(pOwner->getFacing(), 2.0*PI);
-
-	if (abs(targetDirection - currentDirection) < 3*DEG2RAD)
-	{
-		data.rotVel = 0;
-		data.rotAcc = 0;
-	}
-	else if(targetDirection - currentDirection < 0)
-	{
-		data.rotAcc = -2;
-	}
-	else if (targetDirection - currentDirection > 0)
-	{
-		data.rotAcc = 2;
-	}
-
-	this->mData = data;
-	return this;/**/
-
 	Vector2D diff;
 	Unit* pOwner = gpGame->getUnitManager()->getUnit(mOwnerID);
 

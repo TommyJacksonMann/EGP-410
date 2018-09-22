@@ -1,3 +1,1 @@
-﻿  Vector2D.cpp
-CircularQueue.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-  DeanLib.vcxproj -> C:\Users\tommy mann\Documents\GitHub\EGP-410\DeanLib\lib\DeanLibDebug.lib
+﻿C:\Users\tommy mann\Documents\GitHub\EGP-410\DeanLib\DeanLib.vcxproj : error MSB4057: The target "Deploy" does not exist in the project.
