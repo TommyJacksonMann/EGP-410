@@ -1,7 +1,63 @@
-﻿  FaceSteering.cpp
-c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(51): warning C4305: 'initializing': truncation from 'double' to 'float'
+﻿  ArriveAndFaceSteering.cpp
 c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(52): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\facesteering.cpp(10): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\facesteering.cpp(104): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(53): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\game.h(24): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Generating Code...
+  Compiling...
+  main.cpp
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\game.h(24): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(52): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(53): warning C4305: 'initializing': truncation from 'double' to 'float'
+  WanderSteering.cpp
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(52): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(53): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\game.h(24): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\wandersteering.cpp(47): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  WanderAndChaseSteering.cpp
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(52): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(53): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\game.h(24): warning C4305: 'initializing': truncation from 'double' to 'float'
+  UnitManager.cpp
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(52): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(53): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\game.h(24): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Unit.cpp
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(52): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(53): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\game.h(24): warning C4305: 'initializing': truncation from 'double' to 'float'
+  SteeringComponent.cpp
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(52): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(53): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Steering.cpp
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(52): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(53): warning C4305: 'initializing': truncation from 'double' to 'float'
+  SeekSteering.cpp
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(52): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(53): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\game.h(24): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\seeksteering.cpp(55): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  PlayerMoveToMessage.cpp
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\game.h(24): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(52): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(53): warning C4305: 'initializing': truncation from 'double' to 'float'
+  PhysicsComponent.cpp
+  Game.cpp
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\game.h(24): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(52): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(53): warning C4305: 'initializing': truncation from 'double' to 'float'
+  FaceSteering.cpp
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(52): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(53): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\game.h(24): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\facesteering.cpp(100): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  ComponentManager.cpp
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(52): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(53): warning C4305: 'initializing': truncation from 'double' to 'float'
+  ArriveSteering.cpp
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(52): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\steering.h(53): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\game.h(24): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\tommy mann\documents\github\egp-410\gameai\component steering sdl\arrivesteering.cpp(92): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
   steering.vcxproj -> C:\Users\tommy mann\Documents\GitHub\EGP-410\GameAI\component steering SDL\Debug\steering.exe
   steering.vcxproj -> C:\Users\tommy mann\Documents\GitHub\EGP-410\GameAI\component steering SDL\Debug\steering.pdb (Full PDB)

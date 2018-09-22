@@ -23,6 +23,10 @@ ArriveSteering::ArriveSteering(const UnitID& ownerID, const Vector2D& targetLoc,
 	setOwnerID(ownerID);
 	setTargetID(targetID);
 	setTargetLoc(targetLoc);
+
+	mTargetRadius = 10;
+	mSlowRadius = 100;
+	mTimeToTarget = .1f;
 }
 
 Steering* ArriveSteering::getSteering()
@@ -54,14 +58,15 @@ Steering* ArriveSteering::getSteering()
 	if (diff.getLength() < mTargetRadius)
 	{
 		data.vel = Vector2D(0,0);
-		data.acc = Vector2D(0, 0);
+		data.acc = Vector2D(0,0);
 		this->mData = data;
-		return NULL;
+		return this;
 	}
 
 	if (diff.getLength() > mSlowRadius)
 	{
 		targetSpeed = data.maxSpeed;
+
 	}
 	else
 	{
@@ -78,9 +83,12 @@ Steering* ArriveSteering::getSteering()
 	if (data.acc.getLength() > data.maxAccMagnitude)
 	{
 		data.acc.normalize();
-		data.acc *= data.maxAccMagnitude;
-	}
 		
+		data.acc *= data.maxAccMagnitude;
+		
+	}
+
+
 	float velocityDirection = atan2(diff.getY(), diff.getX()) + .5f*3.14;
 	pOwner->getPositionComponent()->setFacing(velocityDirection);
 

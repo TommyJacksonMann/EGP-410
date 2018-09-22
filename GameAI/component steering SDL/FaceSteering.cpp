@@ -7,10 +7,6 @@
 #include "Unit.h"
 #include <iostream>
 
-const float PI = 3.14156;
-const float RAD2DEG = 180 / PI;
-const float DEG2RAD = PI / 180;
-
 using namespace std;
 
 FaceSteering::FaceSteering(const UnitID& ownerID, const Vector2D& targetLoc, const UnitID& targetID, bool shouldFlee /*= false*/)
@@ -116,11 +112,10 @@ Steering* FaceSteering::getSteering()
 
 	if (abs(rotationSize) < mTargetRotationRadius)
 	{
-		
 		data.rotVel = 0;
 		data.rotAcc = 0;
 		this->mData = data;
-		return NULL;
+		return this;
 	}
 
 	if (abs(rotationSize) > mSlowRotationRadius)

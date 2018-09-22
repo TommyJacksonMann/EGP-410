@@ -105,7 +105,7 @@ bool Game::init()
 	//setup units
 	Unit* pUnit = mpUnitManager->createPlayerUnit(*pArrowSprite);
 	pUnit->setShowTarget(true);
-	pUnit->setSteering(Steering::FACE, ZERO_VECTOR2D);
+	pUnit->setSteering(Steering::ARRIVEANDFACE, ZERO_VECTOR2D);
 	pUnit->getPositionComponent()->setPosition(Vector2D(300, 300));
 
 
@@ -113,6 +113,7 @@ bool Game::init()
 	/*pUnit = mpUnitManager->createUnit(*pEnemyArrow, true, PositionData(Vector2D((float)gpGame->getGraphicsSystem()->getWidth()-1, 0.0f), 0.0f));
 	pUnit->setShowTarget(true);
 	pUnit->setSteering(Steering::WANDERANDCHASE, ZERO_VECTOR2D, PLAYER_UNIT_ID);
+	pUnit->getPositionComponent()->setPosition(Vector2D(600, 600));
 
 	/*pUnit = mpUnitManager->createUnit(*pEnemyArrow, true, PositionData(Vector2D(0.0f, (float)gpGame->getGraphicsSystem()->getHeight()-1), 0.0f));
 	pUnit->setShowTarget(false);

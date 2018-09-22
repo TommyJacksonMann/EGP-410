@@ -5,7 +5,6 @@
 #include "Game.h"
 #include "UnitManager.h"
 #include "Unit.h"
-#include "FaceSteering.h"
 
 WanderSteering::WanderSteering(const UnitID& ownerID, const Vector2D& targetLoc, const UnitID& targetID, bool shouldFlee /*= false*/)
 	: Steering()
@@ -21,25 +20,44 @@ WanderSteering::WanderSteering(const UnitID& ownerID, const Vector2D& targetLoc,
 	setOwnerID(ownerID);
 	setTargetID(targetID);
 	setTargetLoc(targetLoc);
+
+	mpFaceSteering = new FaceSteering(mOwnerID, mTargetLoc, mTargetID, false);
+
+	mWanderOffSet = 150;
+	mWanderRadius = 30;
+	mWanderRate = .5f;
+	mWanderOrientation = 0;
+}
+
+WanderSteering::~WanderSteering()
+{
+	delete mpFaceSteering;
 }
 
 Steering* WanderSteering::getSteering()
 {
 	Vector2D diff;
+	
 	Unit* pOwner = gpGame->getUnitManager()->getUnit(mOwnerID);
 	diff = mTargetLoc - pOwner->getPositionComponent()->getPosition();
-	
 	PhysicsData data = pOwner->getPhysicsComponent()->getData();
 
 	mWanderOrientation += genRandomBinomial() * mWanderRate;
-	float targetOrientation = mWanderOrientation + pOwner->getFacing();
-	Vector2D facingVector = getDirectionVector(pOwner->getFacing());
+	float targetOrientation = mWanderOrientation + pOwner->getFacing() ;
+	Vector2D facingVector = getDirectionVector(pOwner->getFacing() - .5*PI);
 	Vector2D target = pOwner->getPositionComponent()->getPosition() + facingVector*mWanderOffSet;
-	target += getDirectionVector(mWanderOrientation) * mWanderRadius;
-	FaceSteering* faceData = new FaceSteering();
+	target += getDirectionVector(targetOrientation) * mWanderRadius;
+	mTargetLoc = target;
+	mpFaceSteering->setTargetLoc(mTargetLoc);
+	diff = mTargetLoc - pOwner->getPositionComponent()->getPosition();
 
-	float velocityDirection = atan2(diff.getY(), diff.getX()) + .5f*3.14;
-	pOwner->getPositionComponent()->setFacing(velocityDirection);
+	Steering* pSteering = mpFaceSteering->getSteering();
+	data.rotAcc = pSteering->getData().rotAcc;
+	data.rotVel = pSteering->getData().rotVel;
+
+	diff.normalize();
+	data.vel = diff * data.maxSpeed;
+
 	this->mData = data;
 	return this;
 }

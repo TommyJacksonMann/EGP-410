@@ -1,20 +1,24 @@
 #pragma once
 #include <Trackable.h>
 #include "Steering.h"
+#include "FaceSteering.h"
+
 
 class WanderSteering : public Steering
 {
 public:
 	WanderSteering(const UnitID& ownerID, const Vector2D& targetLoc, const UnitID& targetID = INVALID_UNIT_ID, bool shouldFlee = false);
+	~WanderSteering();
 
-protected:
 	virtual Steering* getSteering();
 
 private:
-	float mWanderOffSet = 200;
-	float mWanderRadius = 200;
-	float mWanderRate = .5f;
-	float mWanderOrientation = 0;
+	float mWanderOffSet;
+	float mWanderRadius;
+	float mWanderRate;
+	float mWanderOrientation;
+
+	FaceSteering* mpFaceSteering;
 
 	Vector2D getDirectionVector(float direction);
 };

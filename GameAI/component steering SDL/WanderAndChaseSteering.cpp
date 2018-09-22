@@ -21,14 +21,23 @@ WanderAndChaseSteering::WanderAndChaseSteering(const UnitID& ownerID, const Vect
 	setOwnerID(ownerID);
 	setTargetID(targetID);
 	setTargetLoc(targetLoc);
+
+	mpArriveSteering = new ArriveSteering(mOwnerID, mTargetLoc, mTargetID);
+	mpWanderSteering = new WanderSteering(mOwnerID, mTargetLoc, mTargetID);
+}
+
+WanderAndChaseSteering::~WanderAndChaseSteering()
+{
+	delete mpArriveSteering;
+	delete mpWanderSteering;
 }
 
 Steering* WanderAndChaseSteering::getSteering()
 {
-	Vector2D diff;
 	Vector2D diffToPlayer;
 	Unit* pOwner = gpGame->getUnitManager()->getUnit(mOwnerID);
 	Vector2D playerLoc;
+	PhysicsData data = pOwner->getPhysicsComponent()->getData();
 
 	if (mTargetID != INVALID_UNIT_ID)
 	{
@@ -39,36 +48,24 @@ Steering* WanderAndChaseSteering::getSteering()
 
 	if (mType == Steering::WANDERANDCHASE)
 	{
-		diff = mTargetLoc - pOwner->getPositionComponent()->getPosition();
 		diffToPlayer = playerLoc - pOwner->getPositionComponent()->getPosition();
 
-		if (abs(diffToPlayer.getLength()) <= 200)
+		if (abs(diffToPlayer.getLength()) <= 300)
 		{
 			mTargetLoc = playerLoc;
+			mpArriveSteering->setTargetLoc(mTargetLoc);
+			Steering* pSteering = mpArriveSteering->getSteering();
+			data = pSteering->getData();
 		}
 		else
 		{
-			if (abs(diff.getLength()) <= 50)
-			{
-				mTargetLoc = Vector2D(rand() % 1024, rand() % 768);
-			}
+			Steering* pSteering = mpWanderSteering->getSteering();
+			data = pSteering->getData();
+			mTargetLoc = pSteering->getTargetLoc();
 		}
-		diff = mTargetLoc - pOwner->getPositionComponent()->getPosition();
+		
+		this->mData = data;
 	}
-	else
-	{
-		diff = pOwner->getPositionComponent()->getPosition() - mTargetLoc;
-	}
-
-	diff.normalize();
-	diff *= pOwner->getMaxAcc();
-
-	PhysicsData data = pOwner->getPhysicsComponent()->getData();
-
-	data.acc = diff;
-	float velocityDirection = atan2(diff.getY(), diff.getX()) + .5f*3.14;
-	pOwner->getPositionComponent()->setFacing(velocityDirection);
-	this->mData = data;
 	return this;
 }
 
