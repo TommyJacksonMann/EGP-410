@@ -59,8 +59,42 @@ Steering* FaceSteering::getSteering()
 	{
 		targetDirection = 2 * PI + targetDirection;
 	}
-	float rotationSize = targetDirection - currentDirection;
+	if (targetDirection >= PI)
+	{
+		targetDirection -= 2 * PI;
+	}
+	if (currentDirection >= PI)
+	{
+		currentDirection -= 2 * PI;
+	}
 	
+	float rotationSize = targetDirection - currentDirection;
+	rotationSize = fmod(rotationSize, 2*PI);
+	if (currentDirection >= 0 && targetDirection < 0)
+	{
+		if (abs(rotationSize) <= PI)
+		{
+			rotationSize = -abs(rotationSize);
+		}
+		else if (abs(rotationSize) > PI)
+		{
+			rotationSize = abs(rotationSize);
+		}
+	}
+	else if (currentDirection <= 0 && targetDirection > 0)
+	{
+		if (abs(rotationSize) >= PI)
+		{
+			rotationSize = -abs(rotationSize);
+		}
+		else if (abs(rotationSize) < PI)
+		{
+			rotationSize = abs(rotationSize);
+		}
+	}
+
+	cout << rotationSize*RAD2DEG << endl;
+
 	float targetRotation;
 
 	if (abs(rotationSize) < mTargetRotationRadius)
