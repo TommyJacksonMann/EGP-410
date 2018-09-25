@@ -23,6 +23,10 @@ FaceSteering::FaceSteering(const UnitID& ownerID, const Vector2D& targetLoc, con
 	setOwnerID(ownerID);
 	setTargetID(targetID);
 	setTargetLoc(targetLoc);
+
+	mTargetRotationRadius = DEFAULT_TARGET_ROTATION_RADIUS;
+	mSlowRotationRadius = DEFAULT_SLOW_ROTATION_RADIUS;
+	mTimeToTargetRotation = DEFAULT_TIME_TO_TARGET_ROTATION;
 }
 
 Steering* FaceSteering::getSteering()
@@ -59,8 +63,6 @@ Steering* FaceSteering::getSteering()
 	{
 		targetDirection = 2 * PI + targetDirection;
 	}
-
-	cout << targetDirection << "\t" << currentDirection << endl;
 	
 	float rotationSize = targetDirection - currentDirection;
 	rotationSize = fmod(rotationSize, 2*PI);
@@ -94,7 +96,7 @@ Steering* FaceSteering::getSteering()
 	}
 	else
 	{
-		targetRotation = data.maxRotVel * abs(rotationSize) / mSlowRadius;
+		targetRotation = data.maxRotVel * abs(rotationSize) / mSlowRotationRadius;
 	}
 
 	data.rotAcc = targetDirection - data.rotVel;

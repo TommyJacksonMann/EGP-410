@@ -24,9 +24,9 @@ ArriveSteering::ArriveSteering(const UnitID& ownerID, const Vector2D& targetLoc,
 	setTargetID(targetID);
 	setTargetLoc(targetLoc);
 
-	mTargetRadius = 10;
-	mSlowRadius = 100;
-	mTimeToTarget = .1f;
+	mTargetRadius = DEFAULT_TARGET_RADIUS;
+	mSlowRadius = DEFAULT_SLOW_RADIUS;
+	mTimeToTarget = DEFAULT_TIME_TO_TARGET;
 }
 
 Steering* ArriveSteering::getSteering()

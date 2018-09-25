@@ -3,6 +3,8 @@
 #include <Trackable.h>
 #include "Steering.h"
 
+
+
 class FaceSteering : public Steering
 {
 public:
@@ -12,4 +14,8 @@ public:
 
 protected:
 	
+private:
+	float mTargetRotationRadius;
+	float mSlowRotationRadius;
+	float mTimeToTargetRotation;
 };

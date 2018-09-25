@@ -23,9 +23,9 @@ WanderSteering::WanderSteering(const UnitID& ownerID, const Vector2D& targetLoc,
 
 	mpFaceSteering = new FaceSteering(mOwnerID, mTargetLoc, mTargetID, false);
 
-	mWanderOffSet = 150;
-	mWanderRadius = 30;
-	mWanderRate = .5f;
+	mWanderOffSet = DEFAULT_WANDER_OFFSET;
+	mWanderRadius = DEFAULT_WANDER_RADIUS;
+	mWanderRate = DEFAULT_WANDER_RATE;
 	mWanderOrientation = 0;
 }
 

@@ -1,6 +1,5 @@
 #include <cassert>
 
-#include "Steering.h"
 #include "WanderAndChaseSteering.h"
 #include "Game.h"
 #include "UnitManager.h"
@@ -22,13 +21,15 @@ WanderAndChaseSteering::WanderAndChaseSteering(const UnitID& ownerID, const Vect
 	setTargetID(targetID);
 	setTargetLoc(targetLoc);
 
-	mpArriveSteering = new ArriveSteering(mOwnerID, mTargetLoc, mTargetID);
+	mpSeekSteering = new SeekSteering(mOwnerID, mTargetLoc, mTargetID);
 	mpWanderSteering = new WanderSteering(mOwnerID, mTargetLoc, mTargetID);
+
+	mChaseRadius = DEFAULT_CHASE_RADIUS;
 }
 
 WanderAndChaseSteering::~WanderAndChaseSteering()
 {
-	delete mpArriveSteering;
+	delete mpSeekSteering;
 	delete mpWanderSteering;
 }
 
@@ -50,11 +51,19 @@ Steering* WanderAndChaseSteering::getSteering()
 	{
 		diffToPlayer = playerLoc - pOwner->getPositionComponent()->getPosition();
 
-		if (abs(diffToPlayer.getLength()) <= 300)
+		if (abs(diffToPlayer.getLength()) <= 20)
+		{
+			data.rotAcc = 0;
+			data.maxRotVel = 0;
+			this->mData = data;
+			return this;
+		}
+		
+		if (abs(diffToPlayer.getLength()) <= mChaseRadius)
 		{
 			mTargetLoc = playerLoc;
-			mpArriveSteering->setTargetLoc(mTargetLoc);
-			Steering* pSteering = mpArriveSteering->getSteering();
+			mpSeekSteering->setTargetLoc(mTargetLoc);
+			Steering* pSteering = mpSeekSteering->getSteering();
 			data = pSteering->getData();
 		}
 		else

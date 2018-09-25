@@ -11,4 +11,8 @@ public:
 
 protected:
 	
+private:
+	float mTargetRadius;
+	float mSlowRadius;
+	float mTimeToTarget;
 };

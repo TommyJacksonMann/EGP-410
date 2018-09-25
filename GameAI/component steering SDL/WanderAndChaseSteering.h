@@ -2,7 +2,7 @@
 #include <Trackable.h>
 #include "Steering.h"
 #include "WanderSteering.h"
-#include "ArriveSteering.h"
+#include "SeekSteering.h"
 
 class WanderAndChaseSteering : public Steering
 {
@@ -16,5 +16,7 @@ protected:
 
 private:
 	WanderSteering* mpWanderSteering;
-	ArriveSteering* mpArriveSteering;
+	SeekSteering* mpSeekSteering;
+
+	float mChaseRadius;
 };

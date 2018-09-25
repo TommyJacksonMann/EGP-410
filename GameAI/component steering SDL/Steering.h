@@ -8,7 +8,19 @@
 #include "defines.h"
 #include "PhysicsComponent.h"
 
+const float DEFAULT_TARGET_RADIUS = 10;
+const float DEFAULT_SLOW_RADIUS = 100;
+const float DEFAULT_TIME_TO_TARGET = .1;
 
+const float DEFAULT_TARGET_ROTATION_RADIUS = .05;
+const float DEFAULT_SLOW_ROTATION_RADIUS = .3;
+const float DEFAULT_TIME_TO_TARGET_ROTATION = .1;
+
+const float DEFAULT_WANDER_OFFSET = 150;
+const float DEFAULT_WANDER_RADIUS = 30;
+const float DEFAULT_WANDER_RATE = .5;
+
+const float DEFAULT_CHASE_RADIUS = 300;
 
 class Steering: public Trackable
 {
@@ -44,16 +56,6 @@ protected:
 	UnitID mTargetID;
 	UnitID mOwnerID;
 	PhysicsData mData;
-
-	float mTargetRadius = 10;
-	float mSlowRadius = 100;
-	float mTimeToTarget = .1f;
-
-	float mTargetRotationRadius = .05;
-	float mSlowRotationRadius = .3;
-	float mTimeToTargetRotation = .1f;
-
-	
 
 	virtual Steering* getSteering() { return this; };
 

@@ -15,5 +15,9 @@ private:
 	FaceSteering* mpFaceSteering;
 	ArriveSteering* mpArriveSteering;
 
+	float mTargetRadius;
+	float mSlowRadius;
+	float mTimeToTarget;
+
 	Vector2D getDirectionAsVector(float direction);
 };

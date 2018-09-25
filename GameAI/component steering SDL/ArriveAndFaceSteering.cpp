@@ -25,9 +25,9 @@ ArriveAndFaceSteering::ArriveAndFaceSteering(const UnitID& ownerID, const Vector
 	mpArriveSteering = new ArriveSteering(mOwnerID, mTargetLoc, mTargetID);
 	mpFaceSteering = new FaceSteering(mOwnerID, mTargetLoc, mTargetID);
 
-	mTargetRadius = 10;
-	mSlowRadius = 100;
-	mTimeToTarget = .1f;
+	mTargetRadius = DEFAULT_TARGET_RADIUS;
+	mSlowRadius = DEFAULT_SLOW_RADIUS;
+	mTimeToTarget = DEFAULT_TIME_TO_TARGET;
 }
 
 ArriveAndFaceSteering::~ArriveAndFaceSteering()
