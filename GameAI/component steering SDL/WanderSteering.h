@@ -18,6 +18,4 @@ private:
 	float mWanderOrientation;
 
 	FaceSteering* mpFaceSteering;
-
-	Vector2D getDirectionAsVector(float direction);
 };

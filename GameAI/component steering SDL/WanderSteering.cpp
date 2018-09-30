@@ -5,6 +5,7 @@
 #include "Game.h"
 #include "UnitManager.h"
 #include "Unit.h"
+#include "MathTools.h"
 
 WanderSteering::WanderSteering(const UnitID& ownerID, const Vector2D& targetLoc, const UnitID& targetID, bool shouldFlee /*= false*/)
 	: Steering()
@@ -62,11 +63,5 @@ Steering* WanderSteering::getSteering()
 	return this;
 }
 
-Vector2D WanderSteering::getDirectionAsVector(float direction)
-{
-	float x = cos(direction);
-	float y = sin(direction);
 
-	return Vector2D(x, y);
-}
 
