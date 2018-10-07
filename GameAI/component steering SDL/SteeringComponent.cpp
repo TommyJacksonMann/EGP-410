@@ -6,7 +6,10 @@
 #include "WanderSteering.h"
 #include "WanderAndChaseSteering.h"
 #include "ArriveAndFaceSteering.h"
-#include "AlignSteering.h"
+#include "Align.h"
+#include "Cohesion.h"
+#include "Separation.h"
+#include "FlockSteering.h"
 
 SteeringComponent::SteeringComponent(const ComponentID& id, const ComponentID& physicsComponentID) 
 	:Component(id)
@@ -82,10 +85,28 @@ void SteeringComponent::setData(const SteeringData& data)
 			mpSteering = new ArriveAndFaceSteering(data.ownerID, data.targetLoc, data.targetID, false);
 			break;
 		}
+		case Steering::FLOCK:
+		{
+			delete mpSteering;
+			mpSteering = new FlockSteering(data.ownerID, data.targetLoc, data.targetID, false);
+			break;
+		}
 		case Steering::ALIGN:
 		{
 			delete mpSteering;
-			mpSteering = new AlignSteering(data.ownerID, data.targetLoc, data.targetID, false);
+			mpSteering = new Align(data.ownerID);
+			break;
+		}
+		case Steering::COHESION:
+		{
+			delete mpSteering;
+			mpSteering = new Cohesion(data.ownerID);
+			break;
+		}
+		case Steering::SEPARATION:
+		{
+			delete mpSteering;
+			mpSteering = new Separation(data.ownerID);
 			break;
 		}
 		default:

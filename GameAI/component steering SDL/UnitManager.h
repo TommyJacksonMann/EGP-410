@@ -7,6 +7,7 @@
 #include "PositionComponent.h"
 #include "PhysicsComponent.h"
 #include "Unit.h"
+#include <vector>
 
 class Unit;
 class Sprite;
@@ -14,7 +15,6 @@ struct PositionData;
 struct PhysicsData;
 
 const UnitID PLAYER_UNIT_ID = 0;
-
 
 class UnitManager : public Trackable
 {
@@ -35,6 +35,7 @@ public:
 
 	Unit* getPlayerUnit() const { return getUnit(PLAYER_UNIT_ID); };
 
+	std::vector<Unit*> getUnitsWithinRadius(Vector2D center, float radius, Steering::SteeringType typeToLookFor);
 private:
 	static UnitID msNextUnitID;
 	MemoryPool mPool;

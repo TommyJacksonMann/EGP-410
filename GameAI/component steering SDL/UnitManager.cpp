@@ -5,6 +5,7 @@
 #include "Game.h"
 #include "ComponentManager.h"
 #include "GraphicsSystem.h"
+#include "Steering.h"
 
 UnitID UnitManager::msNextUnitID = PLAYER_UNIT_ID + 1;
 
@@ -152,4 +153,23 @@ void UnitManager::updateAll(float elapsedTime)
 	{
 		it->second->update(elapsedTime);
 	}
+}
+
+std::vector<Unit*> UnitManager::getUnitsWithinRadius(Vector2D center, float radius, Steering::SteeringType typeToLookFor)
+{
+	std::vector<Unit*> unitsWithinRadius;
+
+	for (auto it = mUnitMap.begin(); it != mUnitMap.end(); ++it)
+	{
+		if (it->second->getSteeringComponent()->getType() == typeToLookFor)
+		{
+			Vector2D diff;
+			diff = it->second->getPositionComponent()->getPosition() - center;
+			if (abs(diff.getLength()))
+			{
+				unitsWithinRadius.push_back(it->second);
+			}
+		}
+	}
+	return unitsWithinRadius;
 }

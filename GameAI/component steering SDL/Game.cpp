@@ -76,6 +76,7 @@ bool Game::init()
 	mpGraphicsBufferManager->loadBuffer(mBackgroundBufferID,"wallpaper.bmp");
 	mpGraphicsBufferManager->loadBuffer(mPlayerIconBufferID,"arrow.png");
 	mpGraphicsBufferManager->loadBuffer(mEnemyIconBufferID,"enemy-arrow.png");
+	mpGraphicsBufferManager->loadBuffer(mEnemyIconBufferID, "green-arrow.png");
 	mpGraphicsBufferManager->loadBuffer(mTargetBufferID,"target.png");
 
 	//load Font
@@ -99,7 +100,6 @@ bool Game::init()
 	{
 		pEnemyArrow = mpSpriteManager->createAndManageSprite(AI_ICON_SPRITE_ID, pAIBuffer, 0, 0, (float)pAIBuffer->getWidth(), (float)pAIBuffer->getHeight());
 	}
-
 	GraphicsBuffer* pTargetBuffer = mpGraphicsBufferManager->getBuffer(mTargetBufferID);
 	if (pTargetBuffer != NULL)
 	{
