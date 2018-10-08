@@ -4,14 +4,15 @@
 #include "PlayerMoveToMessage.h"
 #include "EscapeMessage.h"
 #include "AddUnitMessage.h"
+#include "AddBoidMessage.h"
 #include "DeleteUnitMessage.h"
+#include "AlterFlockMessage.h"
 #include "GameMessageManager.h"
 #include "Defines.h"
 #include "Game.h"
 
 InputSystem::InputSystem()
 {
-
 	init();
 }
 InputSystem::~InputSystem()
@@ -50,9 +51,44 @@ void InputSystem::update()
 				GameMessage* pMessage = new AddUnitMessage();
 				MESSAGE_MANAGER->addMessage(pMessage, 0);
 			}
+			if (mBitwiseKeyStates[KeyCode::SCANCODE_A] && getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED))
+			{
+				GameMessage* pMessage = new AddBoidMessage();
+				MESSAGE_MANAGER->addMessage(pMessage, 0);
+			}
 			if (mBitwiseKeyStates[KeyCode::SCANCODE_D] && getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED))
 			{
 				GameMessage* pMessage = new DeleteUnitMessage();
+				MESSAGE_MANAGER->addMessage(pMessage, 0);
+			}
+			if (mBitwiseKeyStates[KeyCode::SCANCODE_H] && getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED))
+			{
+				GameMessage* pMessage = new AlterFlockMessage(FlockData::ALIGN, (float)-.1);
+				MESSAGE_MANAGER->addMessage(pMessage, 0);
+			}
+			if (mBitwiseKeyStates[KeyCode::SCANCODE_U] && getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED))
+			{
+				GameMessage* pMessage = new AlterFlockMessage(FlockData::ALIGN, (float).1);
+				MESSAGE_MANAGER->addMessage(pMessage, 0);
+			}
+			if (mBitwiseKeyStates[KeyCode::SCANCODE_J] && getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED))
+			{
+				GameMessage* pMessage = new AlterFlockMessage(FlockData::COHESION, (float)-.1);
+				MESSAGE_MANAGER->addMessage(pMessage, 0);
+			}
+			if (mBitwiseKeyStates[KeyCode::SCANCODE_I] && getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED))
+			{
+				GameMessage* pMessage = new AlterFlockMessage(FlockData::COHESION, (float).1);
+				MESSAGE_MANAGER->addMessage(pMessage, 0);
+			}
+			if (mBitwiseKeyStates[KeyCode::SCANCODE_K] && getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED))
+			{
+				GameMessage* pMessage = new AlterFlockMessage(FlockData::SEPARATION, (float)-.1);
+				MESSAGE_MANAGER->addMessage(pMessage, 0);
+			}
+			if (mBitwiseKeyStates[KeyCode::SCANCODE_O] && getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED))
+			{
+				GameMessage* pMessage = new AlterFlockMessage(FlockData::SEPARATION, (float).1);
 				MESSAGE_MANAGER->addMessage(pMessage, 0);
 			}
 		}

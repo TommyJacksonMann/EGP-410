@@ -32,19 +32,6 @@ FlockSteering::~FlockSteering()
 	delete mpSeparation;
 }
 
-void FlockSteering::alterAlignCoefficient(float value)
-{
-	mAlignCoefficient += value;
-}
-void FlockSteering::alterCohesionCoefficient(float value)
-{
-	mCohesionCoefficient += value;
-}
-void FlockSteering::alterSeparationCoefficient(float value)
-{
-	mSeparationCoefficient += value;
-}
-
 Steering* FlockSteering::getSteering()
 {
 	Unit* pOwner = gpGame->getUnitManager()->getUnit(mOwnerID);
@@ -53,6 +40,7 @@ Steering* FlockSteering::getSteering()
 	vector<Unit*> neighborUnits = gpGame->getUnitManager()->getUnitsWithinRadius(loc, DEFAULT_NEIGHBORHOOD_RADIUS, FLOCK);
 	bool unitsInNeighborhood = (neighborUnits.size() > 1);
 
+	cout << DEFAULT_ALIGN_COEFFICIENT << "\t" << DEFAULT_COHESION_COEFFICIENT << "\t" << DEFAULT_SEPARATION_COEFFICIENT << endl;
 	if (unitsInNeighborhood == false)
 	{
 		Steering* pSteering = mpWanderSteering->getSteering();
@@ -61,11 +49,11 @@ Steering* FlockSteering::getSteering()
 	else
 	{
 		Vector2D alignVel = mpAlign->getVelocity(neighborUnits);
-		alignVel *= mAlignCoefficient;
+		alignVel *= DEFAULT_ALIGN_COEFFICIENT;
 		Vector2D cohesionVel = mpCohesion->getVelocity(neighborUnits);
-		cohesionVel *= mCohesionCoefficient;
+		cohesionVel *= DEFAULT_COHESION_COEFFICIENT;
 		Vector2D separationVel = mpSeparation->getVelocity(neighborUnits);
-		separationVel *= mSeparationCoefficient;
+		separationVel *= DEFAULT_SEPARATION_COEFFICIENT;
 
 		data.vel = alignVel + cohesionVel + separationVel;
 		
@@ -79,4 +67,41 @@ Steering* FlockSteering::getSteering()
 
 	this->mData = data;
 	return this;
+}
+
+void alterAlignCoefficient(float value)
+{
+	DEFAULT_ALIGN_COEFFICIENT += value;
+	if (DEFAULT_ALIGN_COEFFICIENT < 0)
+	{
+		DEFAULT_ALIGN_COEFFICIENT = 0;
+	}
+	if (DEFAULT_ALIGN_COEFFICIENT > 1)
+	{
+		DEFAULT_ALIGN_COEFFICIENT = 1;
+	}
+}
+void alterCohesionCoefficient(float value)
+{
+	DEFAULT_COHESION_COEFFICIENT += value;
+	if (DEFAULT_COHESION_COEFFICIENT < 0)
+	{
+		DEFAULT_COHESION_COEFFICIENT = 0;
+	}
+	if (DEFAULT_COHESION_COEFFICIENT > 1)
+	{
+		DEFAULT_COHESION_COEFFICIENT = 1;
+	}
+}
+void alterSeparationCoefficient(float value)
+{
+	DEFAULT_SEPARATION_COEFFICIENT += value;
+	if (DEFAULT_SEPARATION_COEFFICIENT < 0)
+	{
+		DEFAULT_SEPARATION_COEFFICIENT = 0;
+	}
+	if (DEFAULT_SEPARATION_COEFFICIENT > 1)
+	{
+		DEFAULT_SEPARATION_COEFFICIENT = 1;
+	}
 }

@@ -6,6 +6,10 @@
 #include "Align.h"
 #include "WanderSteering.h"
 
+static float DEFAULT_ALIGN_COEFFICIENT = .3;
+static float DEFAULT_COHESION_COEFFICIENT = .2;
+static float DEFAULT_SEPARATION_COEFFICIENT = .5;
+
 class FlockSteering : public Steering
 {
 public:
@@ -14,15 +18,14 @@ public:
 
 	virtual Steering* getSteering();
 
-	void alterAlignCoefficient(float value);
-	void alterCohesionCoefficient(float value);
-	void alterSeparationCoefficient(float value);
+	
 protected:
-	float mAlignCoefficient = .3;
-	float mCohesionCoefficient = .2;
-	float mSeparationCoefficient = .5;
 	WanderSteering* mpWanderSteering;
 	Align* mpAlign;
 	Cohesion* mpCohesion;
 	Separation* mpSeparation;
 };
+
+void alterAlignCoefficient(float value);
+void alterCohesionCoefficient(float value);
+void alterSeparationCoefficient(float value);

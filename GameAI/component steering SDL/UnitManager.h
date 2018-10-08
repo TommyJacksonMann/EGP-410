@@ -36,6 +36,7 @@ public:
 	Unit* getPlayerUnit() const { return getUnit(PLAYER_UNIT_ID); };
 
 	std::vector<Unit*> getUnitsWithinRadius(Vector2D center, float radius, Steering::SteeringType typeToLookFor);
+	std::vector<Unit*> getUnitsOfType(Steering::SteeringType typeToLookFor);
 private:
 	static UnitID msNextUnitID;
 	MemoryPool mPool;

@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AddBoidMessage.h" />
     <ClInclude Include="AddUnitMessage.h" />
     <ClInclude Include="Align.h" />
     <ClInclude Include="AlterFlockMessage.h" />
@@ -51,6 +52,7 @@
     <ClInclude Include="WanderSteering.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AddBoidMessage.cpp" />
     <ClCompile Include="AddUnitMessage.cpp" />
     <ClCompile Include="Align.cpp" />
     <ClCompile Include="AlterFlockMessage.cpp" />

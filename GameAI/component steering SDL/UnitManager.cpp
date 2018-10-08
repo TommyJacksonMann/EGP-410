@@ -176,3 +176,18 @@ std::vector<Unit*> UnitManager::getUnitsWithinRadius(Vector2D center, float radi
 	}
 	return unitsWithinRadius;
 }
+
+std::vector<Unit*> UnitManager::getUnitsOfType(Steering::SteeringType typeToLookFor)
+{
+	std::vector<Unit*> unitsOfType;
+
+	for (auto it = mUnitMap.begin(); it != mUnitMap.end(); ++it)
+	{
+		
+		if (it->second->getSteeringComponent()->getType() == typeToLookFor)
+		{
+			unitsOfType.push_back(it->second);
+		}
+	}
+	return unitsOfType;
+}
