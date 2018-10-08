@@ -18,13 +18,12 @@ Separation::Separation(const UnitID& ownerID)
 
 }
 
-Vector2D Separation::getVelocity()
+Vector2D Separation::getVelocity(vector<Unit*> neighborUnits)
 {
 	Unit* pOwner = gpGame->getUnitManager()->getUnit(mOwnerID);
 	PhysicsData data = pOwner->getPhysicsComponent()->getData();
 	Vector2D pos = pOwner->getPositionComponent()->getPosition();
-
-	std::vector<Unit*> neighborUnits = gpGame->getUnitManager()->getUnitsWithinRadius(pos, 300, FLOCK);
+	Vector2D targetDir(0,0);
 
 	for (int i = 0; i < neighborUnits.size(); i++)
 	{
@@ -32,13 +31,14 @@ Vector2D Separation::getVelocity()
 		{
 			Vector2D direction = neighborUnits[i]->getPositionComponent()->getPosition() - pos;
 			float distance = direction.getLength();
-			float strength = min(DEFAULT_DECAY_COEFFICIENT/(distance * distance), data.maxAccMagnitude);
-			direction.normalize();
-			direction *= strength;
-			data.acc += direction;
+			if (distance < 30)
+			{
+				targetDir += direction;
+			}
 		}
 	}
+	targetDir *= -1;
 
-	return data.vel;
+	return targetDir;
 }
 

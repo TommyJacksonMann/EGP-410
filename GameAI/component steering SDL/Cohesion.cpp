@@ -18,16 +18,19 @@ Cohesion::Cohesion(const UnitID& ownerID)
 
 }
 
-Vector2D Cohesion::getVelocity()
+Vector2D Cohesion::getVelocity(vector<Unit*> neighborUnits)
 {
 	Vector2D diff;
 	Unit* pOwner = gpGame->getUnitManager()->getUnit(mOwnerID);
 	PhysicsData data = pOwner->getPhysicsComponent()->getData();
 	Vector2D pos = pOwner->getPositionComponent()->getPosition();
 
-	std::vector<Unit*> neighborUnits = gpGame->getUnitManager()->getUnitsWithinRadius(pos, 300, FLOCK);
 
 	Vector2D medianPoint = Vector2D(0,0);
+	if (neighborUnits.size() <= 2)
+	{
+		return Vector2D(0,0);
+	}
 
 	for (int i = 0; i < neighborUnits.size(); i++)
 	{

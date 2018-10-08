@@ -8,7 +8,6 @@
 #include <iostream>
 #include "MathTools.h"
 
-using namespace std;
 
 Align::Align(const UnitID& ownerID)
 	: Steering()
@@ -18,14 +17,12 @@ Align::Align(const UnitID& ownerID)
 
 }
 
-Vector2D Align::getVelocity()
+Vector2D Align::getVelocity(vector<Unit*> neighborUnits)
 {
 	Vector2D diff;
 	Unit* pOwner = gpGame->getUnitManager()->getUnit(mOwnerID);
 	Vector2D pos = pOwner->getPositionComponent()->getPosition();
 	PhysicsData data = pOwner->getPhysicsComponent()->getData();
-
-	std::vector<Unit*> neighborUnits = gpGame->getUnitManager()->getUnitsWithinRadius(pos, 300, FLOCK);
 
 	for (int i = 0; i < neighborUnits.size(); i++)
 	{

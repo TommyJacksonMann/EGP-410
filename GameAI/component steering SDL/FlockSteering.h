@@ -14,7 +14,13 @@ public:
 
 	virtual Steering* getSteering();
 
+	void alterAlignCoefficient(float value);
+	void alterCohesionCoefficient(float value);
+	void alterSeparationCoefficient(float value);
 protected:
+	float mAlignCoefficient = .3;
+	float mCohesionCoefficient = .2;
+	float mSeparationCoefficient = .5;
 	WanderSteering* mpWanderSteering;
 	Align* mpAlign;
 	Cohesion* mpCohesion;

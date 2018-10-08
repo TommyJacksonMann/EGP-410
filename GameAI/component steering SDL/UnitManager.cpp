@@ -165,9 +165,12 @@ std::vector<Unit*> UnitManager::getUnitsWithinRadius(Vector2D center, float radi
 		{
 			Vector2D diff;
 			diff = it->second->getPositionComponent()->getPosition() - center;
-			if (abs(diff.getLength()))
+			if (!(diff.getX() > radius || diff.getY() > radius))
 			{
-				unitsWithinRadius.push_back(it->second);
+				if (abs(diff.getLength()) < radius)
+				{
+					unitsWithinRadius.push_back(it->second);
+				}
 			}
 		}
 	}

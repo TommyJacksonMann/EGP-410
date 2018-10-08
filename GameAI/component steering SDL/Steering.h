@@ -20,7 +20,7 @@ const float DEFAULT_WANDER_OFFSET = 150;
 const float DEFAULT_WANDER_RADIUS = 30;
 const float DEFAULT_WANDER_RATE = .5;
 
-const float DEFAULT_NEIGHBORHOOD_RADIUS = 300;
+const float DEFAULT_NEIGHBORHOOD_RADIUS = 100;
 const float DEFAULT_CHASE_RADIUS = 300;
 
 class Steering: public Trackable
