@@ -16,6 +16,7 @@
 #include "PlayerMoveToMessage.h"
 #include "ComponentManager.h"
 #include "UnitManager.h"
+#include "FileSystem.h"
 
 Game* gpGame = NULL;
 
@@ -117,6 +118,9 @@ bool Game::init()
 
 void Game::cleanup()
 {
+
+	
+
 	//delete the timers
 	delete mpLoopTimer;
 	mpLoopTimer = NULL;
@@ -142,6 +146,7 @@ void Game::cleanup()
 	mpComponentManager = NULL;
 	delete mpInputSystem;
 	mpInputSystem = NULL;
+
 }
 
 void Game::beginLoop()

@@ -25,6 +25,7 @@
     <ClInclude Include="DeleteUnitMessage.h" />
     <ClInclude Include="EscapeMessage.h" />
     <ClInclude Include="FaceSteering.h" />
+    <ClInclude Include="FileSystem.h" />
     <ClInclude Include="FlockSteering.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="Game.h" />
@@ -65,6 +66,7 @@
     <ClCompile Include="DeleteUnitMessage.cpp" />
     <ClCompile Include="EscapeMessage.cpp" />
     <ClCompile Include="FaceSteering.cpp" />
+    <ClCompile Include="FileSystem.cpp" />
     <ClCompile Include="FlockSteering.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Game.cpp" />

@@ -1,8 +1,4 @@
-﻿  AddBoidMessage.cpp
-c:\users\tommy mann\documents\github\assignment1\gameai\component steering sdl\game.h(27): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\tommy mann\documents\github\assignment1\gameai\component steering sdl\steering.h(13): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\tommy mann\documents\github\assignment1\gameai\component steering sdl\steering.h(15): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\tommy mann\documents\github\assignment1\gameai\component steering sdl\steering.h(17): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\tommy mann\documents\github\assignment1\gameai\component steering sdl\addboidmessage.cpp(31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+﻿  FileSystem.cpp
+c:\users\tommy mann\documents\github\assignment1\gameai\component steering sdl\filesystem.cpp(49): warning C4101: 'floatValue': unreferenced local variable
   steering.vcxproj -> C:\Users\tommy mann\Documents\GitHub\Assignment1\GameAI\component steering SDL\Debug\steering.exe
   steering.vcxproj -> C:\Users\tommy mann\Documents\GitHub\Assignment1\GameAI\component steering SDL\Debug\steering.pdb (Full PDB)

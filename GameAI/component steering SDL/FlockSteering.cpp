@@ -7,6 +7,7 @@
 #include "Unit.h"
 #include <iostream>
 #include "MathTools.h"
+#include "FileSystem.h"
 
 using namespace std;
 
@@ -22,6 +23,10 @@ FlockSteering::FlockSteering(const UnitID& ownerID, const Vector2D& targetLoc, c
 	mpAlign = new Align(ownerID);
 	mpCohesion = new Cohesion(ownerID);
 	mpSeparation = new Separation(ownerID);
+
+	DEFAULT_ALIGN_COEFFICIENT = FileSystem::getInstance()->loadInfoFloat("AlignWeight");
+	DEFAULT_COHESION_COEFFICIENT = FileSystem::getInstance()->loadInfoFloat("CohesionWeight");
+	DEFAULT_SEPARATION_COEFFICIENT = FileSystem::getInstance()->loadInfoFloat("SeparationWeight");
 }
 
 FlockSteering::~FlockSteering()
@@ -80,6 +85,8 @@ void alterAlignCoefficient(float value)
 	{
 		DEFAULT_ALIGN_COEFFICIENT = 1;
 	}
+	FileSystem::getInstance()->overWriteFloat("AlignWeight", DEFAULT_ALIGN_COEFFICIENT);
+
 }
 void alterCohesionCoefficient(float value)
 {
@@ -92,6 +99,7 @@ void alterCohesionCoefficient(float value)
 	{
 		DEFAULT_COHESION_COEFFICIENT = 1;
 	}
+	FileSystem::getInstance()->overWriteFloat("CohesionWeight", DEFAULT_COHESION_COEFFICIENT);
 }
 void alterSeparationCoefficient(float value)
 {
@@ -104,4 +112,5 @@ void alterSeparationCoefficient(float value)
 	{
 		DEFAULT_SEPARATION_COEFFICIENT = 1;
 	}
+	FileSystem::getInstance()->overWriteFloat("SeparationWeight", DEFAULT_SEPARATION_COEFFICIENT);
 }
