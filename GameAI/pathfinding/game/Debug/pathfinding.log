@@ -1,0 +1,12 @@
+﻿  DijkstraPathFinder.cpp
+c:\users\tommy mann\documents\github\assignment2\gameai\pathfinding\game\dijkstrapathfinder.cpp(120): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  Compiling...
+  PathfindingDebugContent.cpp
+  PathToMessage.cpp
+  GridPathfinder.cpp
+  GameApp.cpp
+  DepthFirstPathfinder.cpp
+  Generating Code...
+  pathfinding.vcxproj -> C:\Users\tommy mann\Documents\GitHub\Assignment2\GameAI\pathfinding\game\Debug\pathfinding.exe
+  pathfinding.vcxproj -> C:\Users\tommy mann\Documents\GitHub\Assignment2\GameAI\pathfinding\game\Debug\pathfinding.pdb (Partial PDB)

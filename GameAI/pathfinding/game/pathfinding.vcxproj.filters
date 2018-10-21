@@ -108,6 +108,12 @@
     <ClInclude Include="..\common\Font.h">
       <Filter>Common\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DijkstraPathFinder.h">
+      <Filter>Header Files\pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="AStarPathFinder.h">
+      <Filter>Header Files\pathfinding</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\common\Game.cpp">
@@ -187,6 +193,12 @@
     </ClCompile>
     <ClCompile Include="..\common\Font.cpp">
       <Filter>Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DijkstraPathFinder.cpp">
+      <Filter>Source Files\pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="AStarPathFinder.cpp">
+      <Filter>Source Files\pathfinding</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

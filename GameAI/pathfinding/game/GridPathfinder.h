@@ -5,6 +5,8 @@ class GridGraph;
 class GridVisualizer;
 class GraphicsBuffer;
 class PathfindingDebugContent;
+class Node;
+class Connection;
 
 class GridPathfinder:public Pathfinder
 {
@@ -27,4 +29,13 @@ protected:
 #endif
 
 	double mTimeElapsed;
+
+	struct NodeRecord : public Trackable {
+		NodeRecord() : mpNode(NULL), mpConnection(NULL), mCostSoFar(0) {};
+		NodeRecord(Node* pNode, Connection* pConnection, float cost) : mpNode(pNode), mpConnection(pConnection), mCostSoFar(cost) {};
+		~NodeRecord() { }
+		Node* mpNode;
+		Connection* mpConnection;
+		float mCostSoFar;/**/
+	};
 };
