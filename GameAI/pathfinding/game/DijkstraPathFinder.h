@@ -2,6 +2,7 @@
 
 #include "GridPathfinder.h"
 #include <vector>
+#include "NodeRecord.h"
 
 
 class Path;

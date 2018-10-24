@@ -104,6 +104,7 @@
     <ClInclude Include="GridGraph.h" />
     <ClInclude Include="GridPathfinder.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="NodeRecord.h" />
     <ClInclude Include="Path.h" />
     <ClInclude Include="Pathfinder.h" />
     <ClInclude Include="PathfindingDebugContent.h" />

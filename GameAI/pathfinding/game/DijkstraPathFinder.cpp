@@ -45,7 +45,7 @@ Path* DijkstraPathfinder::findPath(Node* pFrom, Node* pTo)
 	Path* pPath = new Path();
 
 	bool toNodeAdded = false;
-	NodeRecord* startRecord = new NodeRecord(pFrom, NULL, 0);
+	NodeRecord* startRecord = new NodeRecord(pFrom, NULL, 0, 0, Category::UNVISITED);
 	NodeRecord* current;
 	vector<NodeRecord*> openNodes;
 	openNodes.push_back(startRecord);
@@ -53,8 +53,8 @@ Path* DijkstraPathfinder::findPath(Node* pFrom, Node* pTo)
 
 	while (openNodes.size() > 0)
 	{
-		current = openNodes[openNodes.size() - 1];
-		int currentNodeIndex = openNodes.size() - 1;
+		current = openNodes[0];
+		int currentNodeIndex = 0;
 		if (current->mpNode == pTo)
 		{
 			toNodeAdded = true;
@@ -126,6 +126,7 @@ Path* DijkstraPathfinder::findPath(Node* pFrom, Node* pTo)
 				}
 			}
 		}
+		pPath->addNode(current->mpNode);
 	}
 
 	for (unsigned int i = 0; i < closedNodes.size(); i++)
