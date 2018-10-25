@@ -20,6 +20,7 @@
 #include "PathfindingDebugContent.h"
 #include "DijkstraPathFinder.h"
 #include "AStarPathFinder.h"
+#include "InputSystem.h"
 
 #include <SDL.h>
 #include <fstream>
@@ -44,6 +45,7 @@ GameApp::~GameApp()
 
 bool GameApp::init()
 {
+	mpInputSystem = new InputSystem();
 	bool retVal = Game::init();
 	if( retVal == false )
 	{
@@ -104,6 +106,9 @@ void GameApp::cleanup()
 
 	delete mpDebugDisplay;
 	mpDebugDisplay = NULL;
+
+	delete mpInputSystem;
+	mpInputSystem = NULL;
 }
 
 void GameApp::beginLoop()
@@ -129,33 +134,9 @@ void GameApp::processLoop()
 
 	//get input - should be moved someplace better
 	SDL_PumpEvents();
-	int x, y;
 
-	if (SDL_GetMouseState(&x, &y) & SDL_BUTTON(SDL_BUTTON_LEFT))
-	{
-		static Vector2D lastPos(0.0f, 0.0f);
-		Vector2D pos(x,y);
-		if (lastPos.getX() != pos.getX() || lastPos.getY() != pos.getY())
-		{
-			GameMessage* pMessage = new PathToMessage(lastPos, pos);
-			mpMessageManager->addMessage(pMessage, 0);
-			lastPos = pos;
-		}
-	}
-
-	//get input - should be moved someplace better
-	//all this should be moved to InputManager!!!
-	{
-		//get keyboard state
-		const Uint8 *state = SDL_GetKeyboardState(NULL);
-
-		//if escape key was down then exit the loop
-		if (state[SDL_SCANCODE_ESCAPE])
-		{
-			markForExit();
-		}
-	}
-
+	mpInputSystem->update();
+	
 	//should be last thing in processLoop
 	Game::processLoop();
 }
@@ -163,4 +144,32 @@ void GameApp::processLoop()
 bool GameApp::endLoop()
 {
 	return Game::endLoop();
+}
+
+void GameApp::SetPathFinderToDijkstra() {
+	delete mpPathfinder;
+	mpPathfinder = new DijkstraPathfinder(mpGridGraph);
+
+	delete mpDebugDisplay;
+
+	PathfindingDebugContent* pContent = new PathfindingDebugContent(mpPathfinder);
+	mpDebugDisplay = new DebugDisplay(Vector2D(0, 12), pContent);
+}
+void GameApp::SetPathFinderToAStar() {
+	delete mpPathfinder;
+	mpPathfinder = new AStarPathfinder(mpGridGraph);
+
+	delete mpDebugDisplay;
+
+	PathfindingDebugContent* pContent = new PathfindingDebugContent(mpPathfinder);
+	mpDebugDisplay = new DebugDisplay(Vector2D(0, 12), pContent);
+}
+void GameApp::SetPathFinderToDepthFirst() {
+	delete mpPathfinder;
+	mpPathfinder = new DepthFirstPathfinder(mpGridGraph);
+
+	delete mpDebugDisplay;
+
+	PathfindingDebugContent* pContent = new PathfindingDebugContent(mpPathfinder);
+	mpDebugDisplay = new DebugDisplay(Vector2D(0, 12), pContent);
 }

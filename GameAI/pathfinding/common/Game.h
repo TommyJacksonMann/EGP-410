@@ -18,6 +18,7 @@ class GraphicsBufferManager;
 class SpriteManager;
 class Game;
 class Font;
+class InputSystem;
 
 extern PerformanceTracker* gpPerformanceTracker;
 extern Game* gpGame;

@@ -1,12 +1,10 @@
-https://github.com/TommyJacksonMann/EGP-410/tree/Assignment1
+https://github.com/TommyJacksonMann/EGP-410/tree/Assignment3
 
-Build the Steering SDL sln
+Build the PathFinding sln
 
 INPUT
 enter - add flock unit
-A - add boid
-D - delete unit
-HU - decrease/increase align
-JI - decrease/increase cohesion
-KO - decrease/increase Separation
-left click - set target loc of player
+A - Set pathfinding to A*
+D - Set pathfinding to Dijkstra
+F - Set pathfinding to DepthFirstSearch
+left click - give new location to path find to

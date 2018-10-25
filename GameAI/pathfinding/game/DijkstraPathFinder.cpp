@@ -53,8 +53,10 @@ Path* DijkstraPathfinder::findPath(Node* pFrom, Node* pTo)
 
 	while (openNodes.size() > 0)
 	{
+		//gets the first available node
 		current = openNodes[0];
 		int currentNodeIndex = 0;
+		//checks to see if it reached the target
 		if (current->mpNode == pTo)
 		{
 			toNodeAdded = true;
@@ -64,9 +66,10 @@ Path* DijkstraPathfinder::findPath(Node* pFrom, Node* pTo)
 		vector<Connection*> connections = mpGraph->getConnections(current->mpNode->getId());
 		for (unsigned int i = 0; i < connections.size(); i++)
 		{
+			//gets the connections node data
 			Node* endNode = connections[i]->getToNode();
 			float endNodeCost = current->mCostSoFar + connections[i]->getCost();
-			//check to see if it is in the closed list
+			//check to see if it is in the closed list or open list
 			bool closedContainsEndNode = false;
 			bool openContainsEndNode = false;
 			NodeRecord* endNodeRecord;
@@ -101,12 +104,15 @@ Path* DijkstraPathfinder::findPath(Node* pFrom, Node* pTo)
 					openNodes.push_back(endNodeRecord);
 				}
 			}
+			
 		}
-		
+		//removes node from open list and puts it in the closed
 		openNodes.erase(openNodes.begin()+ currentNodeIndex);
 		closedNodes.push_back(current);
 	}
 
+	//create a vector of nodes for the final path
+	vector<Node*> finalNodeVector;
 	if (toNodeAdded == false)
 	{
 		return NULL;
@@ -115,7 +121,7 @@ Path* DijkstraPathfinder::findPath(Node* pFrom, Node* pTo)
 	{
 		while (current->mpNode != pFrom)
 		{
-			pPath->addNode(current->mpNode);
+			finalNodeVector.push_back(current->mpNode);
 			current->mpNode = current->mpConnection->getFromNode();
 			for (int i = 0; i < closedNodes.size(); i++)
 			{
@@ -126,7 +132,12 @@ Path* DijkstraPathfinder::findPath(Node* pFrom, Node* pTo)
 				}
 			}
 		}
-		pPath->addNode(current->mpNode);
+		finalNodeVector.push_back(current->mpNode);
+	}
+	//reverse the final node vector
+	for (int i = 0; i < finalNodeVector.size(); i++)
+	{
+		pPath->addNode(finalNodeVector[finalNodeVector.size()-1-i]);
 	}
 
 	for (unsigned int i = 0; i < closedNodes.size(); i++)

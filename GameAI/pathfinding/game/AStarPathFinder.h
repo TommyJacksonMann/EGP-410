@@ -18,7 +18,7 @@ public:
 	Path* findPath(Node* pFrom, Node* pTo);//make sure to delete the path when you are done!
 private:
 	float getHeuristic(Node* pFrom, Node* pTo);
-	NodeRecord* getSmallestNodeRecord(std::vector<NodeRecord*> vpNodeRecords);	
-	int getSmallestNodeRecordIndex(std::vector<NodeRecord*> vpNodeRecords);
+	NodeRecord getSmallestNodeRecord(std::vector<NodeRecord> vpNodeRecords);	
+	int getSmallestNodeRecordIndex(std::vector<NodeRecord> vpNodeRecords);
 };
 
