@@ -10,8 +10,10 @@
 #include "Sprite.h"
 #include "SpriteManager.h"
 #include "Font.h"
-#include <Timer.h>
+#include "Timer.h"
 #include "Defines.h"
+#include <ComponentManager.h>
+#include <UnitManager.h>
 
 Game* gpGame = NULL;
 

@@ -19,11 +19,15 @@ class SpriteManager;
 class Game;
 class Font;
 class InputSystem;
+class UnitManager;
 
 extern PerformanceTracker* gpPerformanceTracker;
 extern Game* gpGame;
 
 const IDType BACKGROUND_SPRITE_ID = 0;
+const IDType PLAYER_ICON_SPRITE_ID = 1;
+const IDType AI_ICON_SPRITE_ID = 2;
+const IDType TARGET_SPRITE_ID = 3;
 
 class Game:public Trackable
 {
@@ -51,6 +55,7 @@ protected:
 	GraphicsSystem* mpGraphicsSystem;
 	GraphicsBufferManager* mpGraphicsBufferManager;
 	SpriteManager* mpSpriteManager;
+	UnitManager* mpUnitManager;
 	Timer* mpLoopTimer;
 	Timer* mpMasterTimer;
 	float mLoopTargetTime;

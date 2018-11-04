@@ -22,9 +22,6 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files\Util</Filter>
-    </ClCompile>
     <ClCompile Include="SpriteManager.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
