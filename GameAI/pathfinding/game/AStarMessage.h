@@ -1,7 +1,7 @@
 #pragma once
 #include "GameMessage.h"
 #include "GameApp.h"
-#include "Game.h"
+#include "../common/Game.h"
 
 class AStarMessage :public GameMessage
 {

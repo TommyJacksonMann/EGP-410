@@ -2,7 +2,7 @@
 #include "Path.h"
 #include "Connection.h"
 #include "GridGraph.h"
-#include "Game.h"
+#include "../common/Game.h"
 #include <PerformanceTracker.h>
 #include <list>
 #include <vector>

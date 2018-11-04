@@ -153,6 +153,9 @@
     <ClInclude Include="Node.h">
       <Filter>Header Files\Grid</Filter>
     </ClInclude>
+    <ClInclude Include="..\common\Defines.h">
+      <Filter>Common\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\common\Game.cpp">

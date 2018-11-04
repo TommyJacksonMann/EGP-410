@@ -11,12 +11,12 @@
 
 #include <SDL.h>
 
-#include "Game.h"
+#include "../common/Game.h"
 #include "GameApp.h"
-#include "GraphicsSystem.h"
-#include "GraphicsBuffer.h"
-#include "Sprite.h"
-#include "Defines.h"
+#include "../common/GraphicsSystem.h"
+#include "../common/GraphicsBuffer.h"
+#include "../common/Sprite.h"
+#include "../common/Defines.h"
 #include <Timer.h>
 #include <MemoryTracker.h>
 #include <PerformanceTracker.h>

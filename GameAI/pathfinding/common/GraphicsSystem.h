@@ -2,7 +2,7 @@
 
 #include "Trackable.h"
 #include "Vector2D.h"
-#include "Color.h"
+#include "../common/Color.h"
 
 class GraphicsBuffer;
 class GraphicsBufferManager;

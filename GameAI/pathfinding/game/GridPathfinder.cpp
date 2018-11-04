@@ -1,10 +1,10 @@
 #include "GridPathfinder.h"
 #include "GridGraph.h"
-#include "GridVisualizer.h"
+#include "../common/GridVisualizer.h"
 #include "Path.h"
-#include "Game.h"
-#include "GraphicsBuffer.h"
-#include "Color.h"
+#include "../common/Game.h"
+#include "../common/GraphicsBuffer.h"
+#include "../common/Color.h"
 #include <cassert>
 #include <iostream>
 

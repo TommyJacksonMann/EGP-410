@@ -12,8 +12,8 @@
 #include "Font.h"
 #include "Timer.h"
 #include "Defines.h"
-#include <ComponentManager.h>
-#include <UnitManager.h>
+//#include <ComponentManager.h>
+//#include <UnitManager.h>
 
 Game* gpGame = NULL;
 

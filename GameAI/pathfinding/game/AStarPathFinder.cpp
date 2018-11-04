@@ -2,7 +2,7 @@
 #include "Path.h"
 #include "Connection.h"
 #include "GridGraph.h"
-#include "Game.h"
+#include "../common/Game.h"
 #include <PerformanceTracker.h>
 #include <list>
 #include <vector>
@@ -10,7 +10,7 @@
 #include <queue>
 #include "Vector2D.h"
 #include "GameApp.h"
-#include "Grid.h"
+#include "../common/Grid.h"
 
 using namespace std;
 

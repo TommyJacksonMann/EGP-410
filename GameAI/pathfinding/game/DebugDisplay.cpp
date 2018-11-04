@@ -1,9 +1,9 @@
 #include "DebugDisplay.h"
-#include "GraphicsBuffer.h"
+#include "../common/GraphicsBuffer.h"
 #include "DebugContent.h"
-#include "Game.h"
-#include "GraphicsSystem.h"
-#include "Color.h"
+#include "../common/Game.h"
+#include "../common/GraphicsSystem.h"
+#include "../common/Color.h"
 
 using namespace std;
 

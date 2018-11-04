@@ -1,8 +1,8 @@
 #include "GridGraph.h"
 #include "Connection.h"
 #include "Node.h"
-#include "Grid.h"
-#include "Game.h"
+#include "../common/Grid.h"
+#include "../common/Game.h"
 #include <vector>
 
 GridGraph::GridGraph( Grid* pGrid )

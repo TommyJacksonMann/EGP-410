@@ -1,8 +1,8 @@
 #include "PathToMessage.h"
-#include "Game.h"
+#include "../common/Game.h"
 #include "GameApp.h"
 #include "GridPathfinder.h"
-#include "Grid.h"
+#include "../common/Grid.h"
 #include "GridGraph.h"
 
 PathToMessage::PathToMessage( const Vector2D& from, const Vector2D& to )

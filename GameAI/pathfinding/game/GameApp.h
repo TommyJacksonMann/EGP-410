@@ -7,7 +7,7 @@ Champlain College
 2011
 */
 
-#include "Game.h"
+#include "../common/Game.h"
 
 
 //forward declarations

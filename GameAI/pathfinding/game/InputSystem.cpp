@@ -7,8 +7,8 @@
 #include "AStarMessage.h"
 #include "DepthFirstSearchMessage.h"
 #include "GameMessageManager.h"
-#include "Defines.h"
-#include "Game.h"
+#include "../common/Defines.h"
+#include "../common/Game.h"
 #include "GameApp.h"
 
 InputSystem::InputSystem()

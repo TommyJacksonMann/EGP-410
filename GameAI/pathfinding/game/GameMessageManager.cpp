@@ -1,6 +1,6 @@
 #include <list>
 
-#include "Game.h"
+#include "../common/Game.h"
 #include "GameMessageManager.h"
 #include "GameMessage.h"
 
