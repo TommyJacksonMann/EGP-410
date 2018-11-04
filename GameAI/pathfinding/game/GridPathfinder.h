@@ -5,6 +5,8 @@ class GridGraph;
 class GridVisualizer;
 class GraphicsBuffer;
 class PathfindingDebugContent;
+class Node;
+class Connection;
 
 class GridPathfinder:public Pathfinder
 {

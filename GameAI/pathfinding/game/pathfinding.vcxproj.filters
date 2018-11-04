@@ -28,6 +28,9 @@
     <Filter Include="Source Files\pathfinding">
       <UniqueIdentifier>{474fbefa-c012-4187-954c-fdb12b4f06d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Steering">
+      <UniqueIdentifier>{65309a20-e71f-457d-99e7-1411abe23c88}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common\Game.h">
@@ -108,6 +111,66 @@
     <ClInclude Include="..\common\Font.h">
       <Filter>Common\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DijkstraPathFinder.h">
+      <Filter>Header Files\pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="AStarPathFinder.h">
+      <Filter>Header Files\pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeRecord.h">
+      <Filter>Header Files\pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardInputs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EscapeMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DijkstraMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AStarMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DepthFirstSearchMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringFiles\ArriveSteering.h">
+      <Filter>Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringFiles\Component.h">
+      <Filter>Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringFiles\ComponentManager.h">
+      <Filter>Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringFiles\MathTools.h">
+      <Filter>Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringFiles\PhysicsComponent.h">
+      <Filter>Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringFiles\PositionComponent.h">
+      <Filter>Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringFiles\Steering.h">
+      <Filter>Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringFiles\SteeringComponent.h">
+      <Filter>Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringFiles\Unit.h">
+      <Filter>Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringFiles\UnitManager.h">
+      <Filter>Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringFiles\PlayerMoveToMessage.h">
+      <Filter>Steering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\common\Game.cpp">
@@ -187,6 +250,48 @@
     </ClCompile>
     <ClCompile Include="..\common\Font.cpp">
       <Filter>Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DijkstraPathFinder.cpp">
+      <Filter>Source Files\pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="AStarPathFinder.cpp">
+      <Filter>Source Files\pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="InputSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringFiles\ArriveSteering.cpp">
+      <Filter>Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringFiles\Component.cpp">
+      <Filter>Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringFiles\ComponentManager.cpp">
+      <Filter>Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringFiles\MathTools.cpp">
+      <Filter>Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringFiles\PhysicsComponent.cpp">
+      <Filter>Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringFiles\PositionComponent.cpp">
+      <Filter>Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringFiles\Steering.cpp">
+      <Filter>Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringFiles\SteeringComponent.cpp">
+      <Filter>Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringFiles\Unit.cpp">
+      <Filter>Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringFiles\UnitManager.cpp">
+      <Filter>Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringFiles\PlayerMoveToMessage.cpp">
+      <Filter>Steering</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

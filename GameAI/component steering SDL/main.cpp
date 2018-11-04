@@ -19,6 +19,7 @@
 #include "ComponentManager.h"
 #include "PositionComponent.h"
 #include "PhysicsComponent.h"
+#include "FileSystem.h"
 
 using namespace std;
 
@@ -30,6 +31,7 @@ int main(int argc, char **argv)
 	gpPerformanceTracker->startTracking("init");
 
 	//create the global game object
+	FileSystem::initInstance();
 	gpGame = new Game;
 	//init the game
 	bool goodGame = gpGame->init();
@@ -68,6 +70,7 @@ int main(int argc, char **argv)
 	}
 
 	gpGame->cleanup();
+	FileSystem::cleanUpInstance();
 	delete gpGame;
 	gpGame = NULL;
 

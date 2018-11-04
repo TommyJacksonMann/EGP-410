@@ -1,6 +1,15 @@
 #include "ComponentManager.h"
 #include "SteeringComponent.h"
+#include "ArriveSteering.h"
 #include "SeekSteering.h"
+#include "FaceSteering.h"
+#include "WanderSteering.h"
+#include "WanderAndChaseSteering.h"
+#include "ArriveAndFaceSteering.h"
+#include "Align.h"
+#include "Cohesion.h"
+#include "Separation.h"
+#include "FlockSteering.h"
 
 SteeringComponent::SteeringComponent(const ComponentID& id, const ComponentID& physicsComponentID) 
 	:Component(id)
@@ -48,6 +57,56 @@ void SteeringComponent::setData(const SteeringData& data)
 		}
 		case Steering::ARRIVE:
 		{
+			delete mpSteering;
+			mpSteering = new ArriveSteering(data.ownerID, data.targetLoc, data.targetID, false);
+			break;
+		}
+		case Steering::FACE:
+		{
+			delete mpSteering;
+			mpSteering = new FaceSteering(data.ownerID, data.targetLoc, data.targetID, false);
+			break;
+		}
+		case Steering::WANDER:
+		{
+			delete mpSteering;
+			mpSteering = new WanderSteering(data.ownerID, data.targetLoc, data.targetID, false);
+			break;
+		}
+		case Steering::WANDERANDCHASE:
+		{
+			delete mpSteering;
+			mpSteering = new WanderAndChaseSteering(data.ownerID, data.targetLoc, data.targetID, false);
+			break;
+		}
+		case Steering::ARRIVEANDFACE:
+		{
+			delete mpSteering;
+			mpSteering = new ArriveAndFaceSteering(data.ownerID, data.targetLoc, data.targetID, false);
+			break;
+		}
+		case Steering::FLOCK:
+		{
+			delete mpSteering;
+			mpSteering = new FlockSteering(data.ownerID, data.targetLoc, data.targetID, false);
+			break;
+		}
+		case Steering::ALIGN:
+		{
+			delete mpSteering;
+			mpSteering = new Align(data.ownerID);
+			break;
+		}
+		case Steering::COHESION:
+		{
+			delete mpSteering;
+			mpSteering = new Cohesion(data.ownerID);
+			break;
+		}
+		case Steering::SEPARATION:
+		{
+			delete mpSteering;
+			mpSteering = new Separation(data.ownerID);
 			break;
 		}
 		default:

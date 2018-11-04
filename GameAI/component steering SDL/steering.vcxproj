@@ -11,10 +11,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AddBoidMessage.h" />
+    <ClInclude Include="AddUnitMessage.h" />
+    <ClInclude Include="Align.h" />
+    <ClInclude Include="AlterFlockMessage.h" />
+    <ClInclude Include="ArriveAndFaceSteering.h" />
+    <ClInclude Include="ArriveSteering.h" />
+    <ClInclude Include="Cohesion.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentManager.h" />
     <ClInclude Include="Defines.h" />
+    <ClInclude Include="DeleteUnitMessage.h" />
+    <ClInclude Include="EscapeMessage.h" />
+    <ClInclude Include="FaceSteering.h" />
+    <ClInclude Include="FileSystem.h" />
+    <ClInclude Include="FlockSteering.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameMessage.h" />
@@ -22,22 +34,40 @@
     <ClInclude Include="GraphicsBuffer.h" />
     <ClInclude Include="GraphicsBufferManager.h" />
     <ClInclude Include="GraphicsSystem.h" />
+    <ClInclude Include="InputSystem.h" />
+    <ClInclude Include="KeyboardInputs.h" />
+    <ClInclude Include="MathTools.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="PlayerMoveToMessage.h" />
     <ClInclude Include="PositionComponent.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="SeekSteering.h" />
+    <ClInclude Include="Separation.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteManager.h" />
     <ClInclude Include="Steering.h" />
     <ClInclude Include="SteeringComponent.h" />
     <ClInclude Include="Unit.h" />
     <ClInclude Include="UnitManager.h" />
+    <ClInclude Include="WanderAndChaseSteering.h" />
+    <ClInclude Include="WanderSteering.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AddBoidMessage.cpp" />
+    <ClCompile Include="AddUnitMessage.cpp" />
+    <ClCompile Include="Align.cpp" />
+    <ClCompile Include="AlterFlockMessage.cpp" />
+    <ClCompile Include="ArriveAndFaceSteering.cpp" />
+    <ClCompile Include="ArriveSteering.cpp" />
+    <ClCompile Include="Cohesion.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ComponentManager.cpp" />
+    <ClCompile Include="DeleteUnitMessage.cpp" />
+    <ClCompile Include="EscapeMessage.cpp" />
+    <ClCompile Include="FaceSteering.cpp" />
+    <ClCompile Include="FileSystem.cpp" />
+    <ClCompile Include="FlockSteering.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameMessage.cpp" />
@@ -45,18 +75,23 @@
     <ClCompile Include="GraphicsBuffer.cpp" />
     <ClCompile Include="GraphicsBufferManager.cpp" />
     <ClCompile Include="GraphicsSystem.cpp" />
+    <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MathTools.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="PlayerMoveToMessage.cpp" />
     <ClCompile Include="PositionComponent.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="SeekSteering.cpp" />
+    <ClCompile Include="Separation.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteManager.cpp" />
     <ClCompile Include="Steering.cpp" />
     <ClCompile Include="SteeringComponent.cpp" />
     <ClCompile Include="Unit.cpp" />
     <ClCompile Include="UnitManager.cpp" />
+    <ClCompile Include="WanderAndChaseSteering.cpp" />
+    <ClCompile Include="WanderSteering.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{07ED8114-0659-4424-9468-50DBBEA5882A}</ProjectGuid>

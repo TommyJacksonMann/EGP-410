@@ -9,6 +9,7 @@ Champlain College
 
 #include "Game.h"
 
+
 //forward declarations
 class GraphicsBuffer;
 class Sprite;
@@ -19,9 +20,11 @@ class GridVisualizer;
 class GridGraph;
 class GridPathfinder;
 class DebugDisplay;
+class InputSystem;
+class DijkstraPathFinder;
+class AStarPathFinder;
 
-const float LOOP_TARGET_TIME = 33.3f;//how long should each frame of execution take? 30fps = 33.3ms/frame
-
+//const float LOOP_TARGET_TIME = 33.3f;//how long should each frame of execution take? 30fps = 33.3ms/frame
 
 class GameApp: public Game
 {
@@ -43,7 +46,11 @@ public:
 	inline GridPathfinder* getPathfinder() { return mpPathfinder; };
 	inline Grid* getGrid() { return mpGrid; };
 	inline GridGraph* getGridGraph() { return mpGridGraph; };
+	void SetPathFinderToDijkstra();
+	void SetPathFinderToAStar();
+	void SetPathFinderToDepthFirst();
 private:
+	InputSystem* mpInputSystem;
 	GameMessageManager* mpMessageManager;
 	Grid* mpGrid;
 	GridVisualizer* mpGridVisualizer;
@@ -51,6 +58,5 @@ private:
 	DebugDisplay* mpDebugDisplay;
 
 	GridPathfinder* mpPathfinder;
-
 };
 

@@ -18,11 +18,19 @@ class GraphicsBufferManager;
 class SpriteManager;
 class Game;
 class Font;
+class InputSystem;
+class ComponentManager;
+class UnitManager;
 
 extern PerformanceTracker* gpPerformanceTracker;
 extern Game* gpGame;
 
 const IDType BACKGROUND_SPRITE_ID = 0;
+const IDType PLAYER_ICON_SPRITE_ID = 1;
+const IDType AI_ICON_SPRITE_ID = 2;
+const IDType TARGET_SPRITE_ID = 3;
+
+const float LOOP_TARGET_TIME = 33.3f;
 
 class Game:public Trackable
 {
@@ -41,6 +49,8 @@ public:
 	inline GraphicsSystem* getGraphicsSystem() const { return mpGraphicsSystem; };
 	inline GraphicsBufferManager* getGraphicsBufferManager() const { return mpGraphicsBufferManager; };
 	inline SpriteManager* getSpriteManager() const { return mpSpriteManager; };
+	inline ComponentManager* getComponentManager() const { return mpComponentManager;  };
+	inline UnitManager* getUnitManager() const { return mpUnitManager; };
 	inline Timer* getMasterTimer() const { return mpMasterTimer; };
 	inline double getCurrentTime() const { return mpMasterTimer->getElapsedTime(); };
 	inline Font* getFont() const { return mpFont; };
@@ -50,6 +60,8 @@ protected:
 	GraphicsSystem* mpGraphicsSystem;
 	GraphicsBufferManager* mpGraphicsBufferManager;
 	SpriteManager* mpSpriteManager;
+	ComponentManager* mpComponentManager;
+	UnitManager* mpUnitManager;
 	Timer* mpLoopTimer;
 	Timer* mpMasterTimer;
 	float mLoopTargetTime;
@@ -59,6 +71,9 @@ protected:
 	Font* mpFont;
 
 	GraphicsBufferID mBackgroundBufferID = "background";
+	GraphicsBufferID mPlayerIconBufferID = "player";
+	GraphicsBufferID mEnemyIconBufferID = "enemy";
+	GraphicsBufferID mTargetBufferID = "target";
 
 };
 
