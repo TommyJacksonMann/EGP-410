@@ -1,6 +1,7 @@
 #include "ComponentManager.h"
 #include "SteeringComponent.h"
 #include "ArriveSteering.h"
+#include "../FollowPathSteering.h"
 
 
 SteeringComponent::SteeringComponent(const ComponentID& id, const ComponentID& physicsComponentID) 
@@ -38,6 +39,12 @@ void SteeringComponent::setData(const SteeringData& data)
 		{
 			delete mpSteering;
 			mpSteering = new ArriveSteering(data.ownerID, data.targetLoc, data.targetID, false);
+			break;
+		}
+		case Steering::FOLLOW_PATH:
+		{
+			delete mpSteering;
+			mpSteering = new FollowPathSteering(data.ownerID);
 			break;
 		}
 		default:

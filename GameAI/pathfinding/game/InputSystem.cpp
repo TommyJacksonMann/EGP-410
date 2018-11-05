@@ -6,11 +6,14 @@
 #include "DijkstraMessage.h"
 #include "AStarMessage.h"
 #include "DepthFirstSearchMessage.h"
+#include "AddAndRemoveUnitsMessage.h"
+#include "UnitToNewLocationMessage.h"
 #include "GameMessageManager.h"
 #include "Defines.h"
 #include "Game.h"
 #include "GameApp.h"
-#include ".\SteeringFiles\PlayerMoveToMessage.h"
+//#include ".\SteeringFiles\PlayerMoveToMessage.h"
+
 
 InputSystem::InputSystem()
 {
@@ -66,6 +69,12 @@ void InputSystem::update()
 				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
 				pGame->getMessageManager()->addMessage(pMessage, 0);
 			}
+			if (mBitwiseKeyStates[KeyCode::SCANCODE_S] && getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED))
+			{
+				GameMessage* pMessage = new AddAndRemoveUnitsMessage();
+				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
+				pGame->getMessageManager()->addMessage(pMessage, 0);
+			}
 		}
 	}
 
@@ -78,10 +87,11 @@ void InputSystem::update()
 			GameMessage* pMessage = new PathToMessage(lastPos, mMouseLocation);
 			GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
 			pGame->getMessageManager()->addMessage(pMessage, 0);
-			pMessage = new PlayerMoveToMessage(mMouseLocation);
+			pMessage = new UnitToNewLocationMessage(mMouseLocation);
 			pGame->getMessageManager()->addMessage(pMessage, 0);
 			lastPos = mMouseLocation;
-		}/**/
+			mLastPos = lastPos;
+		}
 	}
 }
 void InputSystem::mouseInputUpdate()

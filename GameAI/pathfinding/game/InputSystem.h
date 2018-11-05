@@ -17,12 +17,14 @@ public:
 	void keyInputUpdate();
 
 	bool getHasByte(const BYTE value, const BYTE comparison)const;
-
+	
+	Vector2D getLastPosition()const { return mLastPos; }
+	
+private:
 	BYTE mBitwiseKeyStates[static_cast<int>(KeyCode::NUM_SCANCODES)];
 	BYTE mLeftMouse, mRightMouse;
 	Vector2D mMouseLocation;
-private:
-
+	Vector2D mLastPos;
 
 };
 struct StateBitValues

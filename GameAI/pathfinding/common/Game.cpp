@@ -97,11 +97,11 @@ bool Game::init()
 
 	mpComponentManager = new ComponentManager(MAX_UNITS);
 	mpUnitManager = new UnitManager(MAX_UNITS);
-
-	Unit* pUnit = mpUnitManager->createPlayerUnit(*pArrowSprite);
+	
+	/*Unit* pUnit = mpUnitManager->createPlayerUnit(*pArrowSprite);
 	pUnit->setShowTarget(true);
 	pUnit->setSteering(Steering::ARRIVE, Vector2D(400, 400));
-	pUnit->getPositionComponent()->setPosition(Vector2D(300, 300));
+	pUnit->getPositionComponent()->setPosition(Vector2D(300, 300));*/
 
 	return true;
 }

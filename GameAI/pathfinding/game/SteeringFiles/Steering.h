@@ -39,7 +39,8 @@ public:
 		ALIGN,
 		SEPARATION,
 		COHESION,
-		FLOCK
+		FLOCK,
+		FOLLOW_PATH
 	};
 
 	//constructors and destructors

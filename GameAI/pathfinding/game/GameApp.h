@@ -46,6 +46,7 @@ public:
 	inline GridPathfinder* getPathfinder() { return mpPathfinder; };
 	inline Grid* getGrid() { return mpGrid; };
 	inline GridGraph* getGridGraph() { return mpGridGraph; };
+	inline InputSystem* getInputSystem() const { return mpInputSystem; }
 	void SetPathFinderToDijkstra();
 	void SetPathFinderToAStar();
 	void SetPathFinderToDepthFirst();

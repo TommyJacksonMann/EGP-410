@@ -165,11 +165,20 @@
     <ClInclude Include="SteeringFiles\Unit.h">
       <Filter>Steering</Filter>
     </ClInclude>
+    <ClInclude Include="SteeringFiles\PlayerMoveToMessage.h">
+      <Filter>Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="AddAndRemoveUnitsMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="SteeringFiles\UnitManager.h">
       <Filter>Steering</Filter>
     </ClInclude>
-    <ClInclude Include="SteeringFiles\PlayerMoveToMessage.h">
-      <Filter>Steering</Filter>
+    <ClInclude Include="UnitToNewLocationMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FollowPathSteering.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -292,6 +301,15 @@
     </ClCompile>
     <ClCompile Include="SteeringFiles\PlayerMoveToMessage.cpp">
       <Filter>Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="AddAndRemoveUnitsMessage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitToNewLocationMessage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FollowPathSteering.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

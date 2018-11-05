@@ -91,6 +91,7 @@
     <ClInclude Include="..\common\Renderer.h" />
     <ClInclude Include="..\common\Sprite.h" />
     <ClInclude Include="..\common\SpriteManager.h" />
+    <ClInclude Include="AddAndRemoveUnitsMessage.h" />
     <ClInclude Include="AStarMessage.h" />
     <ClInclude Include="AStarPathFinder.h" />
     <ClInclude Include="Connection.h" />
@@ -101,6 +102,7 @@
     <ClInclude Include="DijkstraMessage.h" />
     <ClInclude Include="DijkstraPathFinder.h" />
     <ClInclude Include="EscapeMessage.h" />
+    <ClInclude Include="FollowPathSteering.h" />
     <ClInclude Include="GameApp.h" />
     <ClInclude Include="GameMessage.h" />
     <ClInclude Include="GameMessageManager.h" />
@@ -126,6 +128,7 @@
     <ClInclude Include="SteeringFiles\SteeringComponent.h" />
     <ClInclude Include="SteeringFiles\Unit.h" />
     <ClInclude Include="SteeringFiles\UnitManager.h" />
+    <ClInclude Include="UnitToNewLocationMessage.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\common\Color.cpp" />
@@ -139,11 +142,13 @@
     <ClCompile Include="..\common\Renderer.cpp" />
     <ClCompile Include="..\common\Sprite.cpp" />
     <ClCompile Include="..\common\SpriteManager.cpp" />
+    <ClCompile Include="AddAndRemoveUnitsMessage.cpp" />
     <ClCompile Include="AStarPathFinder.cpp" />
     <ClCompile Include="Connection.cpp" />
     <ClCompile Include="DebugDisplay.cpp" />
     <ClCompile Include="DepthFirstPathfinder.cpp" />
     <ClCompile Include="DijkstraPathFinder.cpp" />
+    <ClCompile Include="FollowPathSteering.cpp" />
     <ClCompile Include="GameApp.cpp" />
     <ClCompile Include="GameMessage.cpp" />
     <ClCompile Include="GameMessageManager.cpp" />
@@ -168,6 +173,7 @@
     <ClCompile Include="SteeringFiles\SteeringComponent.cpp" />
     <ClCompile Include="SteeringFiles\Unit.cpp" />
     <ClCompile Include="SteeringFiles\UnitManager.cpp" />
+    <ClCompile Include="UnitToNewLocationMessage.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
