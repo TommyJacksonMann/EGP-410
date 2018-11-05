@@ -130,12 +130,14 @@ void GameApp::processLoop()
 
 	mpDebugDisplay->draw( pBackBuffer );
 
+
+	mpInputSystem->update();
+
 	mpMessageManager->processMessagesForThisframe();
 
 	//get input - should be moved someplace better
 	SDL_PumpEvents();
 
-	mpInputSystem->update();
 
 	//should be last thing in processLoop
 	Game::processLoop();

@@ -52,9 +52,15 @@ void GridGraph::init()
 				if( mpGrid->getValueAtIndex(adjacencies[adjIndex]) != BLOCKING_VALUE )
 				{
 					Node* pToNode = mNodes[ adjacencies[adjIndex] ];//find to node
-
-					Connection* pConnection = new Connection( pFromNode, pToNode, 1.0f );//create a connection
-
+					Connection* pConnection;
+					if (adjIndex % 2 == 0)
+					{
+						pConnection = new Connection(pFromNode, pToNode, 1.0f);//create a connection
+					}
+					else
+					{
+						pConnection = new Connection(pFromNode, pToNode, sqrt(2));//create a connection
+					}
 					//add connection to connection vectors
 					mConnections.push_back( pConnection );
 					connections.push_back( pConnection );

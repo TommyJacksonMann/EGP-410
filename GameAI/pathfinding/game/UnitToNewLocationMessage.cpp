@@ -29,13 +29,14 @@ void UnitToNewLocationMessage::process()
 		std::map<UnitID, Unit*> tempMap = pGame->getUnitManager()->getUnitMap();
 		std::map<UnitID, Unit*>::iterator iter = tempMap.begin();
 
+		GridPathfinder* pPathfinder = pGame->getPathfinder();
+		GridGraph* pGridGraph = pGame->getGridGraph();
+		Grid* pGrid = pGame->getGrid();
 		while (iter != tempMap.end())
 		{
 			iter->second->setSteering(Steering::FOLLOW_PATH);
 			FollowPathSteering* steer = static_cast<FollowPathSteering*>(iter->second->getSteeringComponent()->getSteering());
-			GridPathfinder* pPathfinder = pGame->getPathfinder();
-			GridGraph* pGridGraph = pGame->getGridGraph();
-			Grid* pGrid = pGame->getGrid();
+			
 			int fromIndex = pGrid->getSquareIndexFromPixelXY((int)iter->second->getPositionComponent()->getPosition().getX(), (int)iter->second->getPositionComponent()->getPosition().getY());
 			int toIndex = pGrid->getSquareIndexFromPixelXY((int)mPos.getX(), (int)mPos.getY());
 			Node* pFromNode = pGridGraph->getNode(fromIndex);

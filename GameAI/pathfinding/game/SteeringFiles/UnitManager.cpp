@@ -6,6 +6,9 @@
 #include "ComponentManager.h"
 #include "GraphicsSystem.h"
 #include "Steering.h"
+#include "../GameApp.h"
+#include "../GridGraph.h"
+#include "../../common/Grid.h"
 
 UnitID UnitManager::msNextUnitID = PLAYER_UNIT_ID + 1;
 
@@ -68,10 +71,17 @@ Unit* UnitManager::createPlayerUnit(const Sprite& sprite, bool shouldWrap /*= tr
 Unit* UnitManager::createRandomUnit(const Sprite& sprite)
 {
 
+	GameApp* pGame = static_cast<GameApp*>(gpGame);
+	Grid* pGrid = pGame->getGrid();
 	int posX = rand() % gpGame->getGraphicsSystem()->getWidth();
 	int posY = rand() % gpGame->getGraphicsSystem()->getHeight();
 	int velX = rand() % 50 - 25;
 	int velY = rand() % 40 - 20;
+	while (pGrid->getValueAtIndex(pGrid->getSquareIndexFromPixelXY(posX, posY)) == BLOCKING_VALUE)
+	{
+		posX = rand() % gpGame->getGraphicsSystem()->getWidth();
+		posY = rand() % gpGame->getGraphicsSystem()->getHeight();
+	}
 	Unit* pUnit = createUnit(sprite, false, PositionData(Vector2D(posX,posY),0), PhysicsData(Vector2D(velX,velY),Vector2D(0.1f,0.1f), 0.1f, 0.05f));
 	if (pUnit != NULL)
 	{

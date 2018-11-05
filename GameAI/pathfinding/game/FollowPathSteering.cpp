@@ -1,5 +1,5 @@
 #include "FollowPathSteering.h"
-#include "Path.h"
+//#include "Path.h"
 #include "Node.h"
 #include "Grid.h"
 #include "Game.h"
@@ -24,6 +24,12 @@ FollowPathSteering::FollowPathSteering(const UnitID& ownerID)
 FollowPathSteering::~FollowPathSteering()
 {
 }
+
+void FollowPathSteering::SetPath(Path* pPath)
+{
+	mpPath = *pPath; mCurrentPathPosition = 1;
+}
+
 Steering* FollowPathSteering::getSteering()
 {
 	/*Get CurrentDestination from Vector of Nodes
@@ -36,18 +42,14 @@ Steering* FollowPathSteering::getSteering()
 	* Sometimes the path is too big and looks for position outside screen ( A* Heuristic acts funny because the node doesn't exist on screen)
 	* One Path is being visualized; May need to fix how this works
 	*/
-	if (!mpPath)
-	{
-		return this;
-	}
-	if (mCurrentPathPosition > mpPath->getNumNodes() || !mpPath->peekNode(mCurrentPathPosition))
+	if (mCurrentPathPosition > mpPath.getNumNodes() || !mpPath.peekNode(mCurrentPathPosition))
 	{
 		return this;
 	}
 
 	//Get the position of the next node to move to
 	Grid* pGrid = dynamic_cast<GameApp*>(gpGame)->getGrid();
-	Vector2D currentTargetNodePosition = pGrid->getULCornerOfSquare(mpPath->peekNode(mCurrentPathPosition)->getId());	//Watch this when the unit goes to a position off the screen
+	Vector2D currentTargetNodePosition = pGrid->getULCornerOfSquare(mpPath.peekNode(mCurrentPathPosition)->getId());	//Watch this when the unit goes to a position off the screen
 
 	Unit* pOwner = gpGame->getUnitManager()->getUnit(mOwnerID);
 
@@ -61,11 +63,11 @@ Steering* FollowPathSteering::getSteering()
 	if (diff.getLength() < mTargetRadius)
 	{
 		//Stutters at every node
-		data.vel = ZERO_VECTOR2D;
-		data.acc = ZERO_VECTOR2D;
-		data.rotAcc = 0;
-		data.rotVel = 0;
-
+		
+			data.vel = ZERO_VECTOR2D;
+			data.acc = ZERO_VECTOR2D;
+			data.rotAcc = 0;
+			data.rotVel = 0;
 
 		mCurrentPathPosition++;
 		this->mData = data;
