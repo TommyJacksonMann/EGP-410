@@ -8,6 +8,7 @@ Champlain College
 */
 
 #include "Game.h"
+#include <vector>
 
 
 //forward declarations

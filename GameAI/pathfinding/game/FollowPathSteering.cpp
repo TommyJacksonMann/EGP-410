@@ -1,11 +1,14 @@
 #include "FollowPathSteering.h"
-//#include "Path.h"
+#include "Path.h"
 #include "Node.h"
 #include "Grid.h"
 #include "Game.h"
 #include "GameApp.h"
 #include "./SteeringFiles/Unit.h"
 #include "./SteeringFiles/UnitManager.h"
+#include "Pathfinder.h"
+#include "GridPathfinder.h"
+#include "GraphicsSystem.h"
 
 
 
@@ -37,11 +40,15 @@ Steering* FollowPathSteering::getSteering()
 	* if Node Location is greater than size, return NULL
 	*Issues:
 	* where should path be stored ~ Fixed (is private variable)
-	* how can there be more than one path in main gridPathfinder Variable 
+	* how can there be more than one path in main gridPathfinder Variable
 	* Old pathfinding rot vel needs to be set to 0 when not doing anything ~ Fixed
 	* Sometimes the path is too big and looks for position outside screen ( A* Heuristic acts funny because the node doesn't exist on screen)
 	* One Path is being visualized; May need to fix how this works
 	*/
+	
+	GameApp* pGame = static_cast<GameApp*>(gpGame);
+	pGame->getPathfinder()->drawOtherPath(pGame->getGrid(), pGame->getGraphicsSystem()->getBackBuffer(), mpPath);
+
 	if (mCurrentPathPosition > mpPath.getNumNodes() || !mpPath.peekNode(mCurrentPathPosition))
 	{
 		return this;
@@ -63,13 +70,17 @@ Steering* FollowPathSteering::getSteering()
 	if (diff.getLength() < mTargetRadius)
 	{
 		//Stutters at every node
-		
+		if (mCurrentPathPosition == mpPath.getNumNodes() - 1)
+		{
 			data.vel = ZERO_VECTOR2D;
 			data.acc = ZERO_VECTOR2D;
 			data.rotAcc = 0;
 			data.rotVel = 0;
-
-		mCurrentPathPosition++;
+		}
+		else
+		{
+			mCurrentPathPosition++;
+		}
 		this->mData = data;
 		return this;
 	}

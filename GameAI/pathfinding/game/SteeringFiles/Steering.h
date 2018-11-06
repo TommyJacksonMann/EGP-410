@@ -10,7 +10,7 @@
 
 const float DEFAULT_TARGET_RADIUS = 10;
 const float DEFAULT_SLOW_RADIUS = 100;
-const float DEFAULT_TIME_TO_TARGET = .1;
+const float DEFAULT_TIME_TO_TARGET = .5;
 
 const float DEFAULT_TARGET_ROTATION_RADIUS = .05;
 const float DEFAULT_SLOW_ROTATION_RADIUS = .5;

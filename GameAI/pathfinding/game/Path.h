@@ -18,7 +18,6 @@ public:
 	int getNumNodes() const { return mNodes.size(); };
 
 	void addNode( Node* pNode );
-
 private:
 	std::vector<Node*> mNodes;
 

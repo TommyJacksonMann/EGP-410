@@ -39,6 +39,7 @@ void AddAndRemoveUnitsMessage::process()
 	}
 	Sprite* pSprite = gpGame->getSpriteManager()->getSprite(AI_ICON_SPRITE_ID);
 	bool testForPathExistence = false;
+
 	if (pos == ZERO_VECTOR2D)
 	{
 		testForPathExistence = true;

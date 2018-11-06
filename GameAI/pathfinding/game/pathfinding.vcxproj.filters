@@ -178,7 +178,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FollowPathSteering.h">
-      <Filter>Header Files</Filter>
+      <Filter>Steering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -309,7 +309,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FollowPathSteering.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Steering</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

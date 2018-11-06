@@ -10,7 +10,6 @@ public:
 	virtual Steering* getSteering();
 
 	void SetPath(Path* pPath);
-
 private:
 	float mTargetRadius;
 	float mSlowRadius;
