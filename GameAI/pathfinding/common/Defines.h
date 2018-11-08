@@ -17,4 +17,8 @@ const IDType HIGHEST_ID = 9999;
 
 typedef Uint32 UnitID;
 
+typedef Uint32 ToID;
+typedef Uint32 FromID;
+
+
 const UnitID INVALID_UNIT_ID = UINT_MAX;

@@ -21,6 +21,7 @@
 #include "DijkstraPathFinder.h"
 #include "AStarPathFinder.h"
 #include "InputSystem.h"
+#include "PathPool.h"
 
 #include <SDL.h>
 #include <fstream>
@@ -79,6 +80,8 @@ bool GameApp::init()
 		mpSpriteManager->createAndManageSprite( BACKGROUND_SPRITE_ID, pBackGroundBuffer, 0, 0, (float)pBackGroundBuffer->getWidth(), (float)pBackGroundBuffer->getHeight() );
 	}
 
+	mpPathPool = new PathPool();
+
 	//debug display
 	PathfindingDebugContent* pContent = new PathfindingDebugContent( mpPathfinder );
 	mpDebugDisplay = new DebugDisplay( Vector2D(0,12), pContent );
@@ -89,6 +92,9 @@ bool GameApp::init()
 
 void GameApp::cleanup()
 {
+	delete mpPathPool;
+	mpPathPool = NULL;
+
 	delete mpMessageManager;
 	mpMessageManager = NULL;
 

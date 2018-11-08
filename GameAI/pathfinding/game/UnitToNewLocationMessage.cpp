@@ -9,6 +9,7 @@
 #include "GameApp.h"
 #include "Grid.h"
 #include "GridGraph.h"
+#include "PathPool.h"
 
 UnitToNewLocationMessage::UnitToNewLocationMessage(const Vector2D& pos)
 :GameMessage(UNIT_TO_NEW_LOCATION_MESSAGE),
@@ -32,16 +33,29 @@ void UnitToNewLocationMessage::process()
 		GridPathfinder* pPathfinder = pGame->getPathfinder();
 		GridGraph* pGridGraph = pGame->getGridGraph();
 		Grid* pGrid = pGame->getGrid();
+		PathPool* pPathPool= pGame->getPathPool();
 		while (iter != tempMap.end())
 		{
-			iter->second->setSteering(Steering::FOLLOW_PATH);
-			FollowPathSteering* steer = static_cast<FollowPathSteering*>(iter->second->getSteeringComponent()->getSteering());
-			
+
 			int fromIndex = pGrid->getSquareIndexFromPixelXY((int)iter->second->getPositionComponent()->getPosition().getX(), (int)iter->second->getPositionComponent()->getPosition().getY());
 			int toIndex = pGrid->getSquareIndexFromPixelXY((int)mPos.getX(), (int)mPos.getY());
-			Node* pFromNode = pGridGraph->getNode(fromIndex);
-			Node* pToNode = pGridGraph->getNode(toIndex);			
-			steer->SetPath(pPathfinder->findPath(pFromNode, pToNode));
+			iter->second->setSteering(Steering::FOLLOW_PATH);
+			Path* tempPath = pPathPool->CheckPath(fromIndex, toIndex);
+
+			FollowPathSteering* steer = static_cast<FollowPathSteering*>(iter->second->getSteeringComponent()->getSteering());
+			if (tempPath)
+			{
+				steer->SetPath(tempPath);
+			}
+			else
+			{
+				Node* pFromNode = pGridGraph->getNode(fromIndex);
+				Node* pToNode = pGridGraph->getNode(toIndex);
+				tempPath = pPathfinder->findPath(pFromNode, pToNode);
+				steer->SetPath(tempPath);
+				pPathPool->AddPath(fromIndex, toIndex, tempPath);
+			}
+			
 			++iter;
 		}
 	}

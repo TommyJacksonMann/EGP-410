@@ -116,6 +116,7 @@
     <ClInclude Include="Path.h" />
     <ClInclude Include="Pathfinder.h" />
     <ClInclude Include="PathfindingDebugContent.h" />
+    <ClInclude Include="PathPool.h" />
     <ClInclude Include="PathToMessage.h" />
     <ClInclude Include="SteeringFiles\ArriveSteering.h" />
     <ClInclude Include="SteeringFiles\Component.h" />
@@ -161,6 +162,7 @@
     <ClCompile Include="Path.cpp" />
     <ClCompile Include="Pathfinder.cpp" />
     <ClCompile Include="PathfindingDebugContent.cpp" />
+    <ClCompile Include="PathPool.cpp" />
     <ClCompile Include="PathToMessage.cpp" />
     <ClCompile Include="SteeringFiles\ArriveSteering.cpp" />
     <ClCompile Include="SteeringFiles\Component.cpp" />

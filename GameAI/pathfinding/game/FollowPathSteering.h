@@ -14,7 +14,7 @@ private:
 	float mTargetRadius;
 	float mSlowRadius;
 	float mTimeToTarget;
-	Path mpPath;
+	Path mPath;
 	int mCurrentPathPosition = 1;
 };
 

@@ -24,6 +24,7 @@ class DebugDisplay;
 class InputSystem;
 class DijkstraPathFinder;
 class AStarPathFinder;
+class PathPool;
 
 //const float LOOP_TARGET_TIME = 33.3f;//how long should each frame of execution take? 30fps = 33.3ms/frame
 
@@ -48,6 +49,7 @@ public:
 	inline Grid* getGrid() { return mpGrid; };
 	inline GridGraph* getGridGraph() { return mpGridGraph; };
 	inline InputSystem* getInputSystem() const { return mpInputSystem; }
+	inline PathPool* getPathPool() const { return mpPathPool; }
 	void SetPathFinderToDijkstra();
 	void SetPathFinderToAStar();
 	void SetPathFinderToDepthFirst();
@@ -60,5 +62,7 @@ private:
 	DebugDisplay* mpDebugDisplay;
 
 	GridPathfinder* mpPathfinder;
+
+	PathPool* mpPathPool;
 };
 

@@ -180,6 +180,9 @@
     <ClInclude Include="FollowPathSteering.h">
       <Filter>Steering</Filter>
     </ClInclude>
+    <ClInclude Include="PathPool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\common\Game.cpp">
@@ -310,6 +313,9 @@
     </ClCompile>
     <ClCompile Include="FollowPathSteering.cpp">
       <Filter>Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="PathPool.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

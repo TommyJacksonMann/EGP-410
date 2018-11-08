@@ -14,6 +14,7 @@
 #include "GameApp.h"
 #include "Grid.h"
 #include "GridGraph.h"
+#include "PathPool.h"
 
 AddAndRemoveUnitsMessage::AddAndRemoveUnitsMessage()
 	:GameMessage(ADD_AND_REMOVE_MESSAGE)
@@ -48,6 +49,7 @@ void AddAndRemoveUnitsMessage::process()
 	GridPathfinder* pPathfinder = pGame->getPathfinder();
 	GridGraph* pGridGraph = pGame->getGridGraph();
 	Grid* pGrid = pGame->getGrid();
+	PathPool* pPathPool = pGame->getPathPool();
 	for (int i = 0; i < 10; i++)
 	{
 		Unit* pUnit = gpGame->getUnitManager()->createRandomUnit(*pSprite);
@@ -55,13 +57,25 @@ void AddAndRemoveUnitsMessage::process()
 		{
 			pos = pUnit->getPositionComponent()->getPosition();
 		}
-		pUnit->setSteering(Steering::FOLLOW_PATH);
-		FollowPathSteering* steer = static_cast<FollowPathSteering*>(pUnit->getSteeringComponent()->getSteering());
-
 		int fromIndex = pGrid->getSquareIndexFromPixelXY((int)pUnit->getPositionComponent()->getPosition().getX(), (int)pUnit->getPositionComponent()->getPosition().getY());
 		int toIndex = pGrid->getSquareIndexFromPixelXY((int)pos.getX(), (int)pos.getY());
-		Node* pFromNode = pGridGraph->getNode(fromIndex);
-		Node* pToNode = pGridGraph->getNode(toIndex);
-		steer->SetPath(pPathfinder->findPath(pFromNode, pToNode));
+		pUnit->setSteering(Steering::FOLLOW_PATH);
+
+		Path* tempPath = pPathPool->CheckPath(fromIndex, toIndex);
+		FollowPathSteering* steer = static_cast<FollowPathSteering*>(pUnit->getSteeringComponent()->getSteering());
+
+		if (tempPath)
+		{
+			steer->SetPath(tempPath);
+		}
+		else
+		{
+			Node* pFromNode = pGridGraph->getNode(fromIndex);
+			Node* pToNode = pGridGraph->getNode(toIndex);
+			tempPath = pPathfinder->findPath(pFromNode, pToNode);
+			steer->SetPath(tempPath);
+			pPathPool->AddPath(fromIndex, toIndex, tempPath);
+
+		}
 	}
 }

@@ -30,7 +30,7 @@ FollowPathSteering::~FollowPathSteering()
 
 void FollowPathSteering::SetPath(Path* pPath)
 {
-	mpPath = *pPath; mCurrentPathPosition = 1;
+	mPath = *pPath; mCurrentPathPosition = 1;
 }
 
 Steering* FollowPathSteering::getSteering()
@@ -47,16 +47,16 @@ Steering* FollowPathSteering::getSteering()
 	*/
 	
 	GameApp* pGame = static_cast<GameApp*>(gpGame);
-	pGame->getPathfinder()->drawOtherPath(pGame->getGrid(), pGame->getGraphicsSystem()->getBackBuffer(), mpPath);
+	pGame->getPathfinder()->drawOtherPath(pGame->getGrid(), pGame->getGraphicsSystem()->getBackBuffer(), mPath);
 
-	if (mCurrentPathPosition > mpPath.getNumNodes() || !mpPath.peekNode(mCurrentPathPosition))
+	if (mCurrentPathPosition > mPath.getNumNodes() || !mPath.peekNode(mCurrentPathPosition))
 	{
 		return this;
 	}
 
 	//Get the position of the next node to move to
 	Grid* pGrid = dynamic_cast<GameApp*>(gpGame)->getGrid();
-	Vector2D currentTargetNodePosition = pGrid->getULCornerOfSquare(mpPath.peekNode(mCurrentPathPosition)->getId());	//Watch this when the unit goes to a position off the screen
+	Vector2D currentTargetNodePosition = pGrid->getULCornerOfSquare(mPath.peekNode(mCurrentPathPosition)->getId());	//Watch this when the unit goes to a position off the screen
 
 	Unit* pOwner = gpGame->getUnitManager()->getUnit(mOwnerID);
 
@@ -70,7 +70,7 @@ Steering* FollowPathSteering::getSteering()
 	if (diff.getLength() < mTargetRadius)
 	{
 		//Stutters at every node
-		if (mCurrentPathPosition == mpPath.getNumNodes() - 1)
+		if (mCurrentPathPosition == mPath.getNumNodes() - 1)
 		{
 			data.vel = ZERO_VECTOR2D;
 			data.acc = ZERO_VECTOR2D;
