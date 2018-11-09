@@ -51,9 +51,19 @@ void GridGraph::init()
 				//check for blocking terrain
 				if( mpGrid->getValueAtIndex(adjacencies[adjIndex]) != BLOCKING_VALUE )
 				{
+
+					int right = pFromNode->getId() + 1;
+					int left = pFromNode->getId() - 1;
+					int up = pFromNode->getId() - mpGrid->getGridWidth();
+					int down = pFromNode->getId() + mpGrid->getGridWidth();
+
+
 					Node* pToNode = mNodes[ adjacencies[adjIndex] ];//find to node
 					Connection* pConnection;
-					if (adjIndex % 2 == 0)
+
+					bool notDiagonal = pToNode->getId() == right || pToNode->getId() == left || 
+						pToNode->getId() == up || pToNode->getId() == down;
+					if (notDiagonal)
 					{
 						pConnection = new Connection(pFromNode, pToNode, 1.0f);//create a connection
 					}
