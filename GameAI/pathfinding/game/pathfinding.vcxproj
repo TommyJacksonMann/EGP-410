@@ -118,6 +118,7 @@
     <ClInclude Include="PathfindingDebugContent.h" />
     <ClInclude Include="PathPool.h" />
     <ClInclude Include="PathToMessage.h" />
+    <ClInclude Include="PriorityQueue.h" />
     <ClInclude Include="SteeringFiles\ArriveSteering.h" />
     <ClInclude Include="SteeringFiles\Component.h" />
     <ClInclude Include="SteeringFiles\ComponentManager.h" />
