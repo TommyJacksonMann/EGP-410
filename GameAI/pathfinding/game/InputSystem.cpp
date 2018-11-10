@@ -12,6 +12,10 @@
 #include "Defines.h"
 #include "Game.h"
 #include "GameApp.h"
+#include "Node.h"
+#include "Grid.h"
+#include "GridGraph.h"
+#include "Connection.h"
 //#include ".\SteeringFiles\PlayerMoveToMessage.h"
 
 
@@ -73,19 +77,43 @@ void InputSystem::update()
 			{
 				GameMessage* pMessage = new AddAndRemoveUnitsMessage();
 				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
-				pGame->getMessageManager()->addMessage(pMessage, 0);
+				pGame->getMessageManager()->addMessage(pMessage, 1);
 			}
 		}
 	}
 
 	if (getHasByte(mLeftMouse, StateBitValues::CURRENTLY_PRESSED))
 	{
-		
+		GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
 		static Vector2D lastPos(0.0f, 0.0f);
-		if (lastPos.getX() != mMouseLocation.getX() || lastPos.getY() != mMouseLocation.getY())
+		GridGraph* pGridGraph = pGame->getGridGraph();
+		Grid* pGrid = pGame->getGrid();
+		int toIndex = pGrid->getSquareIndexFromPixelXY((int)mMouseLocation.getX(), (int)mMouseLocation.getY());
+		Node* pToNode = pGridGraph->getNode(toIndex);
+		Graph* pGraph = pGridGraph;
+		bool viableNode = false;
+		std::vector<Connection*> pConnections = pGraph->getConnections(pToNode->getId());
+		//GOES THROUGH ALL OF TONODE's CONNECTIONS
+		for (int i = 0; i < pConnections.size(); i++)
+		{
+			Node* pCurrent = pConnections[i]->getToNode();
+			std::vector<Connection*> pCurrentConnections = pGraph->getConnections(pCurrent->getId());
+			//CHECKS TO SEE IF THE TONODE OF THE CONNECTION HAS A CONNECTION BACK TO THE TONODE
+			for (int j = 0; j < pCurrentConnections.size() && viableNode == false; j++)
+			{
+				if (pCurrentConnections[j]->getToNode() == pToNode)
+				{
+					viableNode = true;
+				}
+			}
+			if (viableNode)
+			{
+				break;
+			}
+		}
+		if ((lastPos.getX() != mMouseLocation.getX() || lastPos.getY() != mMouseLocation.getY()) && viableNode)
 		{
 			GameMessage* pMessage = new PathToMessage(lastPos, mMouseLocation);
-			GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
 			pGame->getMessageManager()->addMessage(pMessage, 0);
 			pMessage = new UnitToNewLocationMessage(mMouseLocation);
 			pGame->getMessageManager()->addMessage(pMessage, 0);
