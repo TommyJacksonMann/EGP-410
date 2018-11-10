@@ -69,7 +69,6 @@ Steering* FollowPathSteering::getSteering()
 
 	if (diff.getLength() < mTargetRadius)
 	{
-		//Stutters at every node
 		if (mCurrentPathPosition == mPath.getNumNodes() - 1)
 		{
 			data.vel = ZERO_VECTOR2D;

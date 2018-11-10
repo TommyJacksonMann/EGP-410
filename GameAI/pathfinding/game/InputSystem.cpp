@@ -77,7 +77,7 @@ void InputSystem::update()
 			{
 				GameMessage* pMessage = new AddAndRemoveUnitsMessage();
 				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
-				pGame->getMessageManager()->addMessage(pMessage, 0);
+				pGame->getMessageManager()->addMessage(pMessage, 1);
 			}
 		}
 	}
