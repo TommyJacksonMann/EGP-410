@@ -18,15 +18,19 @@ public:
 	const_iterator end() const
 	{
 		auto end = this->c.cend();
+		return end;
 	}
 
-	const_iterator contains(const T &value) const
+	const_iterator contains(const T&value) const
 	{
 		auto first = this->c.cbegin();
 		auto end = this->c.cend();
 		while (first != end)
 		{
-			if (*first == val) return first;
+			if (*first == value)
+			{
+				return first;
+			}
 			++first;
 		}
 		return end;
@@ -47,6 +51,8 @@ public:
 		}
 	}
 
+};
+
 	//Compare cost stuct
 	struct CompareCost : public std::binary_function<NodeRecord, NodeRecord, bool>
 	{
@@ -64,5 +70,3 @@ public:
 			return lhs.mEstimatedTotalCost > rhs.mEstimatedTotalCost;
 		}
 	};
-
-};

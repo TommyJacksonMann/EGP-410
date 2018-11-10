@@ -11,6 +11,7 @@
 #include "Vector2D.h"
 #include "GameApp.h"
 #include "Grid.h"
+#include "PriorityQueue.h"
 
 using namespace std;
 
@@ -33,15 +34,12 @@ AStarPathfinder::~AStarPathfinder()
 Path* AStarPathfinder::findPath(Node* pFrom, Node* pTo)
 {
 	gpPerformanceTracker->clearTracker("path");
-	gpPerformanceTracker->startTracking("path");
-	//allocate nodes to visit list and place starting node in it
-	list<Node*> nodesToVisit;
-	nodesToVisit.push_front(pFrom);
+	gpPerformanceTracker->startTracking("path");	
 
 #ifdef VISUALIZE_PATH
 	delete mpPath;
 	mVisitedNodes.clear();
-	mVisitedNodes.push_back(pFrom);
+	//mVisitedNodes.push_back(pFrom);
 #endif
 
 	//create Path
@@ -51,15 +49,18 @@ Path* AStarPathfinder::findPath(Node* pFrom, Node* pTo)
 	NodeRecord startRecord = NodeRecord(pFrom, NULL, 0, 0, Category::UNVISITED);
 	startRecord.mEstimatedTotalCost = getHeuristic(pFrom, pTo);
 	NodeRecord current;
-	vector<NodeRecord> openNodes;
-	openNodes.push_back(startRecord);
-	vector<NodeRecord> closedNodes;
+	PriorityQueue<NodeRecord, vector<NodeRecord>, CompareEstimatedCost> openNodes, closedNodes;
+
+	openNodes.push(startRecord);
 
 	while (openNodes.size() > 0)
 	{
 		//gets the smallest available node and its index
-		current = getSmallestNodeRecord(openNodes);
-		int currentNodeIndex = getSmallestNodeRecordIndex(openNodes);
+		//current = getSmallestNodeRecord(openNodes);
+		current = openNodes.top();
+		//int currentNodeIndex = getSmallestNodeRecordIndex(openNodes);
+		openNodes.pop();
+
 		if (current.mpNode == pTo)
 		{
 			toNodeAdded = true;
@@ -67,6 +68,7 @@ Path* AStarPathfinder::findPath(Node* pFrom, Node* pTo)
 		}
 
 		vector<Connection*> connections = mpGraph->getConnections(current.mpNode->getId());
+
 		for (unsigned int i = 0; i < connections.size(); i++)
 		{
 			//gets the connections node data
@@ -77,51 +79,36 @@ Path* AStarPathfinder::findPath(Node* pFrom, Node* pTo)
 			bool closedContainsEndNode = false;
 			bool openContainsEndNode = false;
 			bool visitedNodesContainsEndNode = false;
+
+
+			NodeRecord tempRecord = {};
+			tempRecord.mpNode = endNode;
 			//check to see if it is in the closed list, open list, or if its visited
-			unsigned int closedNodeIndex;
-			for (closedNodeIndex = 0; closedNodeIndex < closedNodes.size(); closedNodeIndex++)
+			PriorityQueue<NodeRecord, vector<NodeRecord>, CompareEstimatedCost>::const_iterator iterVisited, iterToVisit;
+			iterToVisit = openNodes.contains(tempRecord);
+			iterVisited = closedNodes.contains(tempRecord);
+			
+
+			if (iterVisited != closedNodes.end())
 			{
-				if (closedNodes[closedNodeIndex].mpNode == endNode)
-				{
-					closedContainsEndNode = true;
-					break;
-				}
-			}
-			vector<Node*>::iterator visitedMemberLocation;
-			for (visitedMemberLocation = mVisitedNodes.begin(); visitedMemberLocation != mVisitedNodes.end(); ++visitedMemberLocation)
-			{
-				if ((*visitedMemberLocation) == endNode)
-				{
-					visitedNodesContainsEndNode = true;
-					break;
-				}
-			}
-			unsigned int openNodeIndex;
-			for (openNodeIndex = 0; openNodeIndex < openNodes.size(); openNodeIndex++)
-			{
-				if (openNodes[openNodeIndex].mpNode == endNode)
-				{
-					openContainsEndNode = true;
-					break;
-				}
-			}
-			if (closedContainsEndNode) 
-			{
-				endNodeRecord = closedNodes[closedNodeIndex];
+				endNodeRecord = *iterVisited;
 				if (endNodeRecord.mCostSoFar <= endNodeCost)
 				{
 					continue;
 				}
-				mVisitedNodes.erase(visitedMemberLocation);
-				closedNodes.erase(closedNodes.begin()+closedNodeIndex);
+				closedNodes.remove(endNodeRecord);
+				//mVisitedNodes.erase(iterVisited);
+				//closedNodes.erase(closedNodes.begin()+closedNodeIndex);
 				endNodeHeuristic = getHeuristic(endNode, pTo);
 			}
-			else if (openContainsEndNode)
+			else if (iterToVisit != openNodes.end())
 			{
-				endNodeRecord = openNodes[openNodeIndex];
+				visitedNodesContainsEndNode = true;
+				endNodeRecord = *iterToVisit;
 				if (endNodeRecord.mCostSoFar <= endNodeCost)
 				{
 					continue;
+
 				}
 				endNodeHeuristic = getHeuristic(endNode, pTo);
 			}
@@ -131,12 +118,17 @@ Path* AStarPathfinder::findPath(Node* pFrom, Node* pTo)
 				endNodeRecord.mpNode = endNode;
 				endNodeHeuristic = getHeuristic(endNode, pTo);
 			}
+
+
 			endNodeRecord.mCostSoFar = endNodeCost;
 			endNodeRecord.mpConnection = connections[i];
 			endNodeRecord.mEstimatedTotalCost = endNodeCost + endNodeHeuristic;
+
+
 			if (!openContainsEndNode && !toNodeAdded)
 			{
-				openNodes.push_back(endNodeRecord);
+				openNodes.push(endNodeRecord);
+			/*	//openNodes.push_back(endNodeRecord);
 				if (endNodeRecord.mpNode == pTo)
 				{
 					toNodeAdded = true;
@@ -145,16 +137,21 @@ Path* AStarPathfinder::findPath(Node* pFrom, Node* pTo)
 #ifdef VISUALIZE_PATH
 				mVisitedNodes.push_back(endNodeRecord.mpNode);
 #endif
-				closedNodes.push_back(endNodeRecord);
+				closedNodes.push(endNodeRecord);*/
 			}
 		}
 		//removes node from open list and puts it in the closed
 
-		openNodes.erase(openNodes.begin() + currentNodeIndex);
-		closedNodes.push_back(current);
+		openNodes.remove(current);
+		closedNodes.push(current);
+#ifdef VISUALIZE_PATH
+		mVisitedNodes.push_back(current.mpNode);
+#endif
 	}
 	//create a vector of nodes for the final path
-	vector<Node*> finalNodeVector;
+	//vector<Node*> finalNodeVector;
+
+	Path* newPath = new Path();
 	if (toNodeAdded == false)
 	{
 		return NULL;
@@ -163,24 +160,29 @@ Path* AStarPathfinder::findPath(Node* pFrom, Node* pTo)
 	{
 		while (current.mpNode != pFrom)
 		{
-			finalNodeVector.push_back(current.mpNode);
+			//finalNodeVector.push_back(current.mpNode);
+			newPath->addNode(current.mpNode);
 			current.mpNode = current.mpConnection->getFromNode();
-			for (int i = 0; i < closedNodes.size(); i++)
+			PriorityQueue<NodeRecord, vector<NodeRecord>, CompareCost>::const_iterator iter;
+			iter = closedNodes.contains(current);
+
+			if (iter != closedNodes.end())
 			{
-				if (closedNodes[i].mpNode == current.mpNode)
-				{
-					current.mpConnection = closedNodes[i].mpConnection;
-					break;
-				}
+				current.mpConnection = iter->mpConnection;
+				//break;
 			}
 		}
-		finalNodeVector.push_back(current.mpNode);
+		newPath->addNode(current.mpNode);
+		
+		//reverse the final node vector
+		int pathSize = newPath->getNumNodes();
+		for (int i = 0; i < pathSize; i++)
+		{
+			pPath->addNode(newPath->getAndRemoveNextNode());
+		}
+		delete newPath;
 	}
-	//reverse the final node vector
-	for (int i = 0; i < finalNodeVector.size(); i++)
-	{
-		pPath->addNode(finalNodeVector[finalNodeVector.size() - 1 - i]);
-	}
+	
 
 	gpPerformanceTracker->stopTracking("path");
 	mTimeElapsed = gpPerformanceTracker->getElapsedTime("path");

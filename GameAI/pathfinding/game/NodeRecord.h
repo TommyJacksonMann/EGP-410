@@ -15,6 +15,9 @@ struct NodeRecord : public Trackable {
 	NodeRecord(Node* pNode, Connection* pConnection, float cost, float estimatedCost, Category category)
 		: mpNode(pNode), mpConnection(pConnection), mCostSoFar(cost), mEstimatedTotalCost(estimatedCost), mCategory(category) {};
 	~NodeRecord() { }
+
+	friend bool operator== (const NodeRecord &lhs, const NodeRecord &rhs) { return  lhs.mpNode == rhs.mpNode; };
+	bool operator ==(const NodeRecord& rhs) { return mpNode == rhs.mpNode; };
 	Node* mpNode;
 	Connection* mpConnection;
 	float mCostSoFar;/**/

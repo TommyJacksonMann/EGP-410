@@ -1,3 +1,4 @@
-﻿  GridGraph.cpp
-c:\users\361rj\documents\github\advancedseminar\egp-410\gameai\pathfinding\game\gridgraph.cpp(72): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+﻿  AStarPathFinder.cpp
+c:\users\361rj\documents\github\advancedseminar\egp-410\gameai\pathfinding\game\astarpathfinder.cpp(209): warning C4018: '<': signed/unsigned mismatch
+c:\users\361rj\documents\github\advancedseminar\egp-410\gameai\pathfinding\game\astarpathfinder.cpp(224): warning C4018: '<': signed/unsigned mismatch
   pathfinding.vcxproj -> C:\Users\361rj\Documents\GitHub\AdvancedSeminar\EGP-410\GameAI\pathfinding\game\Debug\pathfinding.exe
