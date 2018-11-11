@@ -83,7 +83,7 @@ Steering* FlowFieldSteering::getSteering()
 		{
 			
 			std::vector<Connection*> pConnections = pGridGraph->getConnections(mpCurrentNode->getId());
-			int nodeCost = INFINITY;
+			int nodeCost = 1000000;
 			int nodeIndex = 0;
 			for (int i = 0; i < pConnections.size(); i++)
 			{

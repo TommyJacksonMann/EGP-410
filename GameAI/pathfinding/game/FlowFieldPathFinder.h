@@ -8,6 +8,7 @@ public:
 	~FlowFieldPathfinder();
 
 	void calculateIntegrationField(Node* pCenterNode);
+	void calculateFlowField();
 	Path* findPath(Node* pFrom, Node* pTo);
 private:
 	Node * mpCenterNode;

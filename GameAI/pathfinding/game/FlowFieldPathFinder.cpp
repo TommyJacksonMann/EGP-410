@@ -8,6 +8,7 @@
 #include "Connection.h"
 #include "GridPathfinder.h"
 #include "Path.h"
+#include <limits>
 
 FlowFieldPathfinder::FlowFieldPathfinder(Graph* pGraph)
 	:GridPathfinder(dynamic_cast<GridGraph*>(pGraph))
@@ -51,6 +52,7 @@ void FlowFieldPathfinder::calculateIntegrationField(Node* pCenterNode)
 		//get connections from current Node
 		std::vector<Connection*> connections = mpGraph->getConnections(pCurrentNode->getId());
 
+		
 		for (unsigned int i = 0; i < connections.size(); i++) {
 			//for each neighbor of current node
 			Connection* pConnection = connections[i];
@@ -58,6 +60,7 @@ void FlowFieldPathfinder::calculateIntegrationField(Node* pCenterNode)
 			//set up node.
 			Node* pTempToNode = connections[i]->getToNode();
 			auto cost = pConnection->getCost() + pCurrentNode->getCost();
+			
 
 			if (!pPath->containsNode(pTempToNode) &&
 				find(nodesToVisit.begin(), nodesToVisit.end(), pTempToNode) == nodesToVisit.end())
@@ -70,12 +73,39 @@ void FlowFieldPathfinder::calculateIntegrationField(Node* pCenterNode)
 #endif
 			}
 		}
+
 	}
 	delete pPath;
+}
+
+void FlowFieldPathfinder::calculateFlowField()
+{
+	GameApp* pGame = static_cast<GameApp*>(gpGame);
+	int i = 0;
+	Node* pCurrentNode = pGame->getGridGraph()->getNode(i);
+	while (pCurrentNode != NULL)
+	{
+		std::vector<Connection*> connections = mpGraph->getConnections(pCurrentNode->getId());
+		int lowestConnectionCost = 10000000;
+		int lowestConnectionIndex = 0;
+		for (unsigned int j = 0; j < connections.size(); j++) 
+		{
+			if (connections[j]->getToNode()->getCost() < lowestConnectionCost)
+			{
+				lowestConnectionCost = connections[j]->getToNode()->getCost();
+				lowestConnectionIndex = j;
+			}
+		}
+		pCurrentNode->setDirection(connections[lowestConnectionIndex]->getToNode());
+		i++;
+		pCurrentNode = pGame->getGridGraph()->getNode(i);
+
+	}
 }
 
 Path* FlowFieldPathfinder::findPath(Node* pFrom, Node* pTo)
 {
 	calculateIntegrationField(pTo);
+	calculateFlowField();
 	return mpPath;
 }

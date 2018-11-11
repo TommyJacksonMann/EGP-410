@@ -18,6 +18,7 @@ public:
 	int getCost() { return mCost; }
 
 	void setDirection(float dir) { mDirection = dir; }
+	void setDirection(Node* pNode);
 	void setCost(int cost) { mCost = cost; }
 private:
 	const NODE_ID mId;
