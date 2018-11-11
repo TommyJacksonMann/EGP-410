@@ -4,9 +4,7 @@
 #include "Grid.h"
 #include <Vector2D.h>
 #include "Game.h"
-#include "..\game\GridGraph.h"
-#include "..\game\GameApp.h"
-#include <string>
+
 
 GridVisualizer::GridVisualizer( Grid* pGrid )
 :mpGrid(pGrid)
@@ -90,9 +88,6 @@ void GridVisualizer::draw( GraphicsBuffer& dest )
 	int numSquares = gridWidth * gridHeight;
 	int squareSize = mpGrid->getSquareSize();
 
-	GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
-	GridGraph* pGridGraph = pGame->getGridGraph();
-
 	std::map< Color, std::vector<int>>::iterator iter;
 	for( iter = mColormap.begin(); iter != mColormap.end(); ++iter )
 	{
@@ -102,9 +97,7 @@ void GridVisualizer::draw( GraphicsBuffer& dest )
 		{
 			Vector2D ulPos = mpGrid->getULCornerOfSquare( theIndices[i] );
 			
-			int nodeCost = pGridGraph->getNode(theIndices[i])->getCost();
 			gpGame->getGraphicsSystem()->fillRegion(dest, ulPos, Vector2D( ulPos.getX() + squareSize, ulPos.getY() + squareSize ), iter->first );
-			gpGame->getGraphicsSystem()->writeText(*gpGame->getFont(), ulPos.getX(), ulPos.getY(), std::to_string(nodeCost).c_str(), Color(0,0,0) );
 		}
 	}
 }

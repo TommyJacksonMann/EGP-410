@@ -13,6 +13,7 @@ public:
 	void setGrid( Grid* pGrid ) { mpGrid = pGrid; };
 	void init();
 
+	void VisualizeNodeCosts();
 private:
 	Grid* mpGrid;
 };

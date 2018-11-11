@@ -4,6 +4,12 @@
 #include "Grid.h"
 #include "Game.h"
 #include <vector>
+#include "GridGraph.h"
+#include "GameApp.h"
+#include "..\common\Game.h"
+#include "..\common\Color.h"
+#include "GraphicsSystem.h"
+#include <string>
 
 GridGraph::GridGraph( Grid* pGrid )
 :Graph()
@@ -80,5 +86,20 @@ void GridGraph::init()
 			//put temp connection vector into map
 			mConnectionMap[i] = connections;
 		}
+	}
+}
+
+void GridGraph::VisualizeNodeCosts()
+{
+
+	int i = 0;
+	Node* pCurrentNode = getNode(i);
+	while (pCurrentNode != NULL)
+	{
+		Vector2D ulPos = mpGrid->getULCornerOfSquare(i);
+		int nodeCost = pCurrentNode->getCost();
+		gpGame->getGraphicsSystem()->writeText(*gpGame->getFont(), ulPos.getX(), ulPos.getY(), std::to_string(nodeCost).c_str(), Color(0, 0, 0));
+		i++;
+		pCurrentNode = getNode(i);
 	}
 }
