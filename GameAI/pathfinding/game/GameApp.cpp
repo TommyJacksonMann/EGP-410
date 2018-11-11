@@ -144,7 +144,7 @@ void GameApp::processLoop()
 	//get input - should be moved someplace better
 	SDL_PumpEvents();
 
-
+	
 	//should be last thing in processLoop
 	Game::processLoop();
 }
