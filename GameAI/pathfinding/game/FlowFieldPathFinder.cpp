@@ -36,6 +36,7 @@ void FlowFieldPathfinder::calculateIntegrationField(Node* pCenterNode)
 
 #ifdef VISUALIZE_PATH
 	delete mpPath;
+	mpPath = NULL;
 	mVisitedNodes.clear();
 #endif // VISUALIZE_PATH
 

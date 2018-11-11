@@ -31,6 +31,18 @@
     <Filter Include="Steering">
       <UniqueIdentifier>{65309a20-e71f-457d-99e7-1411abe23c88}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\messaging">
+      <UniqueIdentifier>{c762cc85-9e67-460c-a36c-e9d2dd9d520b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\messaging">
+      <UniqueIdentifier>{2f53feb8-d7f9-4cab-984c-54f1b77175b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\util">
+      <UniqueIdentifier>{54f8c0ee-aaed-4b41-aa5c-7217697765f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\util">
+      <UniqueIdentifier>{90105af6-1784-4d4c-a7e8-1921d4a8616a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common\Game.h">
@@ -47,15 +59,6 @@
     </ClInclude>
     <ClInclude Include="..\common\Sprite.h">
       <Filter>Common\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameMessage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameMessageManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameApp.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Connection.h">
       <Filter>Header Files\pathfinding</Filter>
@@ -81,9 +84,6 @@
     <ClInclude Include="..\common\GridVisualizer.h">
       <Filter>Common\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PathToMessage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GridPathfinder.h">
       <Filter>Header Files\pathfinding</Filter>
     </ClInclude>
@@ -92,15 +92,6 @@
     </ClInclude>
     <ClInclude Include="..\common\GraphicsBufferManager.h">
       <Filter>Common\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DebugContent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DebugDisplay.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PathfindingDebugContent.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\common\Color.h">
       <Filter>Common\Header Files</Filter>
@@ -119,24 +110,6 @@
     </ClInclude>
     <ClInclude Include="NodeRecord.h">
       <Filter>Header Files\pathfinding</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyboardInputs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="InputSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EscapeMessage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DijkstraMessage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AStarMessage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DepthFirstSearchMessage.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SteeringFiles\ArriveSteering.h">
       <Filter>Steering</Filter>
@@ -168,29 +141,71 @@
     <ClInclude Include="SteeringFiles\PlayerMoveToMessage.h">
       <Filter>Steering</Filter>
     </ClInclude>
-    <ClInclude Include="AddAndRemoveUnitsMessage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SteeringFiles\UnitManager.h">
       <Filter>Steering</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitToNewLocationMessage.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FollowPathSteering.h">
       <Filter>Steering</Filter>
     </ClInclude>
-    <ClInclude Include="PathPool.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PriorityQueue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FlowFieldPathFinder.h">
       <Filter>Header Files\pathfinding</Filter>
     </ClInclude>
+    <ClInclude Include="AStarMessage.h">
+      <Filter>Header Files\messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="AddAndRemoveUnitsMessage.h">
+      <Filter>Header Files\messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="DepthFirstSearchMessage.h">
+      <Filter>Header Files\messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="DijkstraMessage.h">
+      <Filter>Header Files\messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="EscapeMessage.h">
+      <Filter>Header Files\messaging</Filter>
+    </ClInclude>
     <ClInclude Include="FlowFieldMessage.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="PathToMessage.h">
+      <Filter>Header Files\messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitToNewLocationMessage.h">
+      <Filter>Header Files\messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMessage.h">
+      <Filter>Header Files\messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMessageManager.h">
+      <Filter>Header Files\messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="PriorityQueue.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="GameApp.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugContent.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugDisplay.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="InputSystem.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardInputs.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="PathfindingDebugContent.h">
+      <Filter>Header Files\pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="PathPool.h">
+      <Filter>Header Files\pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="FlowFieldSteering.h">
+      <Filter>Steering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -208,18 +223,6 @@
     </ClCompile>
     <ClCompile Include="..\common\Sprite.cpp">
       <Filter>Common\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameMessage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameMessageManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameApp.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Graph.cpp">
       <Filter>Source Files\pathfinding</Filter>
@@ -245,9 +248,6 @@
     <ClCompile Include="..\common\GridVisualizer.cpp">
       <Filter>Common\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PathToMessage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GridPathfinder.cpp">
       <Filter>Source Files\pathfinding</Filter>
     </ClCompile>
@@ -256,12 +256,6 @@
     </ClCompile>
     <ClCompile Include="..\common\GraphicsBufferManager.cpp">
       <Filter>Common\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DebugDisplay.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PathfindingDebugContent.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\common\Color.cpp">
       <Filter>Common\Source Files</Filter>
@@ -277,9 +271,6 @@
     </ClCompile>
     <ClCompile Include="AStarPathFinder.cpp">
       <Filter>Source Files\pathfinding</Filter>
-    </ClCompile>
-    <ClCompile Include="InputSystem.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SteeringFiles\ArriveSteering.cpp">
       <Filter>Steering</Filter>
@@ -314,20 +305,47 @@
     <ClCompile Include="SteeringFiles\PlayerMoveToMessage.cpp">
       <Filter>Steering</Filter>
     </ClCompile>
-    <ClCompile Include="AddAndRemoveUnitsMessage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UnitToNewLocationMessage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FollowPathSteering.cpp">
       <Filter>Steering</Filter>
     </ClCompile>
-    <ClCompile Include="PathPool.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FlowFieldPathFinder.cpp">
       <Filter>Source Files\pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="AddAndRemoveUnitsMessage.cpp">
+      <Filter>Source Files\messaging</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMessage.cpp">
+      <Filter>Source Files\messaging</Filter>
+    </ClCompile>
+    <ClCompile Include="PathToMessage.cpp">
+      <Filter>Source Files\messaging</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitToNewLocationMessage.cpp">
+      <Filter>Source Files\messaging</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugDisplay.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="GameApp.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMessageManager.cpp">
+      <Filter>Source Files\messaging</Filter>
+    </ClCompile>
+    <ClCompile Include="InputSystem.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="PathfindingDebugContent.cpp">
+      <Filter>Source Files\pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="PathPool.cpp">
+      <Filter>Source Files\pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="FlowFieldSteering.cpp">
+      <Filter>Steering</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

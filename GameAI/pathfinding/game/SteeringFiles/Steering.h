@@ -40,7 +40,8 @@ public:
 		SEPARATION,
 		COHESION,
 		FLOCK,
-		FOLLOW_PATH
+		FOLLOW_PATH,
+		FLOW_FIELD
 	};
 
 	//constructors and destructors

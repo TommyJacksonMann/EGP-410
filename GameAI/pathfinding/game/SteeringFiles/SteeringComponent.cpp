@@ -2,6 +2,7 @@
 #include "SteeringComponent.h"
 #include "ArriveSteering.h"
 #include "../FollowPathSteering.h"
+#include "../FlowFieldSteering.h"
 
 
 SteeringComponent::SteeringComponent(const ComponentID& id, const ComponentID& physicsComponentID) 
@@ -45,6 +46,12 @@ void SteeringComponent::setData(const SteeringData& data)
 		{
 			delete mpSteering;
 			mpSteering = new FollowPathSteering(data.ownerID);
+			break;
+		}
+		case Steering::FLOW_FIELD:
+		{
+			delete mpSteering;
+			mpSteering = new FlowFieldSteering(data.ownerID);
 			break;
 		}
 		default:

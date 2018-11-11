@@ -103,6 +103,7 @@
     <ClInclude Include="DijkstraPathFinder.h" />
     <ClInclude Include="EscapeMessage.h" />
     <ClInclude Include="FlowFieldMessage.h" />
+    <ClInclude Include="FlowFieldSteering.h" />
     <ClInclude Include="FollowPathSteering.h" />
     <ClInclude Include="GameApp.h" />
     <ClInclude Include="GameMessage.h" />
@@ -152,6 +153,7 @@
     <ClCompile Include="DebugDisplay.cpp" />
     <ClCompile Include="DepthFirstPathfinder.cpp" />
     <ClCompile Include="DijkstraPathFinder.cpp" />
+    <ClCompile Include="FlowFieldSteering.cpp" />
     <ClCompile Include="FollowPathSteering.cpp" />
     <ClCompile Include="GameApp.cpp" />
     <ClCompile Include="GameMessage.cpp" />
