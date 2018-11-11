@@ -69,6 +69,7 @@ bool Game::init()
 	mpGraphicsBufferManager->loadBuffer(mPlayerIconBufferID, "arrow.png");
 	mpGraphicsBufferManager->loadBuffer(mEnemyIconBufferID, "enemy-arrow.png");
 	mpGraphicsBufferManager->loadBuffer(mTargetBufferID, "target.png");
+	mpGraphicsBufferManager->loadBuffer(mNodeDirectionBufferID, "flow-field-direction.png");
 	GraphicsBuffer* pBackGroundBuffer = mpGraphicsBufferManager->getBuffer(mBackgroundBufferID);
 	if (pBackGroundBuffer != NULL)
 	{
