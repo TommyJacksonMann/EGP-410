@@ -102,6 +102,7 @@
     <ClInclude Include="DijkstraMessage.h" />
     <ClInclude Include="DijkstraPathFinder.h" />
     <ClInclude Include="EscapeMessage.h" />
+    <ClInclude Include="FlowFieldMessage.h" />
     <ClInclude Include="FollowPathSteering.h" />
     <ClInclude Include="GameApp.h" />
     <ClInclude Include="GameMessage.h" />

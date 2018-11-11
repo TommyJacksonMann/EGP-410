@@ -53,6 +53,7 @@ public:
 	void SetPathFinderToDijkstra();
 	void SetPathFinderToAStar();
 	void SetPathFinderToDepthFirst();
+	void SetPathFinderToFlowField();
 private:
 	InputSystem* mpInputSystem;
 	GameMessageManager* mpMessageManager;

@@ -8,6 +8,7 @@
 #include "DepthFirstSearchMessage.h"
 #include "AddAndRemoveUnitsMessage.h"
 #include "UnitToNewLocationMessage.h"
+#include "FlowFieldMessage.h"
 #include "GameMessageManager.h"
 #include "Defines.h"
 #include "Game.h"
@@ -16,6 +17,7 @@
 #include "Grid.h"
 #include "GridGraph.h"
 #include "Connection.h"
+#include "FlowFieldPathFinder.h"
 //#include ".\SteeringFiles\PlayerMoveToMessage.h"
 
 
@@ -70,6 +72,12 @@ void InputSystem::update()
 			if (mBitwiseKeyStates[KeyCode::SCANCODE_F] && getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED))
 			{
 				GameMessage* pMessage = new DepthFirstSearchMessage();
+				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
+				pGame->getMessageManager()->addMessage(pMessage, 0);
+			}
+			if (mBitwiseKeyStates[KeyCode::SCANCODE_G] && getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED))
+			{
+				GameMessage* pMessage = new FlowFieldMessage();
 				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
 				pGame->getMessageManager()->addMessage(pMessage, 0);
 			}

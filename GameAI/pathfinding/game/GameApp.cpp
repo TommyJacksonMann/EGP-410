@@ -20,6 +20,7 @@
 #include "PathfindingDebugContent.h"
 #include "DijkstraPathFinder.h"
 #include "AStarPathFinder.h"
+#include "FlowFieldPathFinder.h"
 #include "InputSystem.h"
 #include "PathPool.h"
 
@@ -154,6 +155,11 @@ bool GameApp::endLoop()
 	return Game::endLoop();
 }
 
+
+
+
+
+
 void GameApp::SetPathFinderToDijkstra() {
 	delete mpPathfinder;
 	mpPathfinder = new DijkstraPathfinder(mpGridGraph);
@@ -175,6 +181,15 @@ void GameApp::SetPathFinderToAStar() {
 void GameApp::SetPathFinderToDepthFirst() {
 	delete mpPathfinder;
 	mpPathfinder = new DepthFirstPathfinder(mpGridGraph);
+
+	delete mpDebugDisplay;
+
+	PathfindingDebugContent* pContent = new PathfindingDebugContent(mpPathfinder);
+	mpDebugDisplay = new DebugDisplay(Vector2D(0, 12), pContent);
+}
+void GameApp::SetPathFinderToFlowField() {
+	delete mpPathfinder;
+	mpPathfinder = new FlowFieldPathfinder(mpGridGraph);
 
 	delete mpDebugDisplay;
 

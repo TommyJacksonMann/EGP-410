@@ -9,7 +9,7 @@
 #include "GridPathfinder.h"
 #include "Path.h"
 
-FlowFieldPathFinder::FlowFieldPathFinder(Graph* pGraph)
+FlowFieldPathfinder::FlowFieldPathfinder(Graph* pGraph)
 	:GridPathfinder(dynamic_cast<GridGraph*>(pGraph))
 {
 #ifdef VISUALIZE_PATH
@@ -17,14 +17,14 @@ FlowFieldPathFinder::FlowFieldPathFinder(Graph* pGraph)
 #endif
 }
 
-FlowFieldPathFinder::~FlowFieldPathFinder()
+FlowFieldPathfinder::~FlowFieldPathfinder()
 {
 #ifdef VISUALIZE_PATH
 	mpPath = NULL;
 #endif
 }
 
-void FlowFieldPathFinder::calculateIntegrationField(Node* pCenterNode)
+void FlowFieldPathfinder::calculateIntegrationField(Node* pCenterNode)
 {
 	pCenterNode->setCost(0);
 	std::list<Node*> nodesToVisit;
@@ -70,4 +70,10 @@ void FlowFieldPathFinder::calculateIntegrationField(Node* pCenterNode)
 			}
 		}
 	}
+}
+
+Path* FlowFieldPathfinder::findPath(Node* pFrom, Node* pTo)
+{
+	calculateIntegrationField(pTo);
+	return mpPath;
 }

@@ -2,12 +2,13 @@
 #include "GridPathfinder.h"
 class Node;
 
-class FlowFieldPathFinder : public GridPathfinder {
+class FlowFieldPathfinder : public GridPathfinder {
 public:
-	FlowFieldPathFinder(Graph* pGraph);
-	~FlowFieldPathFinder();
+	FlowFieldPathfinder(Graph* pGraph);
+	~FlowFieldPathfinder();
 
 	void calculateIntegrationField(Node* pCenterNode);
+	Path* findPath(Node* pFrom, Node* pTo);
 private:
 	Node * mpCenterNode;
 
