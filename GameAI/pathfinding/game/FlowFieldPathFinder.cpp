@@ -70,6 +70,7 @@ void FlowFieldPathfinder::calculateIntegrationField(Node* pCenterNode)
 			}
 		}
 	}
+	delete pPath;
 }
 
 Path* FlowFieldPathfinder::findPath(Node* pFrom, Node* pTo)
