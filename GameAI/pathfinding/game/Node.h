@@ -14,14 +14,14 @@ public:
 	~Node();
 
 	const NODE_ID& getId() const {return mId;};
-	Vector2D getDirection() { return mDirection; }
+	float getDirection() { return mDirection; }
 	int getCost() { return mCost; }
 
-	void setDirection(Node* pNode);
+	void setDirection(float dir) { mDirection = dir; }
 	void setCost(int cost) { mCost = cost; }
 private:
 	const NODE_ID mId;
 	
-	Vector2D mDirection;
+	float mDirection;
 	int mCost = 0;
 };

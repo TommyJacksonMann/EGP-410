@@ -92,6 +92,12 @@ bool Game::init()
 	{
 		mpSpriteManager->createAndManageSprite(TARGET_SPRITE_ID, pTargetBuffer, 0, 0, (float)pTargetBuffer->getWidth(), (float)pTargetBuffer->getHeight());
 	}
+	GraphicsBuffer* pNodeDirectionBuffer = mpGraphicsBufferManager->getBuffer(mNodeDirectionBufferID);
+	Sprite* pNodeDirection = NULL;
+	if (pNodeDirectionBuffer != NULL)
+	{
+		pNodeDirection = mpSpriteManager->createAndManageSprite(NODE_DIRECTION_SPRITE_ID, pNodeDirectionBuffer, 0, 0, (float)pNodeDirectionBuffer->getWidth(), (float)pNodeDirectionBuffer->getHeight());
+	}
 
 	//load Font
 	mpFont = new Font("cour.ttf", 24);

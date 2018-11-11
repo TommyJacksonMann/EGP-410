@@ -9,6 +9,9 @@
 #include "..\common\Game.h"
 #include "..\common\Color.h"
 #include "GraphicsSystem.h"
+#include "GraphicsBufferManager.h"
+#include "SpriteManager.h"
+#include "GraphicsBuffer.h"
 #include <string>
 
 GridGraph::GridGraph( Grid* pGrid )
@@ -62,7 +65,9 @@ void GridGraph::init()
 					int left = pFromNode->getId() - 1;
 					int up = pFromNode->getId() - mpGrid->getGridWidth();
 					int down = pFromNode->getId() + mpGrid->getGridWidth();
-
+					//int upLeft = pFromNode->getId() - mpGrid->getGridWidth() - 1;
+					//int upRight = pFromNode->getId() - mpGrid->getGridWidth() + 1;
+					
 
 					Node* pToNode = mNodes[ adjacencies[adjIndex] ];//find to node
 					Connection* pConnection;
@@ -97,9 +102,12 @@ void GridGraph::VisualizeNodeCosts()
 	while (pCurrentNode != NULL)
 	{
 		Vector2D ulPos = mpGrid->getULCornerOfSquare(i);
-		int nodeCost = pCurrentNode->getCost();
+		int nodeCost = pCurrentNode->getDirection();
+		float nodeDirection = pCurrentNode->getCost();
+		gpGame->getGraphicsSystem()->draw(*gpGame->getSpriteManager()->getSprite(NODE_DIRECTION_SPRITE_ID), ulPos.getX() + 12, ulPos.getY() + 5, nodeDirection);
 		gpGame->getGraphicsSystem()->writeText(*gpGame->getFont(), ulPos.getX(), ulPos.getY(), std::to_string(nodeCost).c_str(), Color(0, 0, 0));
 		i++;
 		pCurrentNode = getNode(i);
+		
 	}
 }
