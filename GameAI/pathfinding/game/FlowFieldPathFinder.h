@@ -1,14 +1,13 @@
 #pragma once
-#include "Trackable.h"
-
+#include "GridPathfinder.h"
 class Node;
 
-class FlowFieldPathFinder : public Trackable {
+class FlowFieldPathFinder : public GridPathfinder {
 public:
-	FlowFieldPathFinder();
+	FlowFieldPathFinder(Graph* pGraph);
 	~FlowFieldPathFinder();
 
-	void calculateIntegrationField(Node* pNode);
+	void calculateIntegrationField(Node* pCenterNode);
 private:
 	Node * mpCenterNode;
 
