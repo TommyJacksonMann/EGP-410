@@ -110,6 +110,7 @@
     <ClInclude Include="GridGraph.h" />
     <ClInclude Include="GridPathfinder.h" />
     <ClInclude Include="InputSystem.h" />
+    <ClInclude Include="FlowFieldPathFinder.h" />
     <ClInclude Include="KeyboardInputs.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="NodeRecord.h" />
@@ -158,6 +159,7 @@
     <ClCompile Include="GridGraph.cpp" />
     <ClCompile Include="GridPathfinder.cpp" />
     <ClCompile Include="InputSystem.cpp" />
+    <ClCompile Include="FlowFieldPathFinder.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Path.cpp" />

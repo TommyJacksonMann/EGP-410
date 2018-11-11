@@ -186,6 +186,9 @@
     <ClInclude Include="PriorityQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FlowFieldPathFinder.h">
+      <Filter>Header Files\pathfinding</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\common\Game.cpp">
@@ -319,6 +322,9 @@
     </ClCompile>
     <ClCompile Include="PathPool.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FlowFieldPathFinder.cpp">
+      <Filter>Source Files\pathfinding</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
