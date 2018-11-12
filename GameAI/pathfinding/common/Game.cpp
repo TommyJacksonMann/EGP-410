@@ -2,6 +2,7 @@
 #include <sstream>
 #include <ctime>
 #include <cstdlib>
+#include <iostream>
 
 #include "Game.h"
 #include "GraphicsSystem.h"
@@ -157,6 +158,7 @@ void Game::processLoop()
 	mpComponentManager->update(TARGET_ELAPSED_MS);
 	mpUnitManager->drawAll();
 	mpGraphicsSystem->swap();
+	std::cout << mpLoopTimer->getElapsedTime() << std::endl;
 }
 
 bool Game::endLoop()

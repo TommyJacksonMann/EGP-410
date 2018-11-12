@@ -136,7 +136,7 @@ void GameApp::processLoop()
 #endif
 
 	mpDebugDisplay->draw( pBackBuffer );
-	mpGridGraph->VisualizeNodeCosts();
+	//mpGridGraph->VisualizeNodeCosts();
 
 	mpInputSystem->update();
 

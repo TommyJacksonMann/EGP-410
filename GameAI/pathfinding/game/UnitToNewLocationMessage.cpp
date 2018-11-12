@@ -6,10 +6,13 @@
 #include "FollowPathSteering.h"
 #include "./SteeringFiles/SteeringComponent.h"
 #include "GridPathfinder.h"
+#include "FlowFieldPathFinder.h"
+#include "FlowFieldSteering.h"
 #include "GameApp.h"
 #include "Grid.h"
 #include "GridGraph.h"
 #include "PathPool.h"
+#include <typeinfo>
 
 UnitToNewLocationMessage::UnitToNewLocationMessage(const Vector2D& pos)
 :GameMessage(UNIT_TO_NEW_LOCATION_MESSAGE),
@@ -39,22 +42,35 @@ void UnitToNewLocationMessage::process()
 
 			int fromIndex = pGrid->getSquareIndexFromPixelXY((int)iter->second->getPositionComponent()->getPosition().getX(), (int)iter->second->getPositionComponent()->getPosition().getY());
 			int toIndex = pGrid->getSquareIndexFromPixelXY((int)mPos.getX(), (int)mPos.getY());
-			iter->second->setSteering(Steering::FOLLOW_PATH);
-			Path* tempPath = pPathPool->CheckPath(fromIndex, toIndex);
+			
+			
 
-			FollowPathSteering* steer = static_cast<FollowPathSteering*>(iter->second->getSteeringComponent()->getSteering());
-			if (tempPath)
+			if (typeid(*pGame->getPathfinder()) == typeid(FlowFieldPathfinder))
 			{
-				steer->SetPath(tempPath);
+				iter->second->setSteering(Steering::FLOW_FIELD);
+				FlowFieldSteering* steer = static_cast<FlowFieldSteering*>(iter->second->getSteeringComponent()->getSteering());
+				Node* pToNode = pGridGraph->getNode(fromIndex);
+				steer->SetNode(pToNode);
 			}
 			else
 			{
-				Node* pFromNode = pGridGraph->getNode(fromIndex);
-				Node* pToNode = pGridGraph->getNode(toIndex);
-				tempPath = pPathfinder->findPath(pFromNode, pToNode);
-				steer->SetPath(tempPath);
-				pPathPool->AddPath(fromIndex, toIndex, tempPath);
+				iter->second->setSteering(Steering::FOLLOW_PATH);
+				Path* tempPath = pPathPool->CheckPath(fromIndex, toIndex);
+				FollowPathSteering* steer = static_cast<FollowPathSteering*>(iter->second->getSteeringComponent()->getSteering());
+				if (tempPath)
+				{
+					steer->SetPath(tempPath);
+				}
+				else
+				{
+					Node* pFromNode = pGridGraph->getNode(fromIndex);
+					Node* pToNode = pGridGraph->getNode(toIndex);
+					tempPath = pPathfinder->findPath(pFromNode, pToNode);
+					steer->SetPath(tempPath);
+					pPathPool->AddPath(fromIndex, toIndex, tempPath);
+				}
 			}
+			
 			
 			++iter;
 		}

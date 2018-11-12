@@ -2,6 +2,9 @@
 #include "./SteeringFiles/Steering.h"
 #include "Path.h"
 
+class GridGraph;
+class Grid;
+
 class FlowFieldSteering : public Steering
 {
 public:
@@ -15,5 +18,7 @@ private:
 	float mSlowRadius;
 	float mTimeToTarget;
 	Node* mpCurrentNode;
+	GridGraph* mpGridGraph;
+	Grid* mpGrid;
 };
 

@@ -16,4 +16,5 @@ public:
 	void VisualizeNodeCosts();
 private:
 	Grid* mpGrid;
+
 };

@@ -104,7 +104,7 @@ void GridGraph::VisualizeNodeCosts()
 		Vector2D ulPos = mpGrid->getULCornerOfSquare(i);
 		int nodeCost = pCurrentNode->getCost();
 		float nodeDirection = pCurrentNode->getDirection();
-		gpGame->getGraphicsSystem()->draw(*gpGame->getSpriteManager()->getSprite(NODE_DIRECTION_SPRITE_ID), ulPos.getX() + 12, ulPos.getY() + 5, nodeDirection);
+		//gpGame->getGraphicsSystem()->draw(*gpGame->getSpriteManager()->getSprite(NODE_DIRECTION_SPRITE_ID), ulPos.getX() + 12, ulPos.getY() + 5, nodeDirection);
 		gpGame->getGraphicsSystem()->writeText(*gpGame->getFont(), ulPos.getX(), ulPos.getY(), std::to_string(nodeCost).c_str(), Color(0, 0, 0));
 		i++;
 		pCurrentNode = getNode(i);

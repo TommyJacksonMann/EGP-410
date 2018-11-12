@@ -15,14 +15,17 @@ public:
 
 	const NODE_ID& getId() const {return mId;};
 	float getDirection() { return mDirection; }
+	Vector2D getDirectionVector() { return mDirectionVector; }
 	int getCost() { return mCost; }
 
 	void setDirection(float dir) { mDirection = dir; }
+	void setDirectionVector(Vector2D dir) { mDirectionVector = dir; }
 	void setDirection(Node* pNode);
 	void setCost(int cost) { mCost = cost; }
 private:
 	const NODE_ID mId;
 	
+	Vector2D mDirectionVector;
 	float mDirection;
 	int mCost = 0;
 };
