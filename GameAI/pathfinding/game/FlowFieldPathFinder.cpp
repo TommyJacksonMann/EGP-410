@@ -8,6 +8,7 @@
 #include "Connection.h"
 #include "GridPathfinder.h"
 #include "Path.h"
+#include "Node.h"
 #include <limits>
 
 FlowFieldPathfinder::FlowFieldPathfinder(Graph* pGraph)
@@ -66,6 +67,7 @@ void FlowFieldPathfinder::calculateIntegrationField(Node* pCenterNode)
 				find(nodesToVisit.begin(), nodesToVisit.end(), pTempToNode) == nodesToVisit.end())
 			{
 				pTempToNode->setCost(cost);
+				
 				nodesToVisit.push_back(pTempToNode);
 
 #ifdef VISUALIZE_PATH

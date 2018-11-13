@@ -136,7 +136,7 @@ void GameApp::processLoop()
 #endif
 
 	mpDebugDisplay->draw( pBackBuffer );
-	//mpGridGraph->VisualizeNodeCosts();
+	//mpGridGraph->VisualizeNodeCosts(); //UNCOMMENT THIS TO SEE NODE COSTS AND NODE DIRECTIONS, FRAME RATE IS CHOO
 
 	mpInputSystem->update();
 
