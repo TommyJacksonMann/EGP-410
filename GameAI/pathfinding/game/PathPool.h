@@ -3,6 +3,8 @@
 #include "Defines.h"
 #include "Trackable.h"
 
+//Class for saving a path into for memory reuseage. Created by RJ Bourdelais
+
 class Path;
 
 class PathPool : public Trackable

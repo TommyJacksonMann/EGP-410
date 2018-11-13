@@ -2,6 +2,8 @@
 #include "./SteeringFiles/Steering.h"
 #include "Path.h"
 
+//Steering class for the unit to go to each node in a path. Created by RJ Bourdelais
+
 class FollowPathSteering :	public Steering
 {
 public:

@@ -38,12 +38,6 @@ Steering* FollowPathSteering::getSteering()
 	/*Get CurrentDestination from Vector of Nodes
 	* when in targetDistance of next node increment Node location to next node
 	* if Node Location is greater than size, return NULL
-	*Issues:
-	* where should path be stored ~ Fixed (is private variable)
-	* how can there be more than one path in main gridPathfinder Variable
-	* Old pathfinding rot vel needs to be set to 0 when not doing anything ~ Fixed
-	* Sometimes the path is too big and looks for position outside screen ( A* Heuristic acts funny because the node doesn't exist on screen)
-	* One Path is being visualized; May need to fix how this works
 	*/
 	
 	GameApp* pGame = static_cast<GameApp*>(gpGame);
@@ -56,7 +50,7 @@ Steering* FollowPathSteering::getSteering()
 
 	//Get the position of the next node to move to
 	Grid* pGrid = dynamic_cast<GameApp*>(gpGame)->getGrid();
-	Vector2D currentTargetNodePosition = pGrid->getULCornerOfSquare(mPath.peekNode(mCurrentPathPosition)->getId());	//Watch this when the unit goes to a position off the screen
+	Vector2D currentTargetNodePosition = pGrid->getULCornerOfSquare(mPath.peekNode(mCurrentPathPosition)->getId());	
 
 	Unit* pOwner = gpGame->getUnitManager()->getUnit(mOwnerID);
 

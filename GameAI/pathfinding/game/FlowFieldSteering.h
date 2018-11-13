@@ -2,6 +2,7 @@
 #include "./SteeringFiles/Steering.h"
 #include "Path.h"
 
+//Class for steering units in the flow feild. Class created Thomas Mann
 class GridGraph;
 class Grid;
 

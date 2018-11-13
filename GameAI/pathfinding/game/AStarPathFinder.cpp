@@ -56,9 +56,7 @@ Path* AStarPathfinder::findPath(Node* pFrom, Node* pTo)
 	while (openNodes.size() > 0)
 	{
 		//gets the smallest available node and its index
-		//current = getSmallestNodeRecord(openNodes);
 		current = openNodes.top();
-		//int currentNodeIndex = getSmallestNodeRecordIndex(openNodes);
 		openNodes.pop();
 
 		if (current.mpNode == pTo)
@@ -128,16 +126,6 @@ Path* AStarPathfinder::findPath(Node* pFrom, Node* pTo)
 			if (!openContainsEndNode && !toNodeAdded)
 			{
 				openNodes.push(endNodeRecord);
-			/*	//openNodes.push_back(endNodeRecord);
-				if (endNodeRecord.mpNode == pTo)
-				{
-					toNodeAdded = true;
-				}
-				//Also add it to the closed list
-#ifdef VISUALIZE_PATH
-				mVisitedNodes.push_back(endNodeRecord.mpNode);
-#endif
-				closedNodes.push(endNodeRecord);*/
 			}
 		}
 		//removes node from open list and puts it in the closed
@@ -149,7 +137,6 @@ Path* AStarPathfinder::findPath(Node* pFrom, Node* pTo)
 #endif
 	}
 	//create a vector of nodes for the final path
-	//vector<Node*> finalNodeVector;
 
 	Path* newPath = new Path();
 	if (toNodeAdded == false)
@@ -169,7 +156,6 @@ Path* AStarPathfinder::findPath(Node* pFrom, Node* pTo)
 			if (iter != closedNodes.end())
 			{
 				current.mpConnection = iter->mpConnection;
-				//break;
 			}
 		}
 		newPath->addNode(current.mpNode);

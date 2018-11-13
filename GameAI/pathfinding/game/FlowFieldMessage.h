@@ -4,6 +4,8 @@
 #include "Game.h"
 #include "./SteeringFiles/UnitManager.h"
 
+//Class for setting the pathfinding to Flow feilds. Created by Thomas Mann.
+
 class FlowFieldMessage :public GameMessage
 {
 public:
