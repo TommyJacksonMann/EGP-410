@@ -138,7 +138,11 @@ void UnitManager::deleteRandomUnit()
 		{
 			if (cnt == target)
 			{
-				deleteUnit(it->first);
+				if (it->first != PLAYER_UNIT_ID)
+				{
+					deleteUnit(it->first);
+				}
+				
 				break;
 			}
 		}

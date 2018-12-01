@@ -36,7 +36,7 @@ void AddAndRemoveUnitsMessage::process()
 	Vector2D pos = pGame->getInputSystem()->getLastPosition();
 	if (!gpGame->getUnitManager()->getUnitMap().empty())
 	{
-		while (gpGame->getUnitManager()->getUnitMap().size() > 0)
+		while (gpGame->getUnitManager()->getUnitMap().size() > 1)
 		{
 			gpGame->getUnitManager()->deleteRandomUnit();
 		}

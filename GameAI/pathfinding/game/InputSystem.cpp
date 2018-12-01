@@ -8,6 +8,7 @@
 #include "DepthFirstSearchMessage.h"
 #include "AddAndRemoveUnitsMessage.h"
 #include "UnitToNewLocationMessage.h"
+#include "PlayerMoveToMessage.h"
 #include "FlowFieldMessage.h"
 #include "GameMessageManager.h"
 #include "Defines.h"
@@ -86,6 +87,33 @@ void InputSystem::update()
 				GameMessage* pMessage = new AddAndRemoveUnitsMessage();
 				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
 				pGame->getMessageManager()->addMessage(pMessage, 1);
+			}
+			if ((mBitwiseKeyStates[KeyCode::SCANCODE_UP] || mBitwiseKeyStates[KeyCode::SCANCODE_DOWN]
+				|| mBitwiseKeyStates[KeyCode::SCANCODE_LEFT] || mBitwiseKeyStates[KeyCode::SCANCODE_RIGHT])
+				&& getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED))
+			{
+				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
+				Vector2D destination = pGame->getUnitManager()->getPlayerUnit()->getPositionComponent()->getPosition();
+				Vector2D direction;
+				if (mBitwiseKeyStates[KeyCode::SCANCODE_UP])
+				{
+					direction = Vector2D(0, -32);
+				}
+				else if (mBitwiseKeyStates[KeyCode::SCANCODE_DOWN])
+				{
+					direction = Vector2D(0, 32);
+				}
+				else if (mBitwiseKeyStates[KeyCode::SCANCODE_LEFT])
+				{
+					direction = Vector2D(-32, 0);
+				}
+				else if (mBitwiseKeyStates[KeyCode::SCANCODE_RIGHT])
+				{
+					direction = Vector2D(32, 0);
+				}
+				destination += direction;
+				GameMessage* pMessage = new PlayerMoveToMessage(destination);
+				pGame->getMessageManager()->addMessage(pMessage, 0);
 			}
 		}
 	}

@@ -1,6 +1,7 @@
 #include "ComponentManager.h"
 #include "SteeringComponent.h"
 #include "ArriveSteering.h"
+#include "../KinematicArriveSteering.h"
 #include "../FollowPathSteering.h"
 #include "../FlowFieldSteering.h"
 
@@ -40,6 +41,12 @@ void SteeringComponent::setData(const SteeringData& data)
 		{
 			delete mpSteering;
 			mpSteering = new ArriveSteering(data.ownerID, data.targetLoc, data.targetID, false);
+			break;
+		}
+		case Steering::KINEMATICARRIVE:
+		{
+			delete mpSteering;
+			mpSteering = new KinematicArriveSteering(data.ownerID, data.targetLoc, data.targetID, false);
 			break;
 		}
 		case Steering::FOLLOW_PATH:
