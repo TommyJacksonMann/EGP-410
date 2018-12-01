@@ -67,7 +67,7 @@ bool Game::init()
 
 	//load background
 	mpGraphicsBufferManager->loadBuffer(mBackgroundBufferID, "wallpaper.bmp");
-	mpGraphicsBufferManager->loadBuffer(mPlayerIconBufferID, "arrow.png");
+	mpGraphicsBufferManager->loadBuffer(mPlayerIconBufferID, "player.png");
 	mpGraphicsBufferManager->loadBuffer(mEnemyIconBufferID, "enemy-arrow.png");
 	mpGraphicsBufferManager->loadBuffer(mTargetBufferID, "target.png");
 	mpGraphicsBufferManager->loadBuffer(mNodeDirectionBufferID, "flow-field-direction.png");
@@ -108,8 +108,8 @@ bool Game::init()
 	
 	Unit* pUnit = mpUnitManager->createPlayerUnit(*pArrowSprite);
 	pUnit->setShowTarget(true);
-	pUnit->setSteering(Steering::ARRIVE, Vector2D(400, 400));
-	pUnit->getPositionComponent()->setPosition(Vector2D(300, 300));
+	pUnit->setSteering(Steering::KINEMATICARRIVE, Vector2D(0, 0));
+	pUnit->getPositionComponent()->setPosition(Vector2D(0, 0));
 
 	return true;
 }

@@ -94,6 +94,7 @@ void InputSystem::update()
 			{
 				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
 				Vector2D destination = pGame->getUnitManager()->getPlayerUnit()->getPositionComponent()->getPosition();
+				destination += Vector2D(16, 16);
 				Vector2D direction;
 				if (mBitwiseKeyStates[KeyCode::SCANCODE_UP])
 				{
@@ -112,8 +113,16 @@ void InputSystem::update()
 					direction = Vector2D(32, 0);
 				}
 				destination += direction;
-				GameMessage* pMessage = new PlayerMoveToMessage(destination);
-				pGame->getMessageManager()->addMessage(pMessage, 0);
+				GridGraph* pGridGraph = pGame->getGridGraph();
+				Grid* pGrid = pGame->getGrid();
+				int toIndex = pGrid->getSquareIndexFromPixelXY(destination.getX(), destination.getY());
+				Node* pToNode = pGridGraph->getNode(toIndex);
+				
+				if (!pToNode->getIsWall())
+				{
+					GameMessage* pMessage = new PlayerMoveToMessage(pGrid->getULCornerOfSquare(toIndex) + Vector2D(0, 0));
+					pGame->getMessageManager()->addMessage(pMessage, 0);
+				}			
 			}
 		}
 	}

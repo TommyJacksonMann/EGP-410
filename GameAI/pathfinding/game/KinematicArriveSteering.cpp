@@ -44,20 +44,23 @@ Steering* KinematicArriveSteering::getSteering()
 	float targetSpeed;
 	Vector2D targetVelocity;
 
-	if (targetDirection.getLength() < 3)
+	if (targetDirection.getLength() == 0)
 	{
 		data.vel = Vector2D(0, 0);
 		data.acc = Vector2D(0, 0);
 		this->mData = data;
 		return this;
 	}
-	else if (targetDirection.getLength() > data.maxSpeed)
+	else if (targetDirection.getLength() < data.vel.getLength())
 	{
 		targetSpeed = targetDirection.getLength();
+		//pOwner->getPositionComponent()->setPosition(mTargetLoc);
 	}
 	else
 	{
 		targetSpeed = data.maxSpeed;
+
+		
 	}
 
 	targetDirection.normalize();
@@ -67,8 +70,8 @@ Steering* KinematicArriveSteering::getSteering()
 
 	data.vel = targetVelocity;
 
-	float velocityDirection = atan2(targetDirection.getY(), targetDirection.getX()) + .5f*3.14;
-	pOwner->getPositionComponent()->setFacing(velocityDirection);
+	//float velocityDirection = atan2(targetDirection.getY(), targetDirection.getX()) + .5f*3.14;
+	//pOwner->getPositionComponent()->setFacing(velocityDirection);
 
 	this->mData = data;
 	return this;
