@@ -138,9 +138,6 @@
     <ClInclude Include="SteeringFiles\Unit.h">
       <Filter>Steering</Filter>
     </ClInclude>
-    <ClInclude Include="SteeringFiles\PlayerMoveToMessage.h">
-      <Filter>Steering</Filter>
-    </ClInclude>
     <ClInclude Include="SteeringFiles\UnitManager.h">
       <Filter>Steering</Filter>
     </ClInclude>
@@ -207,11 +204,11 @@
     <ClInclude Include="FlowFieldSteering.h">
       <Filter>Steering</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerMoveToMessage.h">
-      <Filter>Header Files\messaging</Filter>
-    </ClInclude>
     <ClInclude Include="KinematicArriveSteering.h">
       <Filter>Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMoveToMessage.h">
+      <Filter>Header Files\messaging</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -308,9 +305,6 @@
     <ClCompile Include="SteeringFiles\UnitManager.cpp">
       <Filter>Steering</Filter>
     </ClCompile>
-    <ClCompile Include="SteeringFiles\PlayerMoveToMessage.cpp">
-      <Filter>Steering</Filter>
-    </ClCompile>
     <ClCompile Include="FollowPathSteering.cpp">
       <Filter>Steering</Filter>
     </ClCompile>
@@ -353,11 +347,11 @@
     <ClCompile Include="FlowFieldSteering.cpp">
       <Filter>Steering</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerMoveToMessage.cpp">
-      <Filter>Source Files\messaging</Filter>
-    </ClCompile>
     <ClCompile Include="KinematicArriveSteering.cpp">
       <Filter>Steering</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMoveToMessage.cpp">
+      <Filter>Source Files\messaging</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

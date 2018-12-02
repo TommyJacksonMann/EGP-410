@@ -108,8 +108,9 @@ bool Game::init()
 	
 	Unit* pUnit = mpUnitManager->createPlayerUnit(*pArrowSprite);
 	pUnit->setShowTarget(false);
-	pUnit->setSteering(Steering::KINEMATICARRIVE, Vector2D(0, 0));
+	pUnit->setSteering(Steering::KINEMATICARRIVE, Vector2D(pBackGroundBuffer->getWidth()/2, pBackGroundBuffer->getHeight()/2));
 	pUnit->getPositionComponent()->setPosition(Vector2D(0, 0));
+
 
 	return true;
 }
@@ -159,6 +160,7 @@ void Game::processLoop()
 	mpUnitManager->drawAll();
 	mpGraphicsSystem->swap();
 	std::cout << mpLoopTimer->getElapsedTime() << std::endl;
+
 }
 
 bool Game::endLoop()

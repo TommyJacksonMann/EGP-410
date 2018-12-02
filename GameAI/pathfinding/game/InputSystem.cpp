@@ -95,9 +95,9 @@ void InputSystem::update()
 				)
 			{
 				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
-				if (pGame->getUnitManager()->getPlayerUnit()->getPositionComponent()->getPosition()
+			/*	if (pGame->getUnitManager()->getPlayerUnit()->getPositionComponent()->getPosition()
 					== pGame->getUnitManager()->getPlayerUnit()->getSteeringComponent()->getTargetLoc())
-				{
+				{*/
 					Vector2D destination = pGame->getUnitManager()->getPlayerUnit()->getPositionComponent()->getPosition();
 					destination += Vector2D(16, 16);
 					Vector2D direction;
@@ -128,7 +128,7 @@ void InputSystem::update()
 						GameMessage* pMessage = new PlayerMoveToMessage(pGrid->getULCornerOfSquare(toIndex) + Vector2D(0, 0));
 						pGame->getMessageManager()->addMessage(pMessage, 0);
 					}
-				}
+				//}
 			}
 		}
 	}
