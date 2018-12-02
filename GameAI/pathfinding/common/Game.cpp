@@ -107,7 +107,7 @@ bool Game::init()
 	mpUnitManager = new UnitManager(MAX_UNITS);
 	
 	Unit* pUnit = mpUnitManager->createPlayerUnit(*pArrowSprite);
-	pUnit->setShowTarget(true);
+	pUnit->setShowTarget(false);
 	pUnit->setSteering(Steering::KINEMATICARRIVE, Vector2D(0, 0));
 	pUnit->getPositionComponent()->setPosition(Vector2D(0, 0));
 

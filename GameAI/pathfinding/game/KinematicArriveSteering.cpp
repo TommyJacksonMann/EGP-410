@@ -24,6 +24,16 @@ KinematicArriveSteering::KinematicArriveSteering(const UnitID& ownerID, const Ve
 	setTargetID(targetID);
 	setTargetLoc(targetLoc);
 
+	Unit* pOwner = gpGame->getUnitManager()->getUnit(mOwnerID);
+	if (mTargetID != INVALID_UNIT_ID)
+	{
+		//seeking unit
+		Unit* pTarget = gpGame->getUnitManager()->getUnit(mTargetID);
+		assert(pTarget != NULL);
+		mTargetLoc = pTarget->getPositionComponent()->getPosition();
+	}
+	Vector2D targetDirection = mTargetLoc - pOwner->getPositionComponent()->getPosition();
+	mMovementFactor = (targetDirection.getLength() / KINEMATIC_NUM_FRAMES_TO_TARGET);
 }
 
 Steering* KinematicArriveSteering::getSteering()
@@ -44,34 +54,24 @@ Steering* KinematicArriveSteering::getSteering()
 	float targetSpeed;
 	Vector2D targetVelocity;
 
-	if (targetDirection.getLength() == 0)
+	if (targetDirection.getLength() < mMovementFactor)
 	{
-		data.vel = Vector2D(0, 0);
-		data.acc = Vector2D(0, 0);
-		this->mData = data;
-		return this;
-	}
-	else if (targetDirection.getLength() < data.vel.getLength())
-	{
-		targetSpeed = targetDirection.getLength();
-		//pOwner->getPositionComponent()->setPosition(mTargetLoc);
+		pOwner->getPositionComponent()->setPosition(mTargetLoc);
 	}
 	else
 	{
-		targetSpeed = data.maxSpeed;
+		targetDirection.normalize();
 
-		
+		targetVelocity = targetDirection;
+		targetVelocity *= mMovementFactor;
+		pOwner->getPositionComponent()->setPosition(pOwner->getPositionComponent()->getPosition() + targetVelocity);
+		float velocityDirection = atan2(targetDirection.getY(), targetDirection.getX()) + .5f*3.14;
+		pOwner->getPositionComponent()->setFacing(velocityDirection);
 	}
+	
+	//data.vel = targetVelocity;
 
-	targetDirection.normalize();
-
-	targetVelocity = targetDirection;
-	targetVelocity *= targetSpeed;
-
-	data.vel = targetVelocity;
-
-	//float velocityDirection = atan2(targetDirection.getY(), targetDirection.getX()) + .5f*3.14;
-	//pOwner->getPositionComponent()->setFacing(velocityDirection);
+	
 
 	this->mData = data;
 	return this;
