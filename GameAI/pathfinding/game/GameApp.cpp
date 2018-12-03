@@ -201,12 +201,20 @@ void GameApp::AddScore(ScoreType type)
 {
 	switch(type)
 	{
-		case COIN:
-			break;
-		case EAT_ENEMY:
-			break;
-		case NONE:
-		default:
+		case COIN_SCORE:
+		{
 
-	}
+			break;
+		}
+		case EAT_ENEMY_SCORE:
+		{
+
+			break;
+		}
+		case NO_SCORE:
+		{
+		}
+		default:
+		{}
+	};
 }

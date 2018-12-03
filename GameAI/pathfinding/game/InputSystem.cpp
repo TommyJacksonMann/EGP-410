@@ -100,46 +100,7 @@ void InputSystem::update()
 					}
 				}
 			}
-		}
-	}
-
-	if (getHasByte(mLeftMouse, StateBitValues::CURRENTLY_PRESSED))
-	{
-		GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
-		static Vector2D lastPos(0.0f, 0.0f);
-		GridGraph* pGridGraph = pGame->getGridGraph();
-		Grid* pGrid = pGame->getGrid();
-		int toIndex = pGrid->getSquareIndexFromPixelXY((int)mMouseLocation.getX(), (int)mMouseLocation.getY());
-		Node* pToNode = pGridGraph->getNode(toIndex);
-		Graph* pGraph = pGridGraph;
-		bool viableNode = false;
-		std::vector<Connection*> pConnections = pGraph->getConnections(pToNode->getId());
-		//GOES THROUGH ALL OF TONODE's CONNECTIONS
-		for (int i = 0; i < pConnections.size(); i++)
-		{
-			Node* pCurrent = pConnections[i]->getToNode();
-			std::vector<Connection*> pCurrentConnections = pGraph->getConnections(pCurrent->getId());
-			//CHECKS TO SEE IF THE TONODE OF THE CONNECTION HAS A CONNECTION BACK TO THE TONODE
-			for (int j = 0; j < pCurrentConnections.size() && viableNode == false; j++)
-			{
-				if (pCurrentConnections[j]->getToNode() == pToNode)
-				{
-					viableNode = true;
-				}
-			}
-			if (viableNode)
-			{
-				break;
-			}
-		}
-		if ((lastPos.getX() != mMouseLocation.getX() || lastPos.getY() != mMouseLocation.getY()) && viableNode)
-		{
-			GameMessage* pMessage = new PathToMessage(lastPos, mMouseLocation);
-			pGame->getMessageManager()->addMessage(pMessage, 0);
-			pMessage = new UnitToNewLocationMessage(mMouseLocation);
-			pGame->getMessageManager()->addMessage(pMessage, 0);
-			lastPos = mMouseLocation;
-			mLastPos = lastPos;
+			//if{}
 		}
 	}
 }

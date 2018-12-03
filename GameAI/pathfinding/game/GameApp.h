@@ -27,9 +27,9 @@ class AStarPathFinder;
 class PathPool;
 enum ScoreType 
 {
-COIN,
-EAT_ENEMY,
-NONE
+COIN_SCORE,
+EAT_ENEMY_SCORE,
+NO_SCORE
 };
 
 //const float LOOP_TARGET_TIME = 33.3f;//how long should each frame of execution take? 30fps = 33.3ms/frame
@@ -76,5 +76,7 @@ private:
 	PathPool* mpPathPool;
 
 	int mGameScore = 0;
+	int mCoinScore = 0;
+	int mPlayerEat = 0;
 };
 
