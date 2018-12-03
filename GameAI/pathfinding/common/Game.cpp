@@ -117,12 +117,12 @@ bool Game::init()
 	pUnit->setShowTarget(false);
 	pUnit->setSteering(Steering::KINEMATICARRIVE, Vector2D(pBackGroundBuffer->getWidth()/2, pBackGroundBuffer->getHeight()/2));
 	pUnit->getPositionComponent()->setPosition(Vector2D(0, 0));
-	pUnit->setCollision(CIRCLE, 20);
+	pUnit->setCollision(CIRCLE, 5);
 	pUnit->setUnitType(UnitType::PLAYER);
 
 	Unit* testCoin = mpUnitManager->createUnit(*pCoinSprite);
-	testCoin->getPositionComponent()->setPosition(Vector2D(400, 300));
-	testCoin->setCollision(CIRCLE, 20);
+	testCoin->getPositionComponent()->setPosition(Vector2D(10*32, 5*32));
+	testCoin->setCollision(CIRCLE, 5);
 	testCoin->setUnitType(UnitType::COIN);
 	return true;
 }

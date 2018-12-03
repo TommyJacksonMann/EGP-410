@@ -291,11 +291,14 @@ void ComponentManager::updateCollision(float elapsedTime)
 		CollisionComponent* pCollision = it.second;
 		assert(pCollision != NULL);
 		pCollision->updateDataPosition();
+		ComponentID firstID = pCollision->getID();
 		for (auto& itSecond : mCollisionComponentMap)
 		{
-			CollisionComponent* pSecondCollision = it.second;
+			CollisionComponent* pSecondCollision = itSecond.second;
 			assert(pSecondCollision != NULL);
-			if (pSecondCollision->getID() != pCollision->getID())
+			ComponentID secondID = pSecondCollision->getID();
+
+			if (secondID != firstID)
 			{
 				pCollision->update(pSecondCollision);
 				pSecondCollision = NULL;

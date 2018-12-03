@@ -22,7 +22,7 @@ bool CollisionComponent::checkCollision(const CollisionData otherColliderData)
 			float radiusSq = (mData.xDistance + otherColliderData.xDistance)
 				* (mData.xDistance + otherColliderData.xDistance);
 
-			if (distSq >= 0)
+			if (distSq <= radiusSq)
 			{
 				return true;
 			}
@@ -118,7 +118,8 @@ bool CollisionComponent::checkCollision(const CollisionData otherColliderData)
 	}
 	case ERR:
 	default:
-		std::cout << "Something went wrong\n";
+		//Collision Turned OFF
+		return false;
 	}
 	return false;
 }
@@ -132,11 +133,13 @@ void CollisionComponent::update(CollisionComponent* pComponent)
 {
 	bool mIsColliding = checkCollision(pComponent->getData());
 
-	Unit* firstUnit = NULL;
-	Unit* secondUnit = NULL;
 
 	if (mIsColliding)
 	{
+
+		Unit* firstUnit = NULL;
+		Unit* secondUnit = NULL;
+
 		std::map < UnitID, Unit*> tempMap = gpGame->getUnitManager()->getUnitMap();
 		std::map<UnitID, Unit*>::iterator iter = tempMap.begin();
 		for (iter; iter != tempMap.end(); iter++)
