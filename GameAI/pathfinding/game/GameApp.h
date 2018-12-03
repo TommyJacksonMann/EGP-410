@@ -25,6 +25,12 @@ class InputSystem;
 class DijkstraPathFinder;
 class AStarPathFinder;
 class PathPool;
+enum ScoreType 
+{
+COIN,
+EAT_ENEMY,
+NONE
+};
 
 //const float LOOP_TARGET_TIME = 33.3f;//how long should each frame of execution take? 30fps = 33.3ms/frame
 
@@ -54,7 +60,10 @@ public:
 	void SetPathFinderToAStar();
 	void SetPathFinderToDepthFirst();
 	void SetPathFinderToFlowField();
+	
+	void AddScore(ScoreType);
 private:
+
 	InputSystem* mpInputSystem;
 	GameMessageManager* mpMessageManager;
 	Grid* mpGrid;
@@ -65,5 +74,7 @@ private:
 	GridPathfinder* mpPathfinder;
 
 	PathPool* mpPathPool;
+
+	int mGameScore = 0;
 };
 

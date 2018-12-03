@@ -196,3 +196,17 @@ void GameApp::SetPathFinderToFlowField() {
 	PathfindingDebugContent* pContent = new PathfindingDebugContent(mpPathfinder);
 	mpDebugDisplay = new DebugDisplay(Vector2D(0, 12), pContent);
 }
+
+void GameApp::AddScore(ScoreType type)
+{
+	switch(type)
+	{
+		case COIN:
+			break;
+		case EAT_ENEMY:
+			break;
+		case NONE:
+		default:
+
+	}
+}
