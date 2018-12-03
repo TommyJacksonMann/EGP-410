@@ -19,7 +19,7 @@ UnitManager::UnitManager(Uint32 maxSize)
 {
 }
 
-Unit* UnitManager::createUnit(const Sprite& sprite, bool shouldWrap, const PositionData& posData /*= ZERO_POSITION_DATA*/, const PhysicsData& physicsData /*= ZERO_PHYSICS_DATA*/, const UnitID& id)
+Unit* UnitManager::createUnit(const Sprite& sprite, bool shouldWrap, const PositionData& posData /*= ZERO_POSITION_DATA*/, const PhysicsData& physicsData /*= ZERO_PHYSICS_DATA*/, const CollisionData& collisionData /*= ZERO_COLLISION_DATA*/, const UnitID& id)
 {
 	Unit* pUnit = NULL;
 
@@ -49,7 +49,7 @@ Unit* UnitManager::createUnit(const Sprite& sprite, bool shouldWrap, const Posit
 		pUnit->mpPositionComponent = pComponentManager->getPositionComponent(id);
 		pUnit->mPhysicsComponentID = pComponentManager->allocatePhysicsComponent(pUnit->mPositionComponentID, physicsData);
 		pUnit->mSteeringComponentID = pComponentManager->allocateSteeringComponent(pUnit->mPhysicsComponentID);
-
+		pUnit->mCollisionComponentID = pComponentManager->allocateCollisionComponent(pUnit->mPositionComponentID);
 		//set max's
 		pUnit->mMaxSpeed = MAX_SPEED;
 		pUnit->mMaxAcc = MAX_ACC;
@@ -62,9 +62,9 @@ Unit* UnitManager::createUnit(const Sprite& sprite, bool shouldWrap, const Posit
 }
 
 
-Unit* UnitManager::createPlayerUnit(const Sprite& sprite, bool shouldWrap /*= true*/, const PositionData& posData /*= ZERO_POSITION_DATA*/, const PhysicsData& physicsData /*= ZERO_PHYSICS_DATA*/)
+Unit* UnitManager::createPlayerUnit(const Sprite& sprite, bool shouldWrap /*= true*/, const PositionData& posData /*= ZERO_POSITION_DATA*/, const PhysicsData& physicsData /*= ZERO_PHYSICS_DATA*/, const CollisionData& collisionData /*= ZERO_COLLISION_DATA*/)
 {
-	return createUnit(sprite, shouldWrap, posData, physicsData, PLAYER_UNIT_ID);
+	return createUnit(sprite, shouldWrap, posData, physicsData, collisionData , PLAYER_UNIT_ID);
 }
 
 
@@ -119,6 +119,7 @@ void UnitManager::deleteUnit(const UnitID& id)
 		pComponentManager->deallocatePhysicsComponent(pUnit->mPhysicsComponentID);
 		pComponentManager->deallocatePositionComponent(pUnit->mPositionComponentID);
 		pComponentManager->deallocateSteeringComponent(pUnit->mSteeringComponentID);
+		pComponentManager->deallocateCollisionComponent(pUnit->mCollisionComponentID);
 
 		//call destructor
 		pUnit->~Unit();

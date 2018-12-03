@@ -66,6 +66,7 @@ bool Game::init()
 
 
 	//load background
+	mpGraphicsBufferManager->loadBuffer(mCoinBufferID, "coin.png");
 	mpGraphicsBufferManager->loadBuffer(mBackgroundBufferID, "wallpaper.bmp");
 	mpGraphicsBufferManager->loadBuffer(mPlayerIconBufferID, "player.png");
 	mpGraphicsBufferManager->loadBuffer(mEnemyIconBufferID, "enemy-arrow.png");
@@ -99,6 +100,12 @@ bool Game::init()
 	{
 		pNodeDirection = mpSpriteManager->createAndManageSprite(NODE_DIRECTION_SPRITE_ID, pNodeDirectionBuffer, 0, 0, (float)pNodeDirectionBuffer->getWidth(), (float)pNodeDirectionBuffer->getHeight());
 	}
+	GraphicsBuffer* pCoinBuffer = mpGraphicsBufferManager->getBuffer(mCoinBufferID);
+	Sprite* pCoinSprite = NULL;
+	if (pCoinBuffer != NULL)
+	{
+		pCoinSprite = mpSpriteManager->createAndManageSprite(COIN_SPRITE_ID, pCoinBuffer, 0, 0, (float)pCoinBuffer->getWidth(), (float)pCoinBuffer->getHeight());
+	}
 
 	//load Font
 	mpFont = new Font("cour.ttf", 24);
@@ -110,8 +117,13 @@ bool Game::init()
 	pUnit->setShowTarget(false);
 	pUnit->setSteering(Steering::KINEMATICARRIVE, Vector2D(pBackGroundBuffer->getWidth()/2, pBackGroundBuffer->getHeight()/2));
 	pUnit->getPositionComponent()->setPosition(Vector2D(0, 0));
+	pUnit->setCollision(CIRCLE, 20);
+	pUnit->setUnitType(UnitType::PLAYER);
 
-
+	Unit* testCoin = mpUnitManager->createUnit(*pCoinSprite);
+	testCoin->getPositionComponent()->setPosition(Vector2D(400, 300));
+	testCoin->setCollision(CIRCLE, 20);
+	testCoin->setUnitType(UnitType::COIN);
 	return true;
 }
 

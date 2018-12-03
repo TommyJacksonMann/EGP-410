@@ -94,6 +94,7 @@
     <ClInclude Include="AddAndRemoveUnitsMessage.h" />
     <ClInclude Include="AStarMessage.h" />
     <ClInclude Include="AStarPathFinder.h" />
+    <ClInclude Include="CollisionComponent.h" />
     <ClInclude Include="Connection.h" />
     <ClInclude Include="DebugContent.h" />
     <ClInclude Include="DebugDisplay.h" />
@@ -111,6 +112,7 @@
     <ClInclude Include="Graph.h" />
     <ClInclude Include="GridGraph.h" />
     <ClInclude Include="GridPathfinder.h" />
+    <ClInclude Include="HandleCollisionMessage.h" />
     <ClInclude Include="InputSystem.h" />
     <ClInclude Include="FlowFieldPathFinder.h" />
     <ClInclude Include="KeyboardInputs.h" />
@@ -150,6 +152,7 @@
     <ClCompile Include="..\common\SpriteManager.cpp" />
     <ClCompile Include="AddAndRemoveUnitsMessage.cpp" />
     <ClCompile Include="AStarPathFinder.cpp" />
+    <ClCompile Include="CollisionComponent.cpp" />
     <ClCompile Include="Connection.cpp" />
     <ClCompile Include="DebugDisplay.cpp" />
     <ClCompile Include="DepthFirstPathfinder.cpp" />
@@ -162,6 +165,7 @@
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="GridGraph.cpp" />
     <ClCompile Include="GridPathfinder.cpp" />
+    <ClCompile Include="HandleCollisionMessage.cpp" />
     <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="FlowFieldPathFinder.cpp" />
     <ClCompile Include="KinematicArriveSteering.cpp" />

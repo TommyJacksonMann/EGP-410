@@ -9,6 +9,7 @@
 ComponentID ComponentManager::msNextPositionComponentID = 0;
 ComponentID ComponentManager::msNextPhysicsComponentID = 0;
 ComponentID ComponentManager::msNextSteeringComponentID = 0;
+ComponentID ComponentManager::msNextCollisionComponentID = 0;
 
 using namespace std;
 
@@ -16,6 +17,7 @@ ComponentManager::ComponentManager(Uint32 maxSize)
 	:mPositionPool(maxSize, sizeof(PositionComponent))
 	, mPhysicsPool(maxSize, sizeof(PhysicsComponent))
 	, mSteeringPool(maxSize, sizeof(SteeringComponent))
+	, mCollisionPool(maxSize, sizeof(CollisionComponent))
 {
 }
 
@@ -197,6 +199,55 @@ void ComponentManager::deallocateSteeringComponent(const ComponentID& id)
 		mSteeringPool.freeObject(pByte);
 	}
 }
+//***************************************
+CollisionComponent* ComponentManager::getCollisionComponent(const ComponentID& id)
+{
+	auto it = mCollisionComponentMap.find(id);
+	if (it != mCollisionComponentMap.end())
+	{
+		return it->second;
+	}
+	else
+	{
+		return NULL;
+	}
+
+}
+
+ComponentID ComponentManager::allocateCollisionComponent(const ComponentID& positionComponentID, const CollisionData& data)
+{
+	ComponentID newID = INVALID_COMPONENT_ID;
+
+	Byte* ptr = mCollisionPool.allocateObject();
+	if (ptr != NULL)
+	{
+		newID = msNextCollisionComponentID;
+		CollisionComponent* pComponent = new (ptr)CollisionComponent(newID, positionComponentID);
+		pComponent->setData(data);
+		pComponent->setPositionComponent(getPositionComponent(positionComponentID));
+		mCollisionComponentMap[newID] = pComponent;
+		msNextCollisionComponentID++;//increment id
+	}
+
+	return newID;
+}
+
+void ComponentManager::deallocateCollisionComponent(const ComponentID& id)
+{
+	auto it = mCollisionComponentMap.find(id);
+
+	if (it != mCollisionComponentMap.end())//found it
+	{
+		CollisionComponent* ptr = it->second;
+		mCollisionComponentMap.erase(it);
+
+		//hold for later
+		Byte* pByte = (Byte*)ptr;
+
+		ptr->~CollisionComponent();
+		mCollisionPool.freeObject(pByte);
+	}
+}
 
 const float ELAPSED_TIME_PHYSICS_MULT = 1.0f;
 
@@ -204,6 +255,8 @@ void ComponentManager::update(float elapsedTime)
 {
 	updateSteering(elapsedTime*ELAPSED_TIME_PHYSICS_MULT);
 	updatePhysics(elapsedTime*ELAPSED_TIME_PHYSICS_MULT);
+	updateCollision(elapsedTime*ELAPSED_TIME_PHYSICS_MULT);
+
 }
 
 void ComponentManager::updatePhysics(float elapsedTime)
@@ -229,4 +282,24 @@ void ComponentManager::updateSteering(float elapsedTime)
 		pSteering->applySteering(*pPhysics);
 	}
 
+}
+
+void ComponentManager::updateCollision(float elapsedTime)
+{
+	for (auto& it : mCollisionComponentMap)
+	{
+		CollisionComponent* pCollision = it.second;
+		assert(pCollision != NULL);
+		pCollision->updateDataPosition();
+		for (auto& itSecond : mCollisionComponentMap)
+		{
+			CollisionComponent* pSecondCollision = it.second;
+			assert(pSecondCollision != NULL);
+			if (pSecondCollision->getID() != pCollision->getID())
+			{
+				pCollision->update(pSecondCollision);
+				pSecondCollision = NULL;
+			}
+		}
+	}
 }

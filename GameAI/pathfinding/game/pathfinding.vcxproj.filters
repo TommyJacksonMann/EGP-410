@@ -43,6 +43,12 @@
     <Filter Include="Source Files\util">
       <UniqueIdentifier>{90105af6-1784-4d4c-a7e8-1921d4a8616a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Steering\Source Files">
+      <UniqueIdentifier>{2b1fac04-3291-4af3-845a-5103decec61b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Steering\Header Files">
+      <UniqueIdentifier>{5e43f7bf-2aa6-4b24-a488-66198926afb6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common\Game.h">
@@ -111,39 +117,6 @@
     <ClInclude Include="NodeRecord.h">
       <Filter>Header Files\pathfinding</Filter>
     </ClInclude>
-    <ClInclude Include="SteeringFiles\ArriveSteering.h">
-      <Filter>Steering</Filter>
-    </ClInclude>
-    <ClInclude Include="SteeringFiles\Component.h">
-      <Filter>Steering</Filter>
-    </ClInclude>
-    <ClInclude Include="SteeringFiles\ComponentManager.h">
-      <Filter>Steering</Filter>
-    </ClInclude>
-    <ClInclude Include="SteeringFiles\MathTools.h">
-      <Filter>Steering</Filter>
-    </ClInclude>
-    <ClInclude Include="SteeringFiles\PhysicsComponent.h">
-      <Filter>Steering</Filter>
-    </ClInclude>
-    <ClInclude Include="SteeringFiles\PositionComponent.h">
-      <Filter>Steering</Filter>
-    </ClInclude>
-    <ClInclude Include="SteeringFiles\Steering.h">
-      <Filter>Steering</Filter>
-    </ClInclude>
-    <ClInclude Include="SteeringFiles\SteeringComponent.h">
-      <Filter>Steering</Filter>
-    </ClInclude>
-    <ClInclude Include="SteeringFiles\Unit.h">
-      <Filter>Steering</Filter>
-    </ClInclude>
-    <ClInclude Include="SteeringFiles\UnitManager.h">
-      <Filter>Steering</Filter>
-    </ClInclude>
-    <ClInclude Include="FollowPathSteering.h">
-      <Filter>Steering</Filter>
-    </ClInclude>
     <ClInclude Include="FlowFieldPathFinder.h">
       <Filter>Header Files\pathfinding</Filter>
     </ClInclude>
@@ -201,13 +174,52 @@
     <ClInclude Include="PathPool.h">
       <Filter>Header Files\pathfinding</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerMoveToMessage.h">
+      <Filter>Header Files\messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringFiles\ArriveSteering.h">
+      <Filter>Steering\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringFiles\Component.h">
+      <Filter>Steering\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringFiles\ComponentManager.h">
+      <Filter>Steering\Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="FlowFieldSteering.h">
-      <Filter>Steering</Filter>
+      <Filter>Steering\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FollowPathSteering.h">
+      <Filter>Steering\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="KinematicArriveSteering.h">
-      <Filter>Steering</Filter>
+      <Filter>Steering\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerMoveToMessage.h">
+    <ClInclude Include="SteeringFiles\MathTools.h">
+      <Filter>Steering\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringFiles\PhysicsComponent.h">
+      <Filter>Steering\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringFiles\PositionComponent.h">
+      <Filter>Steering\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringFiles\Steering.h">
+      <Filter>Steering\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringFiles\SteeringComponent.h">
+      <Filter>Steering\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringFiles\Unit.h">
+      <Filter>Steering\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringFiles\UnitManager.h">
+      <Filter>Steering\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionComponent.h">
+      <Filter>Steering\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HandleCollisionMessage.h">
       <Filter>Header Files\messaging</Filter>
     </ClInclude>
   </ItemGroup>
@@ -275,39 +287,6 @@
     <ClCompile Include="AStarPathFinder.cpp">
       <Filter>Source Files\pathfinding</Filter>
     </ClCompile>
-    <ClCompile Include="SteeringFiles\ArriveSteering.cpp">
-      <Filter>Steering</Filter>
-    </ClCompile>
-    <ClCompile Include="SteeringFiles\Component.cpp">
-      <Filter>Steering</Filter>
-    </ClCompile>
-    <ClCompile Include="SteeringFiles\ComponentManager.cpp">
-      <Filter>Steering</Filter>
-    </ClCompile>
-    <ClCompile Include="SteeringFiles\MathTools.cpp">
-      <Filter>Steering</Filter>
-    </ClCompile>
-    <ClCompile Include="SteeringFiles\PhysicsComponent.cpp">
-      <Filter>Steering</Filter>
-    </ClCompile>
-    <ClCompile Include="SteeringFiles\PositionComponent.cpp">
-      <Filter>Steering</Filter>
-    </ClCompile>
-    <ClCompile Include="SteeringFiles\Steering.cpp">
-      <Filter>Steering</Filter>
-    </ClCompile>
-    <ClCompile Include="SteeringFiles\SteeringComponent.cpp">
-      <Filter>Steering</Filter>
-    </ClCompile>
-    <ClCompile Include="SteeringFiles\Unit.cpp">
-      <Filter>Steering</Filter>
-    </ClCompile>
-    <ClCompile Include="SteeringFiles\UnitManager.cpp">
-      <Filter>Steering</Filter>
-    </ClCompile>
-    <ClCompile Include="FollowPathSteering.cpp">
-      <Filter>Steering</Filter>
-    </ClCompile>
     <ClCompile Include="FlowFieldPathFinder.cpp">
       <Filter>Source Files\pathfinding</Filter>
     </ClCompile>
@@ -344,13 +323,52 @@
     <ClCompile Include="PathPool.cpp">
       <Filter>Source Files\pathfinding</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerMoveToMessage.cpp">
+      <Filter>Source Files\messaging</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringFiles\ArriveSteering.cpp">
+      <Filter>Steering\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringFiles\Component.cpp">
+      <Filter>Steering\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringFiles\ComponentManager.cpp">
+      <Filter>Steering\Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="FlowFieldSteering.cpp">
-      <Filter>Steering</Filter>
+      <Filter>Steering\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FollowPathSteering.cpp">
+      <Filter>Steering\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="KinematicArriveSteering.cpp">
-      <Filter>Steering</Filter>
+      <Filter>Steering\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerMoveToMessage.cpp">
+    <ClCompile Include="SteeringFiles\MathTools.cpp">
+      <Filter>Steering\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringFiles\PhysicsComponent.cpp">
+      <Filter>Steering\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringFiles\PositionComponent.cpp">
+      <Filter>Steering\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringFiles\Steering.cpp">
+      <Filter>Steering\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringFiles\SteeringComponent.cpp">
+      <Filter>Steering\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringFiles\Unit.cpp">
+      <Filter>Steering\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringFiles\UnitManager.cpp">
+      <Filter>Steering\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionComponent.cpp">
+      <Filter>Steering\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HandleCollisionMessage.cpp">
       <Filter>Source Files\messaging</Filter>
     </ClCompile>
   </ItemGroup>

@@ -5,6 +5,7 @@
 #include "PositionComponent.h"
 #include "PhysicsComponent.h"
 #include "SteeringComponent.h"
+#include "../CollisionComponent.h"
 
 class ComponentManager : public Trackable
 {
@@ -26,6 +27,11 @@ public:
 	ComponentID allocateSteeringComponent(const ComponentID& physicsComponentID, const SteeringData& data = ZERO_STEERING_DATA);
 	void deallocateSteeringComponent(const ComponentID& id);
 
+	CollisionComponent* getCollisionComponent(const ComponentID& id);
+	ComponentID allocateCollisionComponent(const ComponentID& positionComponentID, const CollisionData& data = ZERO_COLLISION_DATA);
+	void deallocateCollisionComponent(const ComponentID& id);
+
+
 	void update(float elapsedTime);
 
 private:
@@ -35,11 +41,16 @@ private:
 	MemoryPool mPhysicsPool;
 	std::map<ComponentID, SteeringComponent*> mSteeringComponentMap;
 	MemoryPool mSteeringPool;
+	std::map<ComponentID, CollisionComponent*> mCollisionComponentMap;
+	MemoryPool mCollisionPool;
+
 
 	static ComponentID msNextPositionComponentID;
 	static ComponentID msNextPhysicsComponentID;
 	static ComponentID msNextSteeringComponentID;
+	static ComponentID msNextCollisionComponentID;
 
 	void updatePhysics(float elapsedTime);
 	void updateSteering(float elapsedTime);
+	void updateCollision(float elapsedTime);
 };

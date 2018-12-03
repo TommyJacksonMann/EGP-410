@@ -59,45 +59,15 @@ void InputSystem::update()
 				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
 				pGame->getMessageManager()->addMessage(pMessage, 0);
 			}
-			if (mBitwiseKeyStates[KeyCode::SCANCODE_A] && getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED))
-			{
-				GameMessage* pMessage = new AStarMessage();
-				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
-				pGame->getMessageManager()->addMessage(pMessage, 0);
-			}
-			if (mBitwiseKeyStates[KeyCode::SCANCODE_D] && getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED))
-			{
-				GameMessage* pMessage = new DijkstraMessage();
-				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
-				pGame->getMessageManager()->addMessage(pMessage, 0);
-			}
-			if (mBitwiseKeyStates[KeyCode::SCANCODE_F] && getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED))
-			{
-				GameMessage* pMessage = new DepthFirstSearchMessage();
-				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
-				pGame->getMessageManager()->addMessage(pMessage, 0);
-			}
-			if (mBitwiseKeyStates[KeyCode::SCANCODE_G] && getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED))
-			{
-				GameMessage* pMessage = new FlowFieldMessage();
-				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
-				pGame->getMessageManager()->addMessage(pMessage, 0);
-			}
-			if (mBitwiseKeyStates[KeyCode::SCANCODE_S] && getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED))
-			{
-				GameMessage* pMessage = new AddAndRemoveUnitsMessage();
-				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
-				pGame->getMessageManager()->addMessage(pMessage, 1);
-			}
 			if ((mBitwiseKeyStates[KeyCode::SCANCODE_UP] || mBitwiseKeyStates[KeyCode::SCANCODE_DOWN]
 				|| mBitwiseKeyStates[KeyCode::SCANCODE_LEFT] || mBitwiseKeyStates[KeyCode::SCANCODE_RIGHT])
 				&& getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED)
 				)
 			{
 				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
-			/*	if (pGame->getUnitManager()->getPlayerUnit()->getPositionComponent()->getPosition()
+				if (pGame->getUnitManager()->getPlayerUnit()->getPositionComponent()->getPosition()
 					== pGame->getUnitManager()->getPlayerUnit()->getSteeringComponent()->getTargetLoc())
-				{*/
+				{
 					Vector2D destination = pGame->getUnitManager()->getPlayerUnit()->getPositionComponent()->getPosition();
 					destination += Vector2D(16, 16);
 					Vector2D direction;
@@ -128,7 +98,7 @@ void InputSystem::update()
 						GameMessage* pMessage = new PlayerMoveToMessage(pGrid->getULCornerOfSquare(toIndex) + Vector2D(0, 0));
 						pGame->getMessageManager()->addMessage(pMessage, 0);
 					}
-				//}
+				}
 			}
 		}
 	}

@@ -6,6 +6,7 @@
 #include "Component.h"
 #include "PositionComponent.h"
 #include "PhysicsComponent.h"
+#include "../CollisionComponent.h"
 #include "SteeringComponent.h"
 #include "ComponentManager.h"
 #include "SpriteManager.h"
@@ -69,11 +70,37 @@ SteeringComponent* Unit::getSteeringComponent() const
 	return pComponent;
 }
 
+CollisionComponent* Unit::getCollisionComponent() const
+{
+	CollisionComponent* pComponent = gpGame->getComponentManager()->getCollisionComponent(mCollisionComponentID);
+	return pComponent;
+
+}
 void Unit::setSteering(Steering::SteeringType type, Vector2D targetLoc /*= ZERO_VECTOR2D*/, UnitID targetUnitID /*= INVALID_UNIT_ID*/)
 {
 	SteeringComponent* pSteeringComponent = getSteeringComponent();
 	if (pSteeringComponent != NULL)
 	{
 		pSteeringComponent->setData(SteeringData(type, targetLoc, mID, targetUnitID));
+	}
+}
+
+void Unit::setCollision(CollisionType type , const float xSize, const float ySize )
+{
+	CollisionComponent* pCollisionComponent = getCollisionComponent();
+	if (pCollisionComponent != NULL)
+	{
+		pCollisionComponent->setData(CollisionData(type, xSize, ySize));
+	}
+}
+
+const UnitID Unit::compareComponentID(ComponentID componentID)
+{
+	if (componentID == mSteeringComponentID
+		|| componentID == mPhysicsComponentID
+		|| componentID == mCollisionComponentID
+		|| componentID == mPositionComponentID)
+	{
+		return mID;
 	}
 }
