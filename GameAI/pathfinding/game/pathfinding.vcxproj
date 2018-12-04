@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{09059697-DB0D-44AE-B867-2437B1E3D875}</ProjectGuid>
     <RootNamespace>pathfinding</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -126,6 +126,11 @@
     <ClInclude Include="PathToMessage.h" />
     <ClInclude Include="PlayerMoveToMessage.h" />
     <ClInclude Include="PriorityQueue.h" />
+    <ClInclude Include="StateMachingFiles\BaseAction.h" />
+    <ClInclude Include="StateMachingFiles\DecisionTreeHelpers.h" />
+    <ClInclude Include="StateMachingFiles\IntDecision.h" />
+    <ClInclude Include="StateMachingFiles\MessageAction.h" />
+    <ClInclude Include="StateMachingFiles\StateMachine.h" />
     <ClInclude Include="SteeringFiles\ArriveSteering.h" />
     <ClInclude Include="SteeringFiles\Component.h" />
     <ClInclude Include="SteeringFiles\ComponentManager.h" />
@@ -177,6 +182,11 @@
     <ClCompile Include="PathPool.cpp" />
     <ClCompile Include="PathToMessage.cpp" />
     <ClCompile Include="PlayerMoveToMessage.cpp" />
+    <ClCompile Include="StateMachingFiles\BaseAction.cpp" />
+    <ClCompile Include="StateMachingFiles\DecisionTreeHelpers.cpp" />
+    <ClCompile Include="StateMachingFiles\IntDecision.cpp" />
+    <ClCompile Include="StateMachingFiles\MessageAction.cpp" />
+    <ClCompile Include="StateMachingFiles\StateMachine.cpp" />
     <ClCompile Include="SteeringFiles\ArriveSteering.cpp" />
     <ClCompile Include="SteeringFiles\Component.cpp" />
     <ClCompile Include="SteeringFiles\ComponentManager.cpp" />

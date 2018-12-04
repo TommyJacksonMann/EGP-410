@@ -49,6 +49,9 @@
     <Filter Include="Steering\Header Files">
       <UniqueIdentifier>{5e43f7bf-2aa6-4b24-a488-66198926afb6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="StateMachine">
+      <UniqueIdentifier>{ac3b53ea-5eef-4fa5-93cb-ba5b1af6124c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common\Game.h">
@@ -222,6 +225,21 @@
     <ClInclude Include="HandleCollisionMessage.h">
       <Filter>Header Files\messaging</Filter>
     </ClInclude>
+    <ClInclude Include="StateMachingFiles\BaseAction.h">
+      <Filter>StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachingFiles\DecisionTreeHelpers.h">
+      <Filter>StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachingFiles\IntDecision.h">
+      <Filter>StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachingFiles\MessageAction.h">
+      <Filter>StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachingFiles\StateMachine.h">
+      <Filter>StateMachine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\common\Game.cpp">
@@ -370,6 +388,21 @@
     </ClCompile>
     <ClCompile Include="HandleCollisionMessage.cpp">
       <Filter>Source Files\messaging</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachingFiles\BaseAction.cpp">
+      <Filter>StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachingFiles\DecisionTreeHelpers.cpp">
+      <Filter>StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachingFiles\IntDecision.cpp">
+      <Filter>StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachingFiles\MessageAction.cpp">
+      <Filter>StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachingFiles\StateMachine.cpp">
+      <Filter>StateMachine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
