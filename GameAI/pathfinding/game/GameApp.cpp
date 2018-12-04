@@ -23,6 +23,8 @@
 #include "FlowFieldPathFinder.h"
 #include "InputSystem.h"
 #include "PathPool.h"
+#include "StateMachingFiles/StateMachine.h"
+#include "PlayerAttackState.h"
 
 #include <SDL.h>
 #include <fstream>
@@ -56,6 +58,8 @@ bool GameApp::init()
 	}
 
 	mpMessageManager = new GameMessageManager();
+
+	mpStateMachine = new StateMachine();
 
 	//create and load the Grid, GridBuffer, and GridRenderer
 	mpGrid = new Grid(mpGraphicsSystem->getWidth(), mpGraphicsSystem->getHeight(), GRID_SQUARE_SIZE);
@@ -116,6 +120,9 @@ void GameApp::cleanup()
 
 	delete mpInputSystem;
 	mpInputSystem = NULL;
+
+	delete mpStateMachine;
+	mpStateMachine = NULL;
 }
 
 void GameApp::beginLoop()

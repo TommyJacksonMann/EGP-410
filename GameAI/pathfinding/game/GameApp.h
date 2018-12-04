@@ -25,6 +25,7 @@ class InputSystem;
 class DijkstraPathFinder;
 class AStarPathFinder;
 class PathPool;
+class StateMachine;
 enum ScoreType 
 {
 COIN_SCORE,
@@ -50,6 +51,7 @@ public:
 
 	//accessors
 	inline GameMessageManager* getMessageManager() { return mpMessageManager; };
+	inline StateMachine* getStateMachine() { return mpStateMachine; };
 	inline GridVisualizer* getGridVisualizer() { return mpGridVisualizer; };
 	inline GridPathfinder* getPathfinder() { return mpPathfinder; };
 	inline Grid* getGrid() { return mpGrid; };
@@ -66,6 +68,7 @@ private:
 
 	InputSystem* mpInputSystem;
 	GameMessageManager* mpMessageManager;
+	StateMachine* mpStateMachine;
 	Grid* mpGrid;
 	GridVisualizer* mpGridVisualizer;
 	GridGraph* mpGridGraph;

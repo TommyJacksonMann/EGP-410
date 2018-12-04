@@ -52,6 +52,9 @@
     <Filter Include="StateMachine">
       <UniqueIdentifier>{ac3b53ea-5eef-4fa5-93cb-ba5b1af6124c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="StateMachine\States">
+      <UniqueIdentifier>{3104a697-d3d6-44f7-8804-ea279bb18401}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common\Game.h">
@@ -240,6 +243,12 @@
     <ClInclude Include="StateMachingFiles\StateMachine.h">
       <Filter>StateMachine</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerAttackState.h">
+      <Filter>StateMachine\States</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachingFiles\PlayerRunState.h">
+      <Filter>StateMachine\States</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\common\Game.cpp">
@@ -403,6 +412,12 @@
     </ClCompile>
     <ClCompile Include="StateMachingFiles\StateMachine.cpp">
       <Filter>StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerAttackState.cpp">
+      <Filter>StateMachine\States</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachingFiles\PlayerRunState.cpp">
+      <Filter>StateMachine\States</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
