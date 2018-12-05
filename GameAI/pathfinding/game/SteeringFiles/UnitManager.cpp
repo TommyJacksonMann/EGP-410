@@ -44,9 +44,9 @@ Unit* UnitManager::createUnit(const Sprite& sprite, bool shouldWrap, const Posit
 
 		//create some components
 		ComponentManager* pComponentManager = gpGame->getComponentManager();
-		ComponentID id = pComponentManager->allocatePositionComponent(posData,shouldWrap);
-		pUnit->mPositionComponentID = id;
-		pUnit->mpPositionComponent = pComponentManager->getPositionComponent(id);
+		ComponentID idC = pComponentManager->allocatePositionComponent(posData,shouldWrap);
+		pUnit->mPositionComponentID = idC;
+		pUnit->mpPositionComponent = pComponentManager->getPositionComponent(idC);
 		pUnit->mPhysicsComponentID = pComponentManager->allocatePhysicsComponent(pUnit->mPositionComponentID, physicsData);
 		pUnit->mSteeringComponentID = pComponentManager->allocateSteeringComponent(pUnit->mPhysicsComponentID);
 		pUnit->mCollisionComponentID = pComponentManager->allocateCollisionComponent(pUnit->mPositionComponentID);

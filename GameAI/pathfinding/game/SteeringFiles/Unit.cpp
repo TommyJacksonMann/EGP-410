@@ -96,10 +96,7 @@ void Unit::setCollision(CollisionType type , const float xSize, const float ySiz
 
 const UnitID Unit::compareComponentID(ComponentID componentID)
 {
-	if (componentID == mSteeringComponentID
-		|| componentID == mPhysicsComponentID
-		|| componentID == mCollisionComponentID
-		|| componentID == mPositionComponentID)
+	if (componentID  == mCollisionComponentID)
 	{
 		return mID;
 	}

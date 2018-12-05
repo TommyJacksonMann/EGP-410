@@ -131,10 +131,9 @@ void CollisionComponent::updateDataPosition()
 
 void CollisionComponent::update(CollisionComponent* pComponent)
 {
-	bool mIsColliding = checkCollision(pComponent->getData());
-
-
-	if (mIsColliding)
+	bool isColliding = checkCollision(pComponent->getData());
+		
+	if (!mJustCollided && isColliding)
 	{
 
 		Unit* firstUnit = NULL;
@@ -145,23 +144,44 @@ void CollisionComponent::update(CollisionComponent* pComponent)
 		for (iter; iter != tempMap.end(); iter++)
 		{
 			if (iter->second->compareComponentID(pComponent->getID()))
-			{
+			{				
 				secondUnit = iter->second;
-				if (firstUnit)
+				/*UnitID newCollide = secondUnit->getID();
+				if (newCollide == mLastCollidedID)
+				{
+					return;
+				}
+				mLastCollidedID = newCollide;*/
+				if (firstUnit) 
+				{
 					break;
+				}
 			}
 
-			if (iter->second->compareComponentID(this->getID()))
+			if (iter->second->compareComponentID(getID()))
 			{
 				firstUnit = iter->second;
 				if (secondUnit)
+				{
 					break;
+				}
 			}
 		}
-
+		
 		//handle Collision Message
 		GameMessage* pMessage = new HandleCollisionMessage(firstUnit, secondUnit);
 		GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
 		pGame->getMessageManager()->addMessage(pMessage, 0);
+		mJustCollided = true;
 	}
+	else if(mJustCollided && isColliding)
+	{
+		mJustCollided = true;
+	}
+	else
+	{
+		mJustCollided = false;
+		
+	}
+	
 }

@@ -62,6 +62,11 @@ public:
 	void SetPathFinderToAStar();
 	void SetPathFinderToDepthFirst();
 	void SetPathFinderToFlowField();
+
+	const int getMaxCoinsOnScreen() const { return mMaxCoinsOnScreen; }
+	const int getCurrentCoinsOnScreen() const { return mCurrentCoinsOnScreen; }
+	
+	void setCoinsOnScreen(const int newAmount) { mCurrentCoinsOnScreen = newAmount; }
 	
 	void AddScore(ScoreType);
 private:
@@ -81,5 +86,8 @@ private:
 	int mGameScore = 0;
 	int mCoinScore = 0;
 	int mPlayerEat = 0;
+
+	int mMaxCoinsOnScreen = 20;
+	int mCurrentCoinsOnScreen = 1;
 };
 

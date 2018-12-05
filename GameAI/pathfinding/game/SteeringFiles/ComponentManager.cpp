@@ -199,7 +199,7 @@ void ComponentManager::deallocateSteeringComponent(const ComponentID& id)
 		mSteeringPool.freeObject(pByte);
 	}
 }
-//***************************************
+
 CollisionComponent* ComponentManager::getCollisionComponent(const ComponentID& id)
 {
 	auto it = mCollisionComponentMap.find(id);

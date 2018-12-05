@@ -25,6 +25,7 @@
 #include "PathPool.h"
 #include "StateMachingFiles/StateMachine.h"
 #include "PlayerAttackState.h"
+#include "SpawnCoinMessage.h"
 
 #include <SDL.h>
 #include <fstream>
@@ -90,6 +91,7 @@ bool GameApp::init()
 	//debug display
 	PathfindingDebugContent* pContent = new PathfindingDebugContent( mpPathfinder );
 	mpDebugDisplay = new DebugDisplay( Vector2D(0,12), pContent );
+	mMaxCoinsOnScreen = 20;
 
 	mpMasterTimer->start();
 	return true;
@@ -147,6 +149,9 @@ void GameApp::processLoop()
 
 	mpInputSystem->update();
 
+	GameMessage* pCoinMessage = new SpawnCoinMessage();
+	mpMessageManager->addMessage(pCoinMessage, 0);
+
 	mpMessageManager->processMessagesForThisframe();
 
 	//get input - should be moved someplace better
@@ -161,11 +166,6 @@ bool GameApp::endLoop()
 {
 	return Game::endLoop();
 }
-
-
-
-
-
 
 void GameApp::SetPathFinderToDijkstra() {
 	delete mpPathfinder;
@@ -210,12 +210,12 @@ void GameApp::AddScore(ScoreType type)
 	{
 		case COIN_SCORE:
 		{
-
+			mGameScore += mCoinScore;
 			break;
 		}
 		case EAT_ENEMY_SCORE:
 		{
-
+			mGameScore += mPlayerEat;
 			break;
 		}
 		case NO_SCORE:

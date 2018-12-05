@@ -49,7 +49,7 @@ public:
 	const float getCollisionYSize() const { return mData.yDistance; }
 	//const bool getIsColliding() const { return mIsColliding;  }
 
-
+	const bool didItJustCollide() const { return mJustCollided; }
 	bool checkCollision(const CollisionData otherColliderData);
 	void updateDataPosition();
 	void update(CollisionComponent* pComponent);
@@ -59,8 +59,11 @@ private:
 	ComponentID mPositionComponentID;
 	PositionComponent* mpPositionComponent = NULL;
 
+	bool mJustCollided = false;
+	typedef Uint32 UnitID;
+	UnitID mLastCollidedID;
 
-	CollisionComponent(const ComponentID& id, const ComponentID& posID) : Component(id), mPositionComponentID(posID) {};
+	CollisionComponent(const ComponentID& id, const ComponentID& posID) : Component(id), mPositionComponentID(posID),mJustCollided(false) {};
 	~CollisionComponent() {};
 
 	void setPositionComponent(PositionComponent* pComp) { mpPositionComponent = pComp; };
