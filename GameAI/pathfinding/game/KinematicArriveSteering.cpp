@@ -24,16 +24,7 @@ KinematicArriveSteering::KinematicArriveSteering(const UnitID& ownerID, const Ve
 	setTargetID(targetID);
 	setTargetLoc(targetLoc);
 
-	Unit* pOwner = gpGame->getUnitManager()->getUnit(mOwnerID);
-	if (mTargetID != INVALID_UNIT_ID)
-	{
-		//seeking unit
-		Unit* pTarget = gpGame->getUnitManager()->getUnit(mTargetID);
-		assert(pTarget != NULL);
-		mTargetLoc = pTarget->getPositionComponent()->getPosition();
-	}
-	Vector2D targetDirection = mTargetLoc - pOwner->getPositionComponent()->getPosition();
-	mMovementFactor = (targetDirection.getLength() / KINEMATIC_NUM_FRAMES_TO_TARGET);
+	mMovementFactor = 6;
 }
 
 Steering* KinematicArriveSteering::getSteering()

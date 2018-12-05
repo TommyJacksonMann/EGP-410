@@ -2,7 +2,7 @@
 #include <Trackable.h>
 #include "./SteeringFiles/Steering.h"
 
-const float KINEMATIC_NUM_FRAMES_TO_TARGET = 3;
+const float KINEMATIC_NUM_FRAMES_TO_TARGET = 6;
 
 class KinematicArriveSteering : public Steering
 {
