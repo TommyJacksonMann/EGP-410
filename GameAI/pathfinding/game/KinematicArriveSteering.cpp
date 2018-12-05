@@ -24,7 +24,7 @@ KinematicArriveSteering::KinematicArriveSteering(const UnitID& ownerID, const Ve
 	setTargetID(targetID);
 	setTargetLoc(targetLoc);
 
-	mMovementFactor = 6;
+	mMovementFactor = DEFAULT_MOVEMENT_FACTOR;
 }
 
 Steering* KinematicArriveSteering::getSteering()
