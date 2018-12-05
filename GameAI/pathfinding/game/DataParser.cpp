@@ -1,6 +1,25 @@
 #include "DataParser.h"
 #include <fstream>
 
+DataParser * DataParser::mpsInstance = nullptr;
+
+DataParser* DataParser::getInstance()
+{
+	return mpsInstance;
+}
+
+void DataParser::cleanUpInstance()
+{
+	delete mpsInstance;
+}
+
+void DataParser::initInstance(std::string fileName)
+{
+	if (!mpsInstance)
+	{
+		mpsInstance = new DataParser(fileName);
+	}
+}
 
 int DataParser::ReadFile(std::string key)
 {
@@ -10,7 +29,7 @@ int DataParser::ReadFile(std::string key)
 	{
 		std::string data;
 		std::getline(inputFile, data, ' ');
-		//cout << data << "***************\n";
+
 		if (data == key)
 		{
 			std::getline(inputFile, data, '(');

@@ -16,6 +16,7 @@
 #include "..\game\SteeringFiles\UnitManager.h"
 #include "..\game\SteeringFiles\Unit.h"
 #include "..\game\SteeringFiles\ComponentManager.h"
+#include "..\game\DataParser.h"
 
 
 Game* gpGame = NULL;
@@ -50,6 +51,9 @@ bool Game::init()
 	//create Timers
 	mpLoopTimer = new Timer;
 	mpMasterTimer = new Timer;
+
+
+	DataParser::initInstance();
 
 
 	//create and init GraphicsSystem
@@ -113,10 +117,12 @@ bool Game::init()
 	mpComponentManager = new ComponentManager(MAX_UNITS);
 	mpUnitManager = new UnitManager(MAX_UNITS);
 	
+
+	Vector2D playerSpawn(DataParser::getInstance()->ReadFile("PlayerSpawnX"), DataParser::getInstance()->ReadFile("PlayerSpawnY"));
 	Unit* pUnit = mpUnitManager->createPlayerUnit(*pArrowSprite);
 	pUnit->setShowTarget(false);
-	pUnit->setSteering(Steering::KINEMATICARRIVE, Vector2D(pBackGroundBuffer->getWidth()/2, pBackGroundBuffer->getHeight()/2));
-	pUnit->getPositionComponent()->setPosition(Vector2D(0, 0));
+	pUnit->setSteering(Steering::KINEMATICARRIVE, playerSpawn);
+	pUnit->getPositionComponent()->setPosition(playerSpawn);
 	pUnit->setCollision(CIRCLE, 5);
 	pUnit->setUnitType(UnitType::PLAYER);
 
@@ -152,6 +158,8 @@ void Game::cleanup()
 	mpUnitManager = NULL;
 	delete mpComponentManager;
 	mpComponentManager = NULL;
+
+	DataParser::cleanUpInstance();
 }
 
 void Game::beginLoop()
