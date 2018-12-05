@@ -252,6 +252,9 @@
     <ClInclude Include="SpawnCoinMessage.h">
       <Filter>Header Files\messaging</Filter>
     </ClInclude>
+    <ClInclude Include="DataParser.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\common\Game.cpp">
@@ -424,6 +427,9 @@
     </ClCompile>
     <ClCompile Include="SpawnCoinMessage.cpp">
       <Filter>Source Files\messaging</Filter>
+    </ClCompile>
+    <ClCompile Include="DataParser.cpp">
+      <Filter>Source Files\util</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
