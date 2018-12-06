@@ -33,4 +33,15 @@ void HandleCollisionMessage::process()
 		oldCoinNum--;
 		pGame->setCoinsOnScreen(oldCoinNum);
 	}
+	else if (mpSecondUnit->getUnitType() == UnitType::COIN && mpFirstUnit->getUnitType() == UnitType::COIN)
+	{
+		//DELETE COIN ON TOP OF COIN
+		//DONT ADD SCORE
+		GameApp* pGame = static_cast<GameApp*>(gpGame);
+		UnitID coinID = mpFirstUnit->getID();
+		pGame->getUnitManager()->deleteUnit(coinID);
+		int oldCoinNum = pGame->getCurrentCoinsOnScreen();
+		oldCoinNum--;
+		pGame->setCoinsOnScreen(oldCoinNum);
+	}
 }

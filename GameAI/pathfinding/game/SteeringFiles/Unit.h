@@ -50,7 +50,7 @@ public:
 	void setShowTarget(bool val) { mShowTarget = val; };
 	void setUnitType(const UnitType type) { mUnitType = type; }
 	const UnitType getUnitType() const { return mUnitType; }
-	const UnitID compareComponentID(ComponentID componentID);
+	const bool compareCollisionComponentID(ComponentID componentID);
 	const UnitID getID() const { return mID; }
 
 	void setSteering(Steering::SteeringType type, Vector2D targetLoc = ZERO_VECTOR2D, UnitID targetUnitID = INVALID_UNIT_ID);

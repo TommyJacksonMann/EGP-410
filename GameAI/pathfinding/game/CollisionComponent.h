@@ -53,6 +53,8 @@ public:
 	bool checkCollision(const CollisionData otherColliderData);
 	void updateDataPosition();
 	void update(CollisionComponent* pComponent);
+	typedef Uint32 UnitID;
+	const UnitID getLastCollidedID() const { return mLastCollidedID; }
 
 private:
 	CollisionData mData;
@@ -60,7 +62,7 @@ private:
 	PositionComponent* mpPositionComponent = NULL;
 
 	bool mJustCollided = false;
-	typedef Uint32 UnitID;
+	
 	UnitID mLastCollidedID;
 
 	CollisionComponent(const ComponentID& id, const ComponentID& posID) : Component(id), mPositionComponentID(posID),mJustCollided(false) {};

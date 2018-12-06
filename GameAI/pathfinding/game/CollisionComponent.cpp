@@ -28,7 +28,6 @@ bool CollisionComponent::checkCollision(const CollisionData otherColliderData)
 			}
 		}
 
-		//COPY THIS TO THE OTHER SWITCH
 		else if (otherColliderData.colType == RECTANGLE)
 		{
 			Vector2D circleDistance = Vector2D(abs(mData.pos.getX() - otherColliderData.pos.getX()), abs(mData.pos.getY() - otherColliderData.pos.getY()));
@@ -133,32 +132,37 @@ void CollisionComponent::update(CollisionComponent* pComponent)
 {
 	bool isColliding = checkCollision(pComponent->getData());
 		
+	
+
 	if (!mJustCollided && isColliding)
 	{
 
 		Unit* firstUnit = NULL;
 		Unit* secondUnit = NULL;
+		ComponentID thisID = getID();
+		ComponentID paramID = pComponent->getID();
 
 		std::map < UnitID, Unit*> tempMap = gpGame->getUnitManager()->getUnitMap();
 		std::map<UnitID, Unit*>::iterator iter = tempMap.begin();
 		for (iter; iter != tempMap.end(); iter++)
 		{
-			if (iter->second->compareComponentID(pComponent->getID()))
+			if (iter->second->compareCollisionComponentID(paramID) && !secondUnit)
 			{				
 				secondUnit = iter->second;
-				/*UnitID newCollide = secondUnit->getID();
-				if (newCollide == mLastCollidedID)
+				UnitID newCollide = secondUnit->getID();
+				
+				if (newCollide == mLastCollidedID || thisID == secondUnit->getCollisionComponent()->getLastCollidedID())
 				{
 					return;
 				}
-				mLastCollidedID = newCollide;*/
+				mLastCollidedID = newCollide;
 				if (firstUnit) 
 				{
 					break;
 				}
 			}
 
-			if (iter->second->compareComponentID(getID()))
+			if (iter->second->compareCollisionComponentID(thisID) && !firstUnit)
 			{
 				firstUnit = iter->second;
 				if (secondUnit)
@@ -168,8 +172,10 @@ void CollisionComponent::update(CollisionComponent* pComponent)
 			}
 		}
 		
+
+		
 		//handle Collision Message
-		GameMessage* pMessage = new HandleCollisionMessage(firstUnit, secondUnit);
+  		GameMessage* pMessage = new HandleCollisionMessage(firstUnit, secondUnit);
 		GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
 		pGame->getMessageManager()->addMessage(pMessage, 0);
 		mJustCollided = true;
