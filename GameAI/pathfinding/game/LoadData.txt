@@ -1,2 +1,4 @@
 PlayerSpawnX (32)
 PlayerSpawnY (32)
+MaxCoins (5)
+MaxPowerUps (1)

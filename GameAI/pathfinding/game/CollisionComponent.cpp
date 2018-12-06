@@ -143,11 +143,13 @@ void CollisionComponent::update(CollisionComponent* pComponent)
 		ComponentID paramID = pComponent->getID();
 
 		std::map < UnitID, Unit*> tempMap = gpGame->getUnitManager()->getUnitMap();
+		//Loop finds which unit has the coresponding Component
 		std::map<UnitID, Unit*>::iterator iter = tempMap.begin();
 		for (iter; iter != tempMap.end(); iter++)
 		{
 			if (iter->second->compareCollisionComponentID(paramID) && !secondUnit)
 			{				
+				//Since it is in a for loop if the object has already collided with this object ignore collision and don't fire a collision message
 				secondUnit = iter->second;
 				UnitID newCollide = secondUnit->getID();
 				
@@ -171,9 +173,7 @@ void CollisionComponent::update(CollisionComponent* pComponent)
 				}
 			}
 		}
-		
-
-		
+			
 		//handle Collision Message
   		GameMessage* pMessage = new HandleCollisionMessage(firstUnit, secondUnit);
 		GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
@@ -188,6 +188,12 @@ void CollisionComponent::update(CollisionComponent* pComponent)
 	{
 		mJustCollided = false;
 		
-	}
-	
+	}	
+}
+
+//Used for reseting movement
+void CollisionComponent::resetLastCollided()
+{
+	mLastCollidedID = INVALID_ID;
+	mJustCollided = false;
 }

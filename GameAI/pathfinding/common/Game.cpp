@@ -88,10 +88,10 @@ bool Game::init()
 		pArrowSprite = mpSpriteManager->createAndManageSprite(PLAYER_ICON_SPRITE_ID, pPlayerBuffer, 0, 0, (float)pPlayerBuffer->getWidth(), (float)pPlayerBuffer->getHeight());
 	}
 	GraphicsBuffer* pAIBuffer = mpGraphicsBufferManager->getBuffer(mEnemyIconBufferID);
-	Sprite* pEnemyArrow = NULL;
+	Sprite* pEnemySprite = NULL;
 	if (pAIBuffer != NULL)
 	{
-		pEnemyArrow = mpSpriteManager->createAndManageSprite(AI_ICON_SPRITE_ID, pAIBuffer, 0, 0, (float)pAIBuffer->getWidth(), (float)pAIBuffer->getHeight());
+		pEnemySprite = mpSpriteManager->createAndManageSprite(AI_ICON_SPRITE_ID, pAIBuffer, 0, 0, (float)pAIBuffer->getWidth(), (float)pAIBuffer->getHeight());
 	}
 	GraphicsBuffer* pTargetBuffer = mpGraphicsBufferManager->getBuffer(mTargetBufferID);
 	if (pTargetBuffer != NULL)
@@ -121,15 +121,15 @@ bool Game::init()
 	Vector2D playerSpawn(DataParser::getInstance()->ReadFile("PlayerSpawnX"), DataParser::getInstance()->ReadFile("PlayerSpawnY"));
 	Unit* pUnit = mpUnitManager->createPlayerUnit(*pArrowSprite);
 	pUnit->setShowTarget(false);
-	pUnit->setSteering(Steering::KINEMATICARRIVE, playerSpawn);
 	pUnit->getPositionComponent()->setPosition(playerSpawn);
+	pUnit->setSteering(Steering::KINEMATICARRIVE, playerSpawn);
 	pUnit->setCollision(CIRCLE, 5);
 	pUnit->setUnitType(UnitType::PLAYER);
 
-	Unit* testCoin = mpUnitManager->createUnit(*pCoinSprite);
-	testCoin->getPositionComponent()->setPosition(Vector2D(10*32, 5*32));
-	testCoin->setCollision(CIRCLE, 5);
-	testCoin->setUnitType(UnitType::COIN);
+	Unit* testEnemy = mpUnitManager->createUnit(*pEnemySprite);
+	testEnemy->getPositionComponent()->setPosition(Vector2D(10 * 32, 5 * 32));
+	testEnemy->setCollision(CIRCLE, 5);
+	testEnemy->setUnitType(UnitType::ENEMY);
 	return true;
 }
 

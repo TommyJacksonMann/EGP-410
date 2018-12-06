@@ -29,6 +29,7 @@ void SpawnCoinMessage::process()
 	{
 		Grid* pGrid = pGame->getGrid();
 		GridGraph* pGridGraph = pGame->getGridGraph();
+		//Math for random grid location
 		int posX = (rand()*32) % pGame->getGraphicsSystem()->getWidth();
 		int posY = (rand()*32) % pGame->getGraphicsSystem()->getHeight();
 		while (pGrid->getValueAtIndex(pGrid->getSquareIndexFromPixelXY(posX, posY)) == BLOCKING_VALUE)

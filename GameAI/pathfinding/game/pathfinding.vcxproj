@@ -128,6 +128,7 @@
     <ClInclude Include="PlayerAttackState.h" />
     <ClInclude Include="PlayerMoveToMessage.h" />
     <ClInclude Include="PriorityQueue.h" />
+    <ClInclude Include="ResetPlayerStartPosMessage.h" />
     <ClInclude Include="SpawnCoinMessage.h" />
     <ClInclude Include="StateMachingFiles\BaseAction.h" />
     <ClInclude Include="StateMachingFiles\DecisionTreeHelpers.h" />
@@ -188,6 +189,7 @@
     <ClCompile Include="PathToMessage.cpp" />
     <ClCompile Include="PlayerAttackState.cpp" />
     <ClCompile Include="PlayerMoveToMessage.cpp" />
+    <ClCompile Include="ResetPlayerStartPosMessage.cpp" />
     <ClCompile Include="SpawnCoinMessage.cpp" />
     <ClCompile Include="StateMachingFiles\BaseAction.cpp" />
     <ClCompile Include="StateMachingFiles\DecisionTreeHelpers.cpp" />

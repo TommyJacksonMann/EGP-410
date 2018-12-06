@@ -87,7 +87,7 @@ private:
 	int mCoinScore = 0;
 	int mPlayerEat = 0;
 
-	int mMaxCoinsOnScreen = 20;
+	int mMaxCoinsOnScreen = 1;
 	int mCurrentCoinsOnScreen = 1;
 };
 

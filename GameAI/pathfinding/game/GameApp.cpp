@@ -26,6 +26,7 @@
 #include "StateMachingFiles/StateMachine.h"
 #include "PlayerAttackState.h"
 #include "SpawnCoinMessage.h"
+#include "DataParser.h"
 
 #include <SDL.h>
 #include <fstream>
@@ -91,7 +92,10 @@ bool GameApp::init()
 	//debug display
 	PathfindingDebugContent* pContent = new PathfindingDebugContent( mpPathfinder );
 	mpDebugDisplay = new DebugDisplay( Vector2D(0,12), pContent );
-	mMaxCoinsOnScreen = 20;
+
+
+	mMaxCoinsOnScreen = DataParser::getInstance()->ReadFile("MaxCoins");
+	mCurrentCoinsOnScreen = 0;
 
 	mpMasterTimer->start();
 	return true;

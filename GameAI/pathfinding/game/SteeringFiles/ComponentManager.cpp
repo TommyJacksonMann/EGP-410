@@ -284,6 +284,7 @@ void ComponentManager::updateSteering(float elapsedTime)
 
 }
 
+//Compares collidors with every other collision (not as slow as I thought)
 void ComponentManager::updateCollision(float elapsedTime)
 {
 	for (auto& it : mCollisionComponentMap)
@@ -297,7 +298,8 @@ void ComponentManager::updateCollision(float elapsedTime)
 			CollisionComponent* pSecondCollision = itSecond.second;
 			assert(pSecondCollision != NULL);
 			ComponentID secondID = pSecondCollision->getID();
-
+			
+			//if they aren't the same then update
 			if (secondID != firstID)
 			{
 				pCollision->update(pSecondCollision);

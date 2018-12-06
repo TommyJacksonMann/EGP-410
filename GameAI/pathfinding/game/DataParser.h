@@ -2,6 +2,12 @@
 #include "Trackable.h"
 #include <string>
 
+/*
+* Created by RJ's for flocking assignment
+* Tommy copied the file and implemneted it into this project
+*
+*/
+
 const std::string DEFAULT_FILE_NAME = "LoadData.txt";
 
 class DataParser : public Trackable

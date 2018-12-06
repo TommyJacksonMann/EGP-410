@@ -55,6 +55,7 @@ public:
 	void update(CollisionComponent* pComponent);
 	typedef Uint32 UnitID;
 	const UnitID getLastCollidedID() const { return mLastCollidedID; }
+	void resetLastCollided();
 
 private:
 	CollisionData mData;

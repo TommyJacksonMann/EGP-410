@@ -3,6 +3,8 @@
 #include "Game.h"
 #include "GameApp.h"
 #include "./SteeringFiles/UnitManager.h"
+#include "ResetPlayerStartPosMessage.h"
+#include "GameMessageManager.h"
 
 HandleCollisionMessage::HandleCollisionMessage(Unit* firstUnit, Unit* secondUnit)
 	:GameMessage(HANDLE_COLLISION_MESSAGE), 
@@ -44,4 +46,22 @@ void HandleCollisionMessage::process()
 		oldCoinNum--;
 		pGame->setCoinsOnScreen(oldCoinNum);
 	}
+	else if (mpFirstUnit->getUnitType() == UnitType::PLAYER && mpSecondUnit->getUnitType() == UnitType::ENEMY)
+	{
+		GameApp* pGame = static_cast<GameApp*>(gpGame);
+		GameMessage* pMessage = new ResetPlayerStartPos();
+		pGame->getMessageManager()->addMessage(pMessage, 0);
+
+	}
+	else if (mpSecondUnit->getUnitType() == UnitType::PLAYER && mpFirstUnit->getUnitType() == UnitType::ENEMY)
+	{
+		GameApp* pGame = static_cast<GameApp*>(gpGame);
+		GameMessage* pMessage = new ResetPlayerStartPos();
+		pGame->getMessageManager()->addMessage(pMessage, 0);
+	}
+	else if (mpSecondUnit->getUnitType() == UnitType::ENEMY && mpFirstUnit->getUnitType() == UnitType::ENEMY)
+	{
+		//Nothing
+	}
+
 }
