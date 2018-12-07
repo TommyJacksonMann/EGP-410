@@ -17,6 +17,10 @@
 #include "..\game\SteeringFiles\Unit.h"
 #include "..\game\SteeringFiles\ComponentManager.h"
 #include "..\game\DataParser.h"
+#include "../game/StateMachingFiles/StateMachine.h"
+#include "../game/StateMachingFiles/PlayerAttackState.h"
+#include "../game/StateMachingFiles/PlayerRunState.h"
+
 
 
 Game* gpGame = NULL;
@@ -125,6 +129,18 @@ bool Game::init()
 	pUnit->setSteering(Steering::KINEMATICARRIVE, playerSpawn);
 	pUnit->setCollision(CIRCLE, 5);
 	pUnit->setUnitType(UnitType::PLAYER);
+	StateMachineState* pPlayerRunState = new PlayerRunState(0);
+	StateMachineState* pPlayerAttackState = new PlayerAttackState(1);
+	StateTransition* pToPlayerRunTrans = new StateTransition(PLAYER_TO_RUN_TRANSITION, 0);
+	StateTransition* pToPlayerAttackTrans = new StateTransition(PLAYER_TO_ATTACK_TRANSITION, 1);
+
+	pPlayerRunState->addTransition(pToPlayerAttackTrans);
+	pPlayerAttackState->addTransition(pToPlayerRunTrans);
+
+	pUnit->getStateMachine()->addState(pPlayerRunState);
+	pUnit->getStateMachine()->addState(pPlayerAttackState);
+
+	pUnit->getStateMachine()->setInitialStateID(0);
 
 	Unit* testEnemy = mpUnitManager->createUnit(*pEnemySprite);
 	testEnemy->getPositionComponent()->setPosition(Vector2D(10 * 32, 5 * 32));

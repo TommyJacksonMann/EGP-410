@@ -109,3 +109,8 @@ const bool Unit::compareCollisionComponentID(ComponentID componentID)
 	}
 	return false;
 }
+
+void Unit::update(float elapsedTime)
+{
+	mpStateMachine->update();
+}

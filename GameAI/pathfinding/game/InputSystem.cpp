@@ -59,7 +59,7 @@ void InputSystem::update()
 				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
 				pGame->getMessageManager()->addMessage(pMessage, 0);
 			}
-			static KeyCode lastKeyPressed;
+			static KeyCode lastKeyPressed = KeyCode::NUM_SCANCODES;
 			if ((mBitwiseKeyStates[KeyCode::SCANCODE_UP] || mBitwiseKeyStates[KeyCode::SCANCODE_DOWN]
 				|| mBitwiseKeyStates[KeyCode::SCANCODE_LEFT] || mBitwiseKeyStates[KeyCode::SCANCODE_RIGHT])
 				&& getHasByte(mBitwiseKeyStates[i], StateBitValues::CURRENTLY_PRESSED)

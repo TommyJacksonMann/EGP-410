@@ -3,7 +3,11 @@
 
 StateMachineState::~StateMachineState()
 {
-
+	for (auto it = mTransitions.begin(); it != mTransitions.end(); ++it)
+	{
+		delete it->second;
+	}
+	mTransitions.clear();
 }
 
 void StateMachineState::addTransition( StateTransition* pTransition )
@@ -11,6 +15,15 @@ void StateMachineState::addTransition( StateTransition* pTransition )
 	mTransitions[ pTransition->getTransitionType()] = pTransition;
 }
 
+
+StateMachine::~StateMachine()
+{
+	for (auto it = mStates.begin(); it != mStates.end(); ++it)
+	{
+		delete it->second;
+	}
+	mStates.clear();
+}
 
 void StateMachine::addState( StateMachineState* pState )
 {
@@ -27,16 +40,19 @@ void StateMachine::start()
 
 void StateMachine::update()
 {
-	if( mpCurrentState == NULL )
+	if (mStates.size() != 0)
 	{
-		start();
-		assert( mpCurrentState != NULL );
-	}
+		if (mpCurrentState == NULL)
+		{
+			start();
+			assert(mpCurrentState != NULL);
+		}
 
-	StateTransition* pTransition = mpCurrentState->update();
-	if( pTransition != NULL )
-	{
-		transitionToState( pTransition->getTargetStateID() );
+		StateTransition* pTransition = mpCurrentState->update();
+		if (pTransition != NULL)
+		{
+			transitionToState(pTransition->getTargetStateID());
+		}
 	}
 }
 

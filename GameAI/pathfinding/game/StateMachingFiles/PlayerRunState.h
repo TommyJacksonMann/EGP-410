@@ -10,4 +10,5 @@ public:
 	virtual void onExit();
 	virtual StateTransition* update();
 private:
+	bool mTransitionToAttack;
 };

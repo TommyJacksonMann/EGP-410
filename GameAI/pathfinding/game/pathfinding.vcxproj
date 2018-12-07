@@ -99,6 +99,7 @@
     <ClInclude Include="DataParser.h" />
     <ClInclude Include="DebugContent.h" />
     <ClInclude Include="DebugDisplay.h" />
+    <ClInclude Include="DeleteAllCoinsMessage.h" />
     <ClInclude Include="DepthFirstPathfinder.h" />
     <ClInclude Include="DepthFirstSearchMessage.h" />
     <ClInclude Include="DijkstraMessage.h" />
@@ -125,7 +126,6 @@
     <ClInclude Include="PathfindingDebugContent.h" />
     <ClInclude Include="PathPool.h" />
     <ClInclude Include="PathToMessage.h" />
-    <ClInclude Include="PlayerAttackState.h" />
     <ClInclude Include="PlayerMoveToMessage.h" />
     <ClInclude Include="PriorityQueue.h" />
     <ClInclude Include="ResetPlayerStartPosMessage.h" />
@@ -134,6 +134,7 @@
     <ClInclude Include="StateMachingFiles\DecisionTreeHelpers.h" />
     <ClInclude Include="StateMachingFiles\IntDecision.h" />
     <ClInclude Include="StateMachingFiles\MessageAction.h" />
+    <ClInclude Include="StateMachingFiles\PlayerAttackState.h" />
     <ClInclude Include="StateMachingFiles\PlayerRunState.h" />
     <ClInclude Include="StateMachingFiles\StateMachine.h" />
     <ClInclude Include="SteeringFiles\ArriveSteering.h" />
@@ -166,6 +167,7 @@
     <ClCompile Include="Connection.cpp" />
     <ClCompile Include="DataParser.cpp" />
     <ClCompile Include="DebugDisplay.cpp" />
+    <ClCompile Include="DeleteAllCoinsMessage.cpp" />
     <ClCompile Include="DepthFirstPathfinder.cpp" />
     <ClCompile Include="DijkstraPathFinder.cpp" />
     <ClCompile Include="FlowFieldSteering.cpp" />
@@ -187,7 +189,6 @@
     <ClCompile Include="PathfindingDebugContent.cpp" />
     <ClCompile Include="PathPool.cpp" />
     <ClCompile Include="PathToMessage.cpp" />
-    <ClCompile Include="PlayerAttackState.cpp" />
     <ClCompile Include="PlayerMoveToMessage.cpp" />
     <ClCompile Include="ResetPlayerStartPosMessage.cpp" />
     <ClCompile Include="SpawnCoinMessage.cpp" />
@@ -195,6 +196,7 @@
     <ClCompile Include="StateMachingFiles\DecisionTreeHelpers.cpp" />
     <ClCompile Include="StateMachingFiles\IntDecision.cpp" />
     <ClCompile Include="StateMachingFiles\MessageAction.cpp" />
+    <ClCompile Include="StateMachingFiles\PlayerAttackState.cpp" />
     <ClCompile Include="StateMachingFiles\PlayerRunState.cpp" />
     <ClCompile Include="StateMachingFiles\StateMachine.cpp" />
     <ClCompile Include="SteeringFiles\ArriveSteering.cpp" />

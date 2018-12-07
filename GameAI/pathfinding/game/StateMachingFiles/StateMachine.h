@@ -16,7 +16,6 @@ class StateTransition;
 enum TransitionType
 {
 	INVALID_TRANSITION_TYPE = -1,
-	KABOOM_TRANSITION = 0,
 	PLAYER_TO_ATTACK_TRANSITION,
 	PLAYER_TO_RUN_TRANSITION,
 	END_GAME_TRANSITION
@@ -60,7 +59,7 @@ class StateMachine:public Trackable
 {
 public:
 	StateMachine():mpCurrentState(NULL),mInitialStateID(-1){};
-	~StateMachine(){};
+	~StateMachine();
 
 	void addState( StateMachineState* pState );
 	void setInitialStateID( const SM_idType& id ){ mInitialStateID = id; };
