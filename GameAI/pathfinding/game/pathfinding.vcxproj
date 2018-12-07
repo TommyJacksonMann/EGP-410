@@ -126,7 +126,9 @@
     <ClInclude Include="PathfindingDebugContent.h" />
     <ClInclude Include="PathPool.h" />
     <ClInclude Include="PathToMessage.h" />
+    <ClInclude Include="PlayerAttackMessage.h" />
     <ClInclude Include="PlayerMoveToMessage.h" />
+    <ClInclude Include="PlayerRunMessage.h" />
     <ClInclude Include="PriorityQueue.h" />
     <ClInclude Include="ResetPlayerStartPosMessage.h" />
     <ClInclude Include="SpawnCoinMessage.h" />
@@ -189,7 +191,9 @@
     <ClCompile Include="PathfindingDebugContent.cpp" />
     <ClCompile Include="PathPool.cpp" />
     <ClCompile Include="PathToMessage.cpp" />
+    <ClCompile Include="PlayerAttackMessage.cpp" />
     <ClCompile Include="PlayerMoveToMessage.cpp" />
+    <ClCompile Include="PlayerRunMessage.cpp" />
     <ClCompile Include="ResetPlayerStartPosMessage.cpp" />
     <ClCompile Include="SpawnCoinMessage.cpp" />
     <ClCompile Include="StateMachingFiles\BaseAction.cpp" />

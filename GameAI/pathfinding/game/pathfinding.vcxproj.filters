@@ -261,6 +261,12 @@
     <ClInclude Include="StateMachingFiles\PlayerAttackState.h">
       <Filter>StateMachine\States</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerRunMessage.h">
+      <Filter>Header Files\messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerAttackMessage.h">
+      <Filter>Header Files\messaging</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\common\Game.cpp">
@@ -442,6 +448,12 @@
     </ClCompile>
     <ClCompile Include="StateMachingFiles\PlayerAttackState.cpp">
       <Filter>StateMachine\States</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerRunMessage.cpp">
+      <Filter>Source Files\messaging</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerAttackMessage.cpp">
+      <Filter>Source Files\messaging</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

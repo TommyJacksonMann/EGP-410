@@ -9,6 +9,8 @@ public:
 	virtual void onEntrance();
 	virtual void onExit();
 	virtual StateTransition* update();
+
+	void transitionToAttack() { mTransitionToAttack = true; }
 private:
 	bool mTransitionToAttack;
 };

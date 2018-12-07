@@ -20,6 +20,8 @@
 #include "Connection.h"
 #include "FlowFieldPathFinder.h"
 #include "SteeringFiles/SteeringComponent.h"
+#include "./PlayerRunMessage.h"
+#include "./PlayerAttackMessage.h"
 //#include ".\SteeringFiles\PlayerMoveToMessage.h"
 
 
@@ -56,6 +58,18 @@ void InputSystem::update()
 			if (mBitwiseKeyStates[KeyCode::SCANCODE_ESCAPE] && getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED))
 			{
 				GameMessage* pMessage = new EscapeMessage();
+				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
+				pGame->getMessageManager()->addMessage(pMessage, 0);
+			}
+			if (mBitwiseKeyStates[KeyCode::SCANCODE_R] && getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED))
+			{
+				GameMessage* pMessage = new PlayerRunMessage();
+				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
+				pGame->getMessageManager()->addMessage(pMessage, 0);
+			}
+			if (mBitwiseKeyStates[KeyCode::SCANCODE_A] && getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED))
+			{
+				GameMessage* pMessage = new PlayerAttackMessage();
 				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
 				pGame->getMessageManager()->addMessage(pMessage, 0);
 			}

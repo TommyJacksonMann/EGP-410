@@ -67,6 +67,8 @@ public:
 	void update();//give the current state a chance to run
 	void start();//go to the initial state
 
+	StateMachineState* getCurrentState() { return mpCurrentState; }
+
 protected:
 	void transitionToState( const SM_idType& targetID );//call onExit for old state and onEntrance for the new state
 

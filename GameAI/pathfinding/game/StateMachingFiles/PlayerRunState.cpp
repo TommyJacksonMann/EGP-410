@@ -22,6 +22,8 @@ StateTransition* PlayerRunState::update()
 	//find the right transition
 	if (mTransitionToAttack == true)
 	{
+		mTransitionToAttack = false;
+
 		map<TransitionType, StateTransition*>::iterator iter = mTransitions.find(PLAYER_TO_ATTACK_TRANSITION);
 		if (iter != mTransitions.end())//found?
 		{
