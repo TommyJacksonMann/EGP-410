@@ -1,6 +1,12 @@
 #include "Game.h"
 #include "PlayerAttackState.h"
 #include <iostream>
+#include "Game.h"
+#include "../GameApp.h"
+#include "../SteeringFiles/UnitManager.h"
+#include "../SteeringFiles/Unit.h"
+#include "Sprite.h"
+#include "SpriteManager.h"
 
 using namespace std;
 
@@ -33,4 +39,13 @@ StateTransition* PlayerAttackState::update()
 
 
 	return NULL;//no transition
+}
+
+void PlayerAttackState::transitionToRun()
+{
+	mTransitionToRun = true;
+	GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
+	Sprite* pPlayerAttack = pGame->getSpriteManager()->getSprite(PLAYER_ICON_SPRITE_ID);
+	Unit* pPlayerUnit = pGame->getUnitManager()->getPlayerUnit();
+	pPlayerUnit->setSprite(*pPlayerAttack);
 }

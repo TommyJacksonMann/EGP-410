@@ -10,7 +10,7 @@ public:
 	virtual void onExit();
 	virtual StateTransition* update();
 
-	void transitionToRun() { mTransitionToRun = true; }
+	void transitionToRun();
 
 private:
 	bool mTransitionToRun;

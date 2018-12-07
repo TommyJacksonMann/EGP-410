@@ -31,6 +31,7 @@ const IDType AI_ICON_SPRITE_ID = 2;
 const IDType TARGET_SPRITE_ID = 3;
 const IDType NODE_DIRECTION_SPRITE_ID = 4;
 const IDType COIN_SPRITE_ID = 5;
+const IDType PLAYER_ATTACK_ICON_SPRITE_ID = 6;
 
 const float LOOP_TARGET_TIME = 33.3f;
 
@@ -74,6 +75,7 @@ protected:
 
 	GraphicsBufferID mBackgroundBufferID = "background";
 	GraphicsBufferID mPlayerIconBufferID = "player";
+	GraphicsBufferID mPlayerAttackIconBufferID = "player-attack";
 	GraphicsBufferID mEnemyIconBufferID = "enemy";
 	GraphicsBufferID mTargetBufferID = "target";
 	GraphicsBufferID mNodeDirectionBufferID = "nodedirection";

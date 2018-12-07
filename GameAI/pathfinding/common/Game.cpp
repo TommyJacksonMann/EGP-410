@@ -76,7 +76,8 @@ bool Game::init()
 	//load background
 	mpGraphicsBufferManager->loadBuffer(mCoinBufferID, "coin.png");
 	mpGraphicsBufferManager->loadBuffer(mBackgroundBufferID, "wallpaper.bmp");
-	mpGraphicsBufferManager->loadBuffer(mPlayerIconBufferID, "player.png");
+	mpGraphicsBufferManager->loadBuffer(mPlayerIconBufferID, "player-run.png");
+	mpGraphicsBufferManager->loadBuffer(mPlayerAttackIconBufferID, "player-attack.png");
 	mpGraphicsBufferManager->loadBuffer(mEnemyIconBufferID, "enemy-arrow.png");
 	mpGraphicsBufferManager->loadBuffer(mTargetBufferID, "target.png");
 	mpGraphicsBufferManager->loadBuffer(mNodeDirectionBufferID, "flow-field-direction.png");
@@ -86,10 +87,16 @@ bool Game::init()
 		mpSpriteManager->createAndManageSprite(BACKGROUND_SPRITE_ID, pBackGroundBuffer, 0, 0, (float)pBackGroundBuffer->getWidth(), (float)pBackGroundBuffer->getHeight());
 	}
 	GraphicsBuffer* pPlayerBuffer = mpGraphicsBufferManager->getBuffer(mPlayerIconBufferID);
-	Sprite* pArrowSprite = NULL;
+	Sprite* pPlayerSprite = NULL;
 	if (pPlayerBuffer != NULL)
 	{
-		pArrowSprite = mpSpriteManager->createAndManageSprite(PLAYER_ICON_SPRITE_ID, pPlayerBuffer, 0, 0, (float)pPlayerBuffer->getWidth(), (float)pPlayerBuffer->getHeight());
+		pPlayerSprite = mpSpriteManager->createAndManageSprite(PLAYER_ICON_SPRITE_ID, pPlayerBuffer, 0, 0, (float)pPlayerBuffer->getWidth(), (float)pPlayerBuffer->getHeight());
+	}
+	GraphicsBuffer* pPlayerAttackBuffer = mpGraphicsBufferManager->getBuffer(mPlayerAttackIconBufferID);
+	Sprite* pPlayerAttackSprite = NULL;
+	if (pPlayerAttackBuffer != NULL)
+	{
+		pPlayerAttackSprite = mpSpriteManager->createAndManageSprite(PLAYER_ATTACK_ICON_SPRITE_ID, pPlayerAttackBuffer, 0, 0, (float)pPlayerAttackBuffer->getWidth(), (float)pPlayerAttackBuffer->getHeight());
 	}
 	GraphicsBuffer* pAIBuffer = mpGraphicsBufferManager->getBuffer(mEnemyIconBufferID);
 	Sprite* pEnemySprite = NULL;
@@ -123,7 +130,7 @@ bool Game::init()
 	
 
 	Vector2D playerSpawn(DataParser::getInstance()->ReadFile("PlayerSpawnX"), DataParser::getInstance()->ReadFile("PlayerSpawnY"));
-	Unit* pUnit = mpUnitManager->createPlayerUnit(*pArrowSprite);
+	Unit* pUnit = mpUnitManager->createPlayerUnit(*pPlayerSprite);
 	pUnit->setShowTarget(false);
 	pUnit->getPositionComponent()->setPosition(playerSpawn);
 	pUnit->setSteering(Steering::KINEMATICARRIVE, playerSpawn);

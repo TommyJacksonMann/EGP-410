@@ -10,7 +10,7 @@ public:
 	virtual void onExit();
 	virtual StateTransition* update();
 
-	void transitionToAttack() { mTransitionToAttack = true; }
+	void transitionToAttack();
 private:
 	bool mTransitionToAttack;
 };

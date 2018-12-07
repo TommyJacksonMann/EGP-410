@@ -46,12 +46,14 @@ public:
 	SteeringComponent* getSteeringComponent() const;
 	CollisionComponent* getCollisionComponent() const;
 	StateMachine* getStateMachine() { return mpStateMachine; }
+	Sprite getSprite() { return mSprite; }
 	float getMaxAcc() const { return mMaxAcc; };
 	float getMaxSpeed() const { return mMaxSpeed; };
 	float getMaxRotAcc() const { return mMaxRotAcc; };
 	float getMaxRotVel() const { return mMaxRotVel; };
 	void setShowTarget(bool val) { mShowTarget = val; };
 	void setUnitType(const UnitType type) { mUnitType = type; }
+	void setSprite(Sprite newSprite) { mSprite = newSprite; }
 	const UnitType getUnitType() const { return mUnitType; }
 	const bool compareCollisionComponentID(ComponentID componentID);
 	const UnitID getID() const { return mID; }
