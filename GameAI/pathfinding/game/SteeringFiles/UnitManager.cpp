@@ -21,6 +21,15 @@ UnitManager::UnitManager(Uint32 maxSize)
 
 UnitManager::~UnitManager()
 {
+
+	for (auto it = mUnitMap.begin(); it != mUnitMap.end(); ++it)
+	{
+		it->second->~Unit();
+	}
+
+	mUnitMap.clear();
+	mPool.reset();
+
 }
 
 Unit* UnitManager::createUnit(const Sprite& sprite, bool shouldWrap, const PositionData& posData /*= ZERO_POSITION_DATA*/, const PhysicsData& physicsData /*= ZERO_PHYSICS_DATA*/, const CollisionData& collisionData /*= ZERO_COLLISION_DATA*/, const UnitID& id)
