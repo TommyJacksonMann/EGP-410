@@ -5,6 +5,7 @@
 #include "./SteeringFiles/UnitManager.h"
 #include "ResetPlayerStartPosMessage.h"
 #include "GameMessageManager.h"
+#include "DeleteAllCoinsMessage.h"
 
 HandleCollisionMessage::HandleCollisionMessage(Unit* firstUnit, Unit* secondUnit)
 	:GameMessage(HANDLE_COLLISION_MESSAGE), 
@@ -51,6 +52,8 @@ void HandleCollisionMessage::process()
 		GameApp* pGame = static_cast<GameApp*>(gpGame);
 		GameMessage* pMessage = new ResetPlayerStartPos();
 		pGame->getMessageManager()->addMessage(pMessage, 0);
+		GameMessage* pDeleteCoinMessage = new DeleteAllCoinsMessage();
+		pGame->getMessageManager()->addMessage(pDeleteCoinMessage, 0);
 
 	}
 	else if (mpSecondUnit->getUnitType() == UnitType::PLAYER && mpFirstUnit->getUnitType() == UnitType::ENEMY)
@@ -58,6 +61,8 @@ void HandleCollisionMessage::process()
 		GameApp* pGame = static_cast<GameApp*>(gpGame);
 		GameMessage* pMessage = new ResetPlayerStartPos();
 		pGame->getMessageManager()->addMessage(pMessage, 0);
+		GameMessage* pDeleteCoinMessage = new DeleteAllCoinsMessage();
+		pGame->getMessageManager()->addMessage(pDeleteCoinMessage, 0);
 	}
 	else if (mpSecondUnit->getUnitType() == UnitType::ENEMY && mpFirstUnit->getUnitType() == UnitType::ENEMY)
 	{
