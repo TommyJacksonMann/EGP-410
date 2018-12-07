@@ -158,6 +158,7 @@ void Game::cleanup()
 	mpUnitManager = NULL;
 	delete mpComponentManager;
 	mpComponentManager = NULL;
+	
 
 	DataParser::cleanUpInstance();
 }

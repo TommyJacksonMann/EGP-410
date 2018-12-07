@@ -10,6 +10,7 @@
 #include "SteeringComponent.h"
 #include "ComponentManager.h"
 #include "SpriteManager.h"
+#include "../StateMachingFiles/StateMachine.h"
 
 
 Unit::Unit(const Sprite& sprite) 
@@ -19,10 +20,16 @@ Unit::Unit(const Sprite& sprite)
 	,mSteeringComponentID(INVALID_COMPONENT_ID)
 	,mShowTarget(false)
 {
+	mpStateMachine = new StateMachine();
 }
 
 Unit::~Unit()
 {
+	if (mpStateMachine != NULL)
+	{
+		delete mpStateMachine;
+	}
+	mpStateMachine = NULL;
 }
 
 void Unit::draw() const

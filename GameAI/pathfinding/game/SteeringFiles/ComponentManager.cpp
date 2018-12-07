@@ -45,16 +45,23 @@ void ComponentManager::clear()
 		SteeringComponent* pComponent = it.second;
 		pComponent->~SteeringComponent();
 	}
+	for (auto& it : mCollisionComponentMap)
+	{
+		CollisionComponent* pComponent = it.second;
+		pComponent->~CollisionComponent();
+	}
 
 	//clear maps
 	mPositionComponentMap.clear();
 	mPhysicsComponentMap.clear();
 	mSteeringComponentMap.clear();
+	mCollisionComponentMap.clear();
 
 	//reset memory pools
 	mPositionPool.reset();
 	mPhysicsPool.reset();
 	mSteeringPool.reset();
+	mCollisionPool.reset();
 }
 
 

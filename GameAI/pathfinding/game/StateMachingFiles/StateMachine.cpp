@@ -3,6 +3,7 @@
 
 StateMachineState::~StateMachineState()
 {
+
 }
 
 void StateMachineState::addTransition( StateTransition* pTransition )

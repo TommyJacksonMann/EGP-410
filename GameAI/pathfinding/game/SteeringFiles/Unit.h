@@ -10,6 +10,7 @@
 #include "../CollisionComponent.h"
 #include "Sprite.h"
 #include "Steering.h"
+
 //#include "CircularQueue.h"
 //#include "Transaction.h"
 //#include "TransactionProcessor.h"
@@ -19,6 +20,7 @@ class SteeringComponent;
 class CollisionComponent;
 class Sprite;
 class UnitManager;
+class StateMachine;
 
 const Uint32 DEFAULT_QUEUE_CAPACITY = 8;
 
@@ -43,6 +45,7 @@ public:
 	PhysicsComponent* getPhysicsComponent() const;
 	SteeringComponent* getSteeringComponent() const;
 	CollisionComponent* getCollisionComponent() const;
+	StateMachine* getStateMachine() { return mpStateMachine; }
 	float getMaxAcc() const { return mMaxAcc; };
 	float getMaxSpeed() const { return mMaxSpeed; };
 	float getMaxRotAcc() const { return mMaxRotAcc; };
@@ -63,6 +66,7 @@ private:
 	ComponentID mSteeringComponentID;
 	ComponentID mCollisionComponentID;
 	PositionComponent* mpPositionComponent = NULL;
+	StateMachine* mpStateMachine;
 	Sprite mSprite;
 	float mMaxAcc;
 	float mMaxSpeed;
