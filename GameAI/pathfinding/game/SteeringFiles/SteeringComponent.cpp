@@ -4,6 +4,7 @@
 #include "../KinematicArriveSteering.h"
 #include "../FollowPathSteering.h"
 #include "../FlowFieldSteering.h"
+#include "../KinematicEnemySteering.h"
 
 
 SteeringComponent::SteeringComponent(const ComponentID& id, const ComponentID& physicsComponentID) 
@@ -47,6 +48,12 @@ void SteeringComponent::setData(const SteeringData& data)
 		{
 			delete mpSteering;
 			mpSteering = new KinematicArriveSteering(data.ownerID, data.targetLoc, data.targetID, false);
+			break;
+		}
+		case Steering::KINEMATIC_ENEMY_ARRIVE:
+		{
+			delete mpSteering;
+			mpSteering = new KinematicEnemySteering(data.ownerID, data.targetLoc, data.targetID);
 			break;
 		}
 		case Steering::FOLLOW_PATH:

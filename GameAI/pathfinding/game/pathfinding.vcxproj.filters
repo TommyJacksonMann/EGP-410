@@ -270,6 +270,9 @@
     <ClInclude Include="KinematicEnemySteering.h">
       <Filter>Steering\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SpawnEnemyMessage.h">
+      <Filter>Header Files\messaging</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\common\Game.cpp">
@@ -460,6 +463,9 @@
     </ClCompile>
     <ClCompile Include="KinematicEnemySteering.cpp">
       <Filter>Steering\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SpawnEnemyMessage.cpp">
+      <Filter>Source Files\messaging</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

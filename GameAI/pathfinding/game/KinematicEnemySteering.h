@@ -11,5 +11,9 @@ public:
 
 private:
 	float mMovementFactor = 0;
+	int mLastDirection = -1;
+
+	float mChangeDirectionFrequency = 0;
+	float mLastChangedDirection = 0;
 };
 

@@ -88,7 +88,8 @@ public:
 	const float getEnemySpeed() const { return mEnemySpeed; }
 	
 	const float getEnemyChaseRange() const { return mEnemyChaseRange; }
-	
+	const float getEnemyDirectionFrquency() const { return mEnemyChangeDirectionFrequency; }
+
 	void AddScore(ScoreType);
 private:
 
@@ -112,6 +113,7 @@ private:
 
 	float mEnemySpeed = 0;
 	float mEnemyChaseRange = 0;
+	float mEnemyChangeDirectionFrequency = 0;
 
 	int mMaxCoinsOnScreen = 1;
 	int mCurrentCoinsOnScreen = 1;
@@ -125,7 +127,7 @@ private:
 	int mCoinFrequency = 0;
 	int mPowerUpFrequency = 0;
 
-
+	
 
 
 };

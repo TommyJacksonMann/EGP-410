@@ -27,6 +27,7 @@
 #include "./StateMachingFiles/PlayerAttackState.h"
 #include "SpawnItemMessage.h"
 #include "DataParser.h"
+#include "SpawnEnemyMessage.h"
 
 #include <SDL.h>
 #include <fstream>
@@ -100,16 +101,18 @@ bool GameApp::init()
 	mCurrentPowerUpsOnScreen = 0;
 
 	mPlayerAttackTime = DataParser::getInstance()->ReadFile("PowerUpTime");
-	mPlayerSpeed = DataParser::getInstance()->ReadFile("PlayerSpeed");
+ 	mPlayerSpeed = DataParser::getInstance()->ReadFile("PlayerSpeed");
 
 	mEnemySpeed = DataParser::getInstance()->ReadFile("EnemySpeed");
 	mEnemyChaseRange = DataParser::getInstance()->ReadFile("EnemyChaseRange");
+	mEnemyChangeDirectionFrequency = DataParser::getInstance()->ReadFile("EnemyRandomFrequency");
 
 	mPowerUpDelay = DataParser::getInstance()->ReadFile("PowerUpSpawnTime");
 	mPowerUpFrequency = DataParser::getInstance()->ReadFile("PowerUpSpawnFrequency");
 
 	mCoinFrequency = DataParser::getInstance()->ReadFile("CoinSpawnFrequency");
 	mCoinDelay = DataParser::getInstance()->ReadFile("CoinSpawnTime");
+
 
 
 
@@ -147,6 +150,7 @@ void GameApp::cleanup()
 
 void GameApp::beginLoop()
 {
+
 	//should be the first thing done
 	Game::beginLoop();
 }

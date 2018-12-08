@@ -149,10 +149,6 @@ bool Game::init()
 
 	pUnit->getStateMachine()->setInitialStateID(0);
 
-	Unit* testEnemy = mpUnitManager->createUnit(*pEnemySprite);
-	testEnemy->getPositionComponent()->setPosition(Vector2D(10 * 32, 5 * 32));
-	testEnemy->setCollision(CIRCLE, 5);
-	testEnemy->setUnitType(UnitType::ENEMY);
 
 	return true;
 }
