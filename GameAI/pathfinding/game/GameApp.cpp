@@ -25,7 +25,7 @@
 #include "PathPool.h"
 #include "StateMachingFiles/StateMachine.h"
 #include "./StateMachingFiles/PlayerAttackState.h"
-#include "SpawnCoinMessage.h"
+#include "SpawnItemMessage.h"
 #include "DataParser.h"
 
 #include <SDL.h>
@@ -94,7 +94,24 @@ bool GameApp::init()
 
 
 	mMaxCoinsOnScreen = DataParser::getInstance()->ReadFile("MaxCoins");
+	mMaxPowerUpsOnScreen = DataParser::getInstance()->ReadFile("MaxPowerUps");
+
 	mCurrentCoinsOnScreen = 0;
+	mCurrentPowerUpsOnScreen = 0;
+
+	mPlayerAttackTime = DataParser::getInstance()->ReadFile("PowerUpTime");
+	mPlayerSpeed = DataParser::getInstance()->ReadFile("PlayerSpeed");
+
+	mEnemySpeed = DataParser::getInstance()->ReadFile("EnemySpeed");
+	mEnemyChaseRange = DataParser::getInstance()->ReadFile("EnemyChaseRange");
+
+	mPowerUpDelay = DataParser::getInstance()->ReadFile("PowerUpSpawnTime");
+	mPowerUpFrequency = DataParser::getInstance()->ReadFile("PowerUpSpawnFrequency");
+
+	mCoinFrequency = DataParser::getInstance()->ReadFile("CoinSpawnFrequency");
+	mCoinDelay = DataParser::getInstance()->ReadFile("CoinSpawnTime");
+
+
 
 	mpMasterTimer->start();
 	return true;

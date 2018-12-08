@@ -29,7 +29,8 @@ enum UnitType
 	PLAYER, 
 	ENEMY,
 	COIN,
-	UNIT
+	UNIT,
+	POWER_UP
 };
 
 

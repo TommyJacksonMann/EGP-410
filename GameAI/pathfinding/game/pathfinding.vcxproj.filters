@@ -246,9 +246,6 @@
     <ClInclude Include="StateMachingFiles\PlayerRunState.h">
       <Filter>StateMachine\States</Filter>
     </ClInclude>
-    <ClInclude Include="SpawnCoinMessage.h">
-      <Filter>Header Files\messaging</Filter>
-    </ClInclude>
     <ClInclude Include="DataParser.h">
       <Filter>Header Files\util</Filter>
     </ClInclude>
@@ -266,6 +263,12 @@
     </ClInclude>
     <ClInclude Include="PlayerAttackMessage.h">
       <Filter>Header Files\messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="SpawnItemMessage.h">
+      <Filter>Header Files\messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="KinematicEnemySteering.h">
+      <Filter>Steering\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -434,9 +437,6 @@
     <ClCompile Include="StateMachingFiles\PlayerRunState.cpp">
       <Filter>StateMachine\States</Filter>
     </ClCompile>
-    <ClCompile Include="SpawnCoinMessage.cpp">
-      <Filter>Source Files\messaging</Filter>
-    </ClCompile>
     <ClCompile Include="DataParser.cpp">
       <Filter>Source Files\util</Filter>
     </ClCompile>
@@ -454,6 +454,12 @@
     </ClCompile>
     <ClCompile Include="PlayerAttackMessage.cpp">
       <Filter>Source Files\messaging</Filter>
+    </ClCompile>
+    <ClCompile Include="SpawnItemMessage.cpp">
+      <Filter>Source Files\messaging</Filter>
+    </ClCompile>
+    <ClCompile Include="KinematicEnemySteering.cpp">
+      <Filter>Steering\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

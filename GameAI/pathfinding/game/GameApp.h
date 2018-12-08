@@ -33,7 +33,7 @@ EAT_ENEMY_SCORE,
 NO_SCORE
 };
 
-//const float LOOP_TARGET_TIME = 33.3f;//how long should each frame of execution take? 30fps = 33.3ms/frame
+//const double LOOP_TARGET_TIME = 33.3f;//how long should each frame of execution take? 30fps = 33.3ms/frame
 
 class GameApp: public Game
 {
@@ -64,8 +64,30 @@ public:
 
 	const int getMaxCoinsOnScreen() const { return mMaxCoinsOnScreen; }
 	const int getCurrentCoinsOnScreen() const { return mCurrentCoinsOnScreen; }
-	
+	const int getMaxPowerUpsOnScreen() const { return mMaxPowerUpsOnScreen; }
+	const int getCurrentPowerUpsOnScreen() const { return mCurrentPowerUpsOnScreen; }
+
+
 	void setCoinsOnScreen(const int newAmount) { mCurrentCoinsOnScreen = newAmount; }
+	void setPowerUpsOnScreen(const int newAmount) { mCurrentPowerUpsOnScreen = newAmount; }
+
+	const double getPowerUpDelay() const { return mPowerUpDelay; }
+	const int getPowerUpFrequency() const { return mPowerUpFrequency; }
+
+	const double getCoinDelay() const { return mCoinDelay; }
+	const int getCoinFrequency() const { return mCoinFrequency; }
+
+	void setLastCoinFired(const double newTime) { mLastTimeFiredCoin = newTime; }
+	void setLastPowerUpFired(const double newTime) { mLastTimeFiredPowerUp = newTime; }
+	const double getLastCoinFired() const { return mLastTimeFiredCoin; }
+	const double getLastPowerUpFired() const { return mLastTimeFiredPowerUp; }
+
+	const int getPlayerAttackTime() const { return mPlayerAttackTime; }
+
+	const float getPlayerSpeed() const { return mPlayerSpeed; }
+	const float getEnemySpeed() const { return mEnemySpeed; }
+	
+	const float getEnemyChaseRange() const { return mEnemyChaseRange; }
 	
 	void AddScore(ScoreType);
 private:
@@ -85,7 +107,26 @@ private:
 	int mCoinScore = 0;
 	int mPlayerEat = 0;
 
+	int mPlayerAttackTime = 0;
+	float mPlayerSpeed = 0;
+
+	float mEnemySpeed = 0;
+	float mEnemyChaseRange = 0;
+
 	int mMaxCoinsOnScreen = 1;
 	int mCurrentCoinsOnScreen = 1;
+	int mMaxPowerUpsOnScreen = 0;
+	int mCurrentPowerUpsOnScreen = 0;
+	double mLastTimeFiredCoin = 0;
+	double mLastTimeFiredPowerUp = 0;
+	
+	double mCoinDelay = 0;
+	double mPowerUpDelay = 0;
+	int mCoinFrequency = 0;
+	int mPowerUpFrequency = 0;
+
+
+
+
 };
 

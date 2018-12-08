@@ -12,18 +12,17 @@ using namespace std;
 
 void PlayerAttackState::onEntrance()
 {
-	cout << "\nEntering PlayerAttackState id:" << mID << endl;
 	mTransitionToRun = false;
 }
 
 void PlayerAttackState::onExit()
 {
-	cout << "\nExitting PlayerAttackState id:" << mID << endl;
+
+
 }
 
 StateTransition* PlayerAttackState::update()
 {
-	cout << "PlayerAttackState!" << endl;
 
 	if (mTransitionToRun == true)
 	{
@@ -37,6 +36,8 @@ StateTransition* PlayerAttackState::update()
 		}
 	}
 
+	GameApp* pGame = static_cast<GameApp*>(gpGame);
+	pGame->setLastPowerUpFired(gpGame->getCurrentTime());
 
 	return NULL;//no transition
 }

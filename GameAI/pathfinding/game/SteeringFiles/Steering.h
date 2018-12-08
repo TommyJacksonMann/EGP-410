@@ -42,7 +42,8 @@ public:
 		COHESION,
 		FLOCK,
 		FOLLOW_PATH,
-		FLOW_FIELD
+		FLOW_FIELD,
+		KINEMATIC_ENEMY_ARRIVE
 	};
 
 	//constructors and destructors

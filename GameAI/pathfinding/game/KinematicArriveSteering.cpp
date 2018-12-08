@@ -3,9 +3,9 @@
 #include "./SteeringFiles/Steering.h"
 #include "KinematicArriveSteering.h"
 #include "Game.h"
+#include "GameApp.h"
 #include "./SteeringFiles/UnitManager.h"
 #include "./SteeringFiles/Unit.h"
-#include <iostream>
 
 using namespace std;
 
@@ -24,7 +24,8 @@ KinematicArriveSteering::KinematicArriveSteering(const UnitID& ownerID, const Ve
 	setTargetID(targetID);
 	setTargetLoc(targetLoc);
 
-	mMovementFactor = DEFAULT_MOVEMENT_FACTOR;
+	GameApp* pGame = dynamic_cast<GameApp*>(gpGame);	
+	mMovementFactor = pGame->getPlayerSpeed();
 }
 
 Steering* KinematicArriveSteering::getSteering()
