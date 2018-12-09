@@ -21,6 +21,7 @@ class Font;
 class InputSystem;
 class ComponentManager;
 class UnitManager;
+class StateTransition;
 
 extern PerformanceTracker* gpPerformanceTracker;
 extern Game* gpGame;
@@ -71,9 +72,14 @@ protected:
 	float mLoopTargetTime;
 	bool mShouldExit;
 
-	//should be somewhere else
+	StateTransition* mpToPlayerRunTrans;
+	StateTransition * mpToPlayerAttackTrans;
+	StateTransition* mpToAiRunTrans; 
+	StateTransition* mpToAiAttackTrans; 
+	
 	Font* mpFont;
 
+	//should be somewhere else
 	GraphicsBufferID mBackgroundBufferID = "background";
 	GraphicsBufferID mPlayerIconBufferID = "player";
 	GraphicsBufferID mPlayerAttackIconBufferID = "player-attack";

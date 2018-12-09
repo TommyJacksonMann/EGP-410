@@ -3,16 +3,11 @@
 
 StateMachineState::~StateMachineState()
 {
-	for (auto it = mTransitions.begin(); it != mTransitions.end(); ++it)
+	/*for (auto it = mTransitions.begin(); it != mTransitions.end(); ++it)
 	{
-		if (it->second != nullptr)
-		{
-			delete it->second;
-			it->second = NULL;
-		}
-		
+		delete it->second;
 	}
-	mTransitions.clear();
+	mTransitions.clear();*/
 }
 
 void StateMachineState::addTransition( StateTransition* pTransition )

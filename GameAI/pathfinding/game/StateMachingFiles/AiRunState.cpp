@@ -25,6 +25,7 @@ void AiRunState::onExit()
 
 StateTransition* AiRunState::update()
 {
+	std::cout << "AI RUUUUUUUUUNNNNNNNNNN\n";
 
 	if (mTransitionToAttack == true)
 	{

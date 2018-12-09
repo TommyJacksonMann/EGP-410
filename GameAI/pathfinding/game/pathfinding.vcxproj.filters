@@ -279,6 +279,9 @@
     <ClInclude Include="StateMachingFiles\AiAttackState.h">
       <Filter>StateMachine\States</Filter>
     </ClInclude>
+    <ClInclude Include="ChangePlayerControlMessage.h">
+      <Filter>Header Files\messaging</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\common\Game.cpp">
@@ -478,6 +481,9 @@
     </ClCompile>
     <ClCompile Include="StateMachingFiles\AiAttackState.cpp">
       <Filter>StateMachine\States</Filter>
+    </ClCompile>
+    <ClCompile Include="ChangePlayerControlMessage.cpp">
+      <Filter>Source Files\messaging</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

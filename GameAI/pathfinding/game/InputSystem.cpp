@@ -21,6 +21,7 @@
 #include "FlowFieldPathFinder.h"
 #include "SteeringFiles/SteeringComponent.h"
 #include "SpawnEnemyMessage.h"
+#include "ChangePlayerControlMessage.h"
 //#include ".\SteeringFiles\PlayerMoveToMessage.h"
 
 
@@ -66,7 +67,12 @@ void InputSystem::update()
 				GameMessage* pSpawnTestEnemyMessage = new SpawnEnemyMessage();
 				pGame->getMessageManager()->addMessage(pSpawnTestEnemyMessage, 0);
 			}
-			
+			if (mBitwiseKeyStates[KeyCode::SCANCODE_C] && getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED))
+			{
+				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
+				GameMessage* pChangeControl = new ChangePlayerControlMessage();
+				pGame->getMessageManager()->addMessage(pChangeControl, 0);
+			}
 			playerMovement(i);
 			
 		}

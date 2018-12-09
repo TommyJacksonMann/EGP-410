@@ -22,6 +22,7 @@ void PlayerRunState::onExit()
 
 StateTransition* PlayerRunState::update()
 {
+	std::cout << "PLAYER RRRRUUUUUUUNNNNNNNNNNNNNN\n";
 
 	//find the right transition
 	if (mTransitionToAttack == true)

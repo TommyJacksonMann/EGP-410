@@ -128,6 +128,7 @@
     <ClInclude Include="PathPool.h" />
     <ClInclude Include="PathToMessage.h" />
     <ClInclude Include="PlayerAttackMessage.h" />
+    <ClInclude Include="ChangePlayerControlMessage.h" />
     <ClInclude Include="PlayerMoveToMessage.h" />
     <ClInclude Include="PlayerRunMessage.h" />
     <ClInclude Include="PriorityQueue.h" />
@@ -197,6 +198,7 @@
     <ClCompile Include="PathPool.cpp" />
     <ClCompile Include="PathToMessage.cpp" />
     <ClCompile Include="PlayerAttackMessage.cpp" />
+    <ClCompile Include="ChangePlayerControlMessage.cpp" />
     <ClCompile Include="PlayerMoveToMessage.cpp" />
     <ClCompile Include="PlayerRunMessage.cpp" />
     <ClCompile Include="ResetPlayerStartPosMessage.cpp" />

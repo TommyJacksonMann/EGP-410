@@ -25,6 +25,7 @@ void PlayerAttackState::onExit()
 
 StateTransition* PlayerAttackState::update()
 {
+	std::cout << "PLAYER AAAAAAATTTTTTTTAAAAACCCCCKKKKK\n";
 
 	if (mTransitionToRun == true)
 	{
