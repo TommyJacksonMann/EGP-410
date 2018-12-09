@@ -14,6 +14,9 @@ void AiRunState::onEntrance()
 {
 	mTransitionToAttack = false;
 	mTransitionToPlayerControl = false;
+	GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
+	Unit* pPlayerUnit = pGame->getUnitManager()->getPlayerUnit();
+	pPlayerUnit->setSprite(*pGame->getSpriteManager()->getSprite(PLAYER_ICON_SPRITE_ID));
 }
 
 void AiRunState::onExit()

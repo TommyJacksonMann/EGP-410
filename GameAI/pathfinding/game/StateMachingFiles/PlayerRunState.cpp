@@ -14,6 +14,9 @@ void PlayerRunState::onEntrance()
 {
 	mTransitionToAttack = false;
 	mTransitionToAiControl = false;
+	GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
+	Unit* pPlayerUnit = pGame->getUnitManager()->getPlayerUnit();
+	pPlayerUnit->setSprite(*pGame->getSpriteManager()->getSprite(PLAYER_ICON_SPRITE_ID));
 }
 
 void PlayerRunState::onExit()
@@ -54,10 +57,7 @@ StateTransition* PlayerRunState::update()
 void PlayerRunState::transitionToAttack()
 {
 	mTransitionToAttack = true;
-	GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
-	Sprite* pPlayerAttack = pGame->getSpriteManager()->getSprite(PLAYER_ATTACK_ICON_SPRITE_ID);
-	Unit* pPlayerUnit = pGame->getUnitManager()->getPlayerUnit();
-	pPlayerUnit->setSprite(*pPlayerAttack);
+	
 }
 
 void PlayerRunState::transitionToAiControl()
