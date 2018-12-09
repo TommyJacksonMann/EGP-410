@@ -55,7 +55,6 @@ Steering* KinematicEnemySteering::getSteering()
 		do {
 			pToNode = NULL;
 			newDestination = pOwner->getPositionComponent()->getPosition();
-			//newDestination += Vector2D(16, 16);
 			newDirection = Vector2D(0, 0);
 			newDestination += newDirection;
 
@@ -69,6 +68,7 @@ Steering* KinematicEnemySteering::getSteering()
 			*/
 			Vector2D testDirection;
 
+			
 			switch (mLastDirection)
 			{
 			case 0:			//UP
@@ -108,12 +108,15 @@ Steering* KinematicEnemySteering::getSteering()
 				do
 				{
   					randomDir = rand() % 4;
-				} while (randomDir == mLastDirection);
+				} while (randomDir == mLastDirection || randomDir == mOppositeLastDirection);
 			}
 			else if (/*check frequency*/ testTime <= currentTime)
 			{
-				randomDir = rand() % 4;
+				do {
+					randomDir = rand() % 4;
+				} while (randomDir == mLastDirection ||  randomDir == mOppositeLastDirection);
 				mLastChangedDirection = pGame->getCurrentTime();
+				
 			}
 			else
 			{
@@ -122,30 +125,35 @@ Steering* KinematicEnemySteering::getSteering()
 				break;
 			}
 
+
 			switch (randomDir)
 			{
 			case 0:			//UP
 			{
 				newDirection += Vector2D(0, -32);
 				mLastDirection = 0;
+				mOppositeLastDirection = 2;
 				break;
 			}
 			case 1:			//RIGHT
 			{
 				newDirection += Vector2D(32, 0);
 				mLastDirection = 1;
+				mOppositeLastDirection = 3;
 				break;
 			}
 			case 2: 		//DOWN
 			{
 				newDirection += Vector2D(0, 32);
 				mLastDirection = 2;
+				mOppositeLastDirection = 0;
 				break;
 			}
 			case 3: 	//LEFT
 			{
 				newDirection += Vector2D(-32, 0);
 				mLastDirection = 3;
+				mOppositeLastDirection = 1;
 				break;
 			}
 			default: {assert(true); } //how would this ever happen

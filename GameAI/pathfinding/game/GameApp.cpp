@@ -171,8 +171,6 @@ void GameApp::processLoop()
 
 	mpInputSystem->update();
 
-	GameMessage* pCoinMessage = new SpawnCoinMessage();
-	mpMessageManager->addMessage(pCoinMessage, 0);
 
 	mpMessageManager->processMessagesForThisframe();
 
@@ -186,6 +184,9 @@ void GameApp::processLoop()
 
 bool GameApp::endLoop()
 {
+
+	GameMessage* pCoinMessage = new SpawnCoinMessage();
+	mpMessageManager->addMessage(pCoinMessage, 0);
 	return Game::endLoop();
 }
 

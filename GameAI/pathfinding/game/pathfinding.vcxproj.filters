@@ -282,6 +282,9 @@
     <ClInclude Include="ChangePlayerControlMessage.h">
       <Filter>Header Files\messaging</Filter>
     </ClInclude>
+    <ClInclude Include="KinematicEnemyRunSteering.h">
+      <Filter>Steering\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\common\Game.cpp">
@@ -484,6 +487,9 @@
     </ClCompile>
     <ClCompile Include="ChangePlayerControlMessage.cpp">
       <Filter>Source Files\messaging</Filter>
+    </ClCompile>
+    <ClCompile Include="KinematicEnemyRunSteering.cpp">
+      <Filter>Steering\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -5,7 +5,7 @@
 #include "../FollowPathSteering.h"
 #include "../FlowFieldSteering.h"
 #include "../KinematicEnemySteering.h"
-
+#include "../KinematicEnemyRunSteering.h"
 
 SteeringComponent::SteeringComponent(const ComponentID& id, const ComponentID& physicsComponentID) 
 	:Component(id)
@@ -54,6 +54,18 @@ void SteeringComponent::setData(const SteeringData& data)
 		{
 			delete mpSteering;
 			mpSteering = new KinematicEnemySteering(data.ownerID, data.targetLoc, data.targetID);
+			break;
+		}
+		case Steering::KINEMATIC_ENEMY_RUN:
+		{
+			delete mpSteering;
+			mpSteering = new KinematicEnemyRunSteering(data.ownerID, data.targetLoc, data.targetID);
+			break;
+		}
+		case Steering::KINEMATIC_ENEMY_CHASE:
+		{
+			delete mpSteering;
+			//mpSteering = new KinematicEnemySteering(data.ownerID, data.targetLoc, data.targetID);
 			break;
 		}
 		case Steering::FOLLOW_PATH:

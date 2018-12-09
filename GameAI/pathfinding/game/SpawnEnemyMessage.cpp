@@ -15,5 +15,5 @@ void SpawnEnemyMessage::process()
 	pEnemy->getPositionComponent()->setPosition(Vector2D(10 * 32, 5 * 32));
 	pEnemy->setCollision(CIRCLE, 5);
 	pEnemy->setUnitType(UnitType::ENEMY);
-	pEnemy->setSteering(Steering::KINEMATIC_ENEMY_ARRIVE, Vector2D(10 * 32, 5 * 32));
+	pEnemy->setSteering(Steering::KINEMATIC_ENEMY_RUN, Vector2D(10 * 32, 5 * 32), gpGame->getUnitManager()->getPlayerUnit()->getID());
 }

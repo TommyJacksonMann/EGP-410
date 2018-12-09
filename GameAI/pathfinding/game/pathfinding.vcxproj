@@ -119,6 +119,7 @@
     <ClInclude Include="FlowFieldPathFinder.h" />
     <ClInclude Include="KeyboardInputs.h" />
     <ClInclude Include="KinematicArriveSteering.h" />
+    <ClInclude Include="KinematicEnemyRunSteering.h" />
     <ClInclude Include="KinematicEnemySteering.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="NodeRecord.h" />
@@ -190,6 +191,7 @@
     <ClCompile Include="FlowFieldPathFinder.cpp" />
     <ClCompile Include="KinematicArriveSteering.cpp" />
     <ClCompile Include="KinematicEnemySteering.cpp" />
+    <ClCompile Include="KinematicEnemyRunSteering.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Path.cpp" />
