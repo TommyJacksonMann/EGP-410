@@ -11,6 +11,8 @@ public:
 	virtual StateTransition* update();
 
 	void transitionToAttack();
+	void transitionToAiControl();
 private:
 	bool mTransitionToAttack;
+	bool mTransitionToAiControl;
 };

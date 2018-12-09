@@ -26,6 +26,7 @@ private:
 	Vector2D mMouseLocation;
 	Vector2D mLastPos;
 
+	void playerMovement(int currentKeyIndex);
 };
 struct StateBitValues
 {

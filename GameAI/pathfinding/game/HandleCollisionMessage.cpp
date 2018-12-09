@@ -51,6 +51,7 @@ void HandleCollisionMessage::process()
 		int oldCoinNum = pGame->getCurrentCoinsOnScreen();
 		oldCoinNum--;
 		pGame->setCoinsOnScreen(oldCoinNum);
+		mpSecondUnit->getCollisionComponent()->resetLastCollided();
 	}
 	else if (mpFirstUnit->getUnitType() == UnitType::PLAYER && mpSecondUnit->getUnitType() == UnitType::ENEMY)
 	{
@@ -66,6 +67,7 @@ void HandleCollisionMessage::process()
 			pGame->getMessageManager()->addMessage(pMessage, 0);
 			GameMessage* pDeleteCoinMessage = new DeleteAllCoinsMessage();
 			pGame->getMessageManager()->addMessage(pDeleteCoinMessage, 0);
+			mpSecondUnit->getCollisionComponent()->resetLastCollided();
 		}
 
 		
@@ -85,6 +87,7 @@ void HandleCollisionMessage::process()
 			pGame->getMessageManager()->addMessage(pMessage, 0);
 			GameMessage* pDeleteCoinMessage = new DeleteAllCoinsMessage();
 			pGame->getMessageManager()->addMessage(pDeleteCoinMessage, 0);
+			mpFirstUnit->getCollisionComponent()->resetLastCollided();
 		}
 	}
 	else if (mpSecondUnit->getUnitType() == UnitType::ENEMY && mpFirstUnit->getUnitType() == UnitType::ENEMY)

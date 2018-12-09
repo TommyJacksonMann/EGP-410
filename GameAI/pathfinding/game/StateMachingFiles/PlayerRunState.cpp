@@ -13,6 +13,7 @@ using namespace std;
 void PlayerRunState::onEntrance()
 {
 	mTransitionToAttack = false;
+	mTransitionToAiControl = false;
 }
 
 void PlayerRunState::onExit()
@@ -34,6 +35,17 @@ StateTransition* PlayerRunState::update()
 			return pTransition;
 		}
 	}
+	if (mTransitionToAiControl == true)
+	{
+		mTransitionToAiControl = false;
+
+		map<TransitionType, StateTransition*>::iterator iter = mTransitions.find(AI_TO_RUN_TRANSITION);
+		if (iter != mTransitions.end())//found?
+		{
+			StateTransition* pTransition = iter->second;
+			return pTransition;
+		}
+	}
 	
 	return NULL;//no transition
 }
@@ -45,4 +57,9 @@ void PlayerRunState::transitionToAttack()
 	Sprite* pPlayerAttack = pGame->getSpriteManager()->getSprite(PLAYER_ATTACK_ICON_SPRITE_ID);
 	Unit* pPlayerUnit = pGame->getUnitManager()->getPlayerUnit();
 	pPlayerUnit->setSprite(*pPlayerAttack);
+}
+
+void PlayerRunState::transitionToAiControl()
+{
+	mTransitionToAiControl = true;
 }

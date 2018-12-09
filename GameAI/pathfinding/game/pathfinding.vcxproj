@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{09059697-DB0D-44AE-B867-2437B1E3D875}</ProjectGuid>
     <RootNamespace>pathfinding</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -136,8 +136,10 @@
     <ClInclude Include="SpawnItemMessage.h" />
     <ClInclude Include="StateMachingFiles\BaseAction.h" />
     <ClInclude Include="StateMachingFiles\DecisionTreeHelpers.h" />
+    <ClInclude Include="StateMachingFiles\AiAttackState.h" />
     <ClInclude Include="StateMachingFiles\IntDecision.h" />
     <ClInclude Include="StateMachingFiles\MessageAction.h" />
+    <ClInclude Include="StateMachingFiles\AiRunState.h" />
     <ClInclude Include="StateMachingFiles\PlayerAttackState.h" />
     <ClInclude Include="StateMachingFiles\PlayerRunState.h" />
     <ClInclude Include="StateMachingFiles\StateMachine.h" />
@@ -200,12 +202,14 @@
     <ClCompile Include="ResetPlayerStartPosMessage.cpp" />
     <ClCompile Include="SpawnEnemyMessage.cpp" />
     <ClCompile Include="SpawnItemMessage.cpp" />
+    <ClCompile Include="StateMachingFiles\AiAttackState.cpp" />
     <ClCompile Include="StateMachingFiles\BaseAction.cpp" />
     <ClCompile Include="StateMachingFiles\DecisionTreeHelpers.cpp" />
     <ClCompile Include="StateMachingFiles\IntDecision.cpp" />
     <ClCompile Include="StateMachingFiles\MessageAction.cpp" />
     <ClCompile Include="StateMachingFiles\PlayerAttackState.cpp" />
     <ClCompile Include="StateMachingFiles\PlayerRunState.cpp" />
+    <ClCompile Include="StateMachingFiles\AiRunState.cpp" />
     <ClCompile Include="StateMachingFiles\StateMachine.cpp" />
     <ClCompile Include="SteeringFiles\ArriveSteering.cpp" />
     <ClCompile Include="SteeringFiles\Component.cpp" />

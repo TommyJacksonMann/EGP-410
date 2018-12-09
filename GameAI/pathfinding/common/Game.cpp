@@ -20,6 +20,8 @@
 #include "../game/StateMachingFiles/StateMachine.h"
 #include "../game/StateMachingFiles/PlayerAttackState.h"
 #include "../game/StateMachingFiles/PlayerRunState.h"
+#include "../game/StateMachingFiles/AiAttackState.h"
+#include "../game/StateMachingFiles/AiRunState.h"
 
 
 
@@ -138,14 +140,26 @@ bool Game::init()
 	pUnit->setUnitType(UnitType::PLAYER);
 	StateMachineState* pPlayerRunState = new PlayerRunState(0);
 	StateMachineState* pPlayerAttackState = new PlayerAttackState(1);
+	//StateMachineState* pAiRunState = new AiRunState(2);
+	//StateMachineState* pAiAttackState = new AiAttackState(3);
 	StateTransition* pToPlayerRunTrans = new StateTransition(PLAYER_TO_RUN_TRANSITION, 0);
 	StateTransition* pToPlayerAttackTrans = new StateTransition(PLAYER_TO_ATTACK_TRANSITION, 1);
+	//StateTransition* pToAiRunTrans = new StateTransition(AI_TO_RUN_TRANSITION, 2);
+	//StateTransition* pToAiAttackTrans = new StateTransition(AI_TO_ATTACK_TRANSITION, 3);
 
 	pPlayerRunState->addTransition(pToPlayerAttackTrans);
+	//pPlayerRunState->addTransition(pToAiRunTrans);
 	pPlayerAttackState->addTransition(pToPlayerRunTrans);
+	//pPlayerAttackState->addTransition(pToAiAttackTrans);
+	/*pAiRunState->addTransition(pToAiAttackTrans);
+	pAiRunState->addTransition(pToPlayerRunTrans);
+	pAiAttackState->addTransition(pToAiRunTrans);
+	pAiAttackState->addTransition(pToPlayerAttackTrans);/**/
 
 	pUnit->getStateMachine()->addState(pPlayerRunState);
 	pUnit->getStateMachine()->addState(pPlayerAttackState);
+	//pUnit->getStateMachine()->addState(pAiRunState);
+	//pUnit->getStateMachine()->addState(pAiAttackState);
 
 	pUnit->getStateMachine()->setInitialStateID(0);
 

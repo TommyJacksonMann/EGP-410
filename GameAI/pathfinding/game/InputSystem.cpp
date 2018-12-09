@@ -66,87 +66,8 @@ void InputSystem::update()
 				GameMessage* pSpawnTestEnemyMessage = new SpawnEnemyMessage();
 				pGame->getMessageManager()->addMessage(pSpawnTestEnemyMessage, 0);
 			}
-			static KeyCode lastKeyPressed = KeyCode::NUM_SCANCODES;
-			if ((mBitwiseKeyStates[KeyCode::SCANCODE_UP] || mBitwiseKeyStates[KeyCode::SCANCODE_DOWN]
-				|| mBitwiseKeyStates[KeyCode::SCANCODE_LEFT] || mBitwiseKeyStates[KeyCode::SCANCODE_RIGHT])
-				&& getHasByte(mBitwiseKeyStates[i], StateBitValues::CURRENTLY_PRESSED)
-				)
-			{
-				
-				if (mBitwiseKeyStates[KeyCode::SCANCODE_UP])
-				{
-					lastKeyPressed = KeyCode::SCANCODE_UP;
-				}
-				else if (mBitwiseKeyStates[KeyCode::SCANCODE_DOWN])
-				{
-					lastKeyPressed = KeyCode::SCANCODE_DOWN;
-				}
-				else if (mBitwiseKeyStates[KeyCode::SCANCODE_LEFT])
-				{
-					lastKeyPressed = KeyCode::SCANCODE_LEFT;
-				}
-				else if (mBitwiseKeyStates[KeyCode::SCANCODE_RIGHT])
-				{
-					lastKeyPressed = KeyCode::SCANCODE_RIGHT;
-				}
-			}
-			if (lastKeyPressed != KeyCode::NUM_SCANCODES)
-			{
-				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
-				Vector2D playerPos = pGame->getUnitManager()->getPlayerUnit()->getPositionComponent()->getPosition();
-				if ((int)playerPos.getX() % 32 < 5 && (int)playerPos.getY() % 32 < 5)
-				{
-					Vector2D destination = pGame->getUnitManager()->getPlayerUnit()->getPositionComponent()->getPosition();
-					destination += Vector2D(16, 16);
-					Vector2D direction(0, 0);
-					bool hitWall = false;
-					destination += direction;
-
-					GridGraph* pGridGraph = pGame->getGridGraph();
-					Grid* pGrid = pGame->getGrid();
-					int toIndex = pGrid->getSquareIndexFromPixelXY(destination.getX(), destination.getY());
-					int finalIndex = 0;
-					Node* pToNode = pGridGraph->getNode(toIndex);
-					Node* checkWallNode = pGridGraph->getNode(toIndex);
-
-
-					while (hitWall == false)
-					{
-						finalIndex = toIndex;
-						toIndex = pGrid->getSquareIndexFromPixelXY(destination.getX() + direction.getX()
-							, destination.getY() + direction.getY());
-						pToNode = checkWallNode;
-						checkWallNode = pGridGraph->getNode(toIndex);
-						hitWall = checkWallNode->getIsWall();
-						if (!hitWall)
-						{
-							if (lastKeyPressed == SCANCODE_UP)
-							{
-								direction += Vector2D(0, -32);
-							}
-							else if (lastKeyPressed == SCANCODE_DOWN)
-							{
-								direction += Vector2D(0, 32);
-							}
-							else if (lastKeyPressed == SCANCODE_LEFT)
-							{
-								direction += Vector2D(-32, 0);
-							}
-							else if (lastKeyPressed == SCANCODE_RIGHT)
-							{
-								direction += Vector2D(32, 0);
-							}
-						}
-					}
-
-					if (!pToNode->getIsWall())
-					{
-						GameMessage* pMessage = new PlayerMoveToMessage(pGrid->getULCornerOfSquare(finalIndex) + Vector2D(0, 0));
-						pGame->getMessageManager()->addMessage(pMessage, 0);
-					}
-				}
 			
-			}
+			playerMovement(i);
 			
 		}
 	}
@@ -222,4 +143,89 @@ void InputSystem::keyInputUpdate()
 bool InputSystem::getHasByte(const BYTE value, const BYTE comparison)const
 {
 	return (value & comparison);
+}
+
+void InputSystem::playerMovement(int currentKeyIndex)
+{
+	static KeyCode lastKeyPressed = KeyCode::NUM_SCANCODES;
+	if ((mBitwiseKeyStates[KeyCode::SCANCODE_UP] || mBitwiseKeyStates[KeyCode::SCANCODE_DOWN]
+		|| mBitwiseKeyStates[KeyCode::SCANCODE_LEFT] || mBitwiseKeyStates[KeyCode::SCANCODE_RIGHT])
+		&& getHasByte(mBitwiseKeyStates[currentKeyIndex], StateBitValues::CURRENTLY_PRESSED)
+		)
+	{
+
+		if (mBitwiseKeyStates[KeyCode::SCANCODE_UP])
+		{
+			lastKeyPressed = KeyCode::SCANCODE_UP;
+		}
+		else if (mBitwiseKeyStates[KeyCode::SCANCODE_DOWN])
+		{
+			lastKeyPressed = KeyCode::SCANCODE_DOWN;
+		}
+		else if (mBitwiseKeyStates[KeyCode::SCANCODE_LEFT])
+		{
+			lastKeyPressed = KeyCode::SCANCODE_LEFT;
+		}
+		else if (mBitwiseKeyStates[KeyCode::SCANCODE_RIGHT])
+		{
+			lastKeyPressed = KeyCode::SCANCODE_RIGHT;
+		}
+	}
+	if (lastKeyPressed != KeyCode::NUM_SCANCODES)
+	{
+		GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
+		Vector2D playerPos = pGame->getUnitManager()->getPlayerUnit()->getPositionComponent()->getPosition();
+		if ((int)playerPos.getX() % 32 < 6 && (int)playerPos.getY() % 32 < 6)
+		{
+			Vector2D destination = pGame->getUnitManager()->getPlayerUnit()->getPositionComponent()->getPosition();
+			destination += Vector2D(16, 16);
+			Vector2D direction(0, 0);
+			bool hitWall = false;
+			destination += direction;
+
+			GridGraph* pGridGraph = pGame->getGridGraph();
+			Grid* pGrid = pGame->getGrid();
+			int toIndex = pGrid->getSquareIndexFromPixelXY(destination.getX(), destination.getY());
+			int finalIndex = 0;
+			Node* pToNode = pGridGraph->getNode(toIndex);
+			Node* checkWallNode = pGridGraph->getNode(toIndex);
+
+
+			while (hitWall == false)
+			{
+				finalIndex = toIndex;
+				toIndex = pGrid->getSquareIndexFromPixelXY(destination.getX() + direction.getX()
+					, destination.getY() + direction.getY());
+				pToNode = checkWallNode;
+				checkWallNode = pGridGraph->getNode(toIndex);
+				hitWall = checkWallNode->getIsWall();
+				if (!hitWall)
+				{
+					if (lastKeyPressed == SCANCODE_UP)
+					{
+						direction += Vector2D(0, -32);
+					}
+					else if (lastKeyPressed == SCANCODE_DOWN)
+					{
+						direction += Vector2D(0, 32);
+					}
+					else if (lastKeyPressed == SCANCODE_LEFT)
+					{
+						direction += Vector2D(-32, 0);
+					}
+					else if (lastKeyPressed == SCANCODE_RIGHT)
+					{
+						direction += Vector2D(32, 0);
+					}
+				}
+			}
+
+			if (!pToNode->getIsWall())
+			{
+				GameMessage* pMessage = new PlayerMoveToMessage(pGrid->getULCornerOfSquare(finalIndex) + Vector2D(0, 0));
+				pGame->getMessageManager()->addMessage(pMessage, 0);
+			}
+		}
+
+	}
 }

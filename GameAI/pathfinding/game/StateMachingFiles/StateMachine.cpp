@@ -5,7 +5,12 @@ StateMachineState::~StateMachineState()
 {
 	for (auto it = mTransitions.begin(); it != mTransitions.end(); ++it)
 	{
-		delete it->second;
+		if (it->second != nullptr)
+		{
+			delete it->second;
+			it->second = NULL;
+		}
+		
 	}
 	mTransitions.clear();
 }
