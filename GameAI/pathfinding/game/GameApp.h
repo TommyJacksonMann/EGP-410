@@ -107,6 +107,7 @@ public:
 	const int getMaxEnemies() const { return mMaxEnemies; }
 
 	void AddScore(ScoreType);
+	void drawScore();
 private:
 
 	InputSystem* mpInputSystem;

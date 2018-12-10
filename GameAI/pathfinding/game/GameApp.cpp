@@ -32,6 +32,7 @@
 #include <SDL.h>
 #include <fstream>
 #include <vector>
+#include <string>
 
 const int GRID_SQUARE_SIZE = 32;
 const std::string gFileName = "pathgrid.txt";
@@ -179,6 +180,7 @@ void GameApp::processLoop()
 	//get input - should be moved someplace better
 	SDL_PumpEvents();
 
+	drawScore();
 	
 	//should be last thing in processLoop
 	Game::processLoop();
@@ -237,12 +239,12 @@ void GameApp::AddScore(ScoreType type)
 	{
 		case COIN_SCORE:
 		{
-			mGameScore += mCoinScore;
+			mCoinScore += 1;
 			break;
 		}
 		case EAT_ENEMY_SCORE:
 		{
-			mGameScore += mPlayerEat;
+			mPlayerEat += 1;
 			break;
 		}
 		case NO_SCORE:
@@ -251,4 +253,17 @@ void GameApp::AddScore(ScoreType type)
 		default:
 		{}
 	};
+	mGameScore = mPlayerEat + mCoinScore;
+}
+
+void GameApp::drawScore()
+{
+	std::string totalScore;
+	std::string coinScore = "CoinScore: " + std::to_string(mCoinScore);
+	std::string playerEatScore = "Ghosts Eaten: " + std::to_string(mPlayerEat);
+	totalScore = "GameScore: " + std::to_string(mGameScore);
+	totalScore += "  "+coinScore+"  "+playerEatScore;
+
+	mpGraphicsSystem->writeText(*gpGame->getGraphicsSystem()->getBackBuffer(), 
+		*gpGame->getFont(), 0, 0, totalScore.c_str(), Color(255, 255, 255));
 }

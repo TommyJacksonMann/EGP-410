@@ -27,6 +27,7 @@ void HandleCollisionMessage::process()
 	if (mpFirstUnit->getUnitType() == UnitType::PLAYER && mpSecondUnit->getUnitType() == UnitType::COIN)
 	{
 		GameApp* pGame = static_cast<GameApp*>(gpGame);
+		pGame->AddScore(ScoreType::COIN_SCORE);
 		UnitID coinID = mpSecondUnit->getID();
 		pGame->getUnitManager()->deleteUnit(coinID);
 		int oldCoinNum = pGame->getCurrentCoinsOnScreen();
@@ -37,6 +38,7 @@ void HandleCollisionMessage::process()
 	{
 
 		GameApp* pGame = static_cast<GameApp*>(gpGame);
+		pGame->AddScore(ScoreType::COIN_SCORE);
  		UnitID coinID = mpFirstUnit->getID();
 		pGame->getUnitManager()->deleteUnit(coinID);
 		int oldCoinNum = pGame->getCurrentCoinsOnScreen();
@@ -61,6 +63,7 @@ void HandleCollisionMessage::process()
 		if (typeid(*mpFirstUnit->getStateMachine()->getCurrentState()) == typeid(PlayerAttackState)  || typeid(*mpFirstUnit->getStateMachine()->getCurrentState()) == typeid(AiAttackState))
 		{
 			UnitID enemyID = mpSecondUnit->getID();
+			pGame->AddScore(ScoreType::EAT_ENEMY_SCORE);
 			pGame->getUnitManager()->deleteUnit(enemyID);
 		}
 		else
@@ -81,6 +84,7 @@ void HandleCollisionMessage::process()
 		if (typeid(*mpSecondUnit->getStateMachine()->getCurrentState()) == typeid(PlayerAttackState) || typeid(*mpSecondUnit->getStateMachine()->getCurrentState()) == typeid(AiAttackState))
 		{
 			UnitID enemyID = mpFirstUnit->getID();
+			pGame->AddScore(ScoreType::EAT_ENEMY_SCORE);
 			pGame->getUnitManager()->deleteUnit(enemyID);
 		}
 		else
