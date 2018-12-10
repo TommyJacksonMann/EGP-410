@@ -161,10 +161,6 @@ void GameApp::processLoop()
 	GraphicsBuffer* pBackBuffer = mpGraphicsSystem->getBackBuffer();
 	//copy to back buffer
 	mpGridVisualizer->draw( *pBackBuffer );
-#ifdef VISUALIZE_PATH
-	//show pathfinder visualizer
-	mpPathfinder->drawVisualization(mpGrid, pBackBuffer);
-#endif
 
 	mpDebugDisplay->draw( pBackBuffer );
 	//mpGridGraph->VisualizeNodeCosts(); //UNCOMMENT THIS TO SEE NODE COSTS AND NODE DIRECTIONS, FRAME RATE IS CHOO

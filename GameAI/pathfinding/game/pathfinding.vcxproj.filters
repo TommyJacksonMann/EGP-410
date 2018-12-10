@@ -285,6 +285,15 @@
     <ClInclude Include="KinematicEnemyRunSteering.h">
       <Filter>Steering\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="KinematicEnemyChaseSteering.h">
+      <Filter>Steering\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RestartGameMessage.h">
+      <Filter>Header Files\messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="DeleteAllEnemiesMessage.h">
+      <Filter>Header Files\messaging</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\common\Game.cpp">
@@ -490,6 +499,15 @@
     </ClCompile>
     <ClCompile Include="KinematicEnemyRunSteering.cpp">
       <Filter>Steering\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="KinematicEnemyChaseSteering.cpp">
+      <Filter>Steering\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RestartGameMessage.cpp">
+      <Filter>Source Files\messaging</Filter>
+    </ClCompile>
+    <ClCompile Include="DeleteAllEnemiesMessage.cpp">
+      <Filter>Source Files\messaging</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

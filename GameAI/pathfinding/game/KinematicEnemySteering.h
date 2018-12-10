@@ -1,5 +1,13 @@
 #pragma once
 #include "./SteeringFiles/Steering.h"
+
+/*
+* Class Implementation by RJ, most of the steering is similar to 
+* the kinematic arrive steering that Tommy did. Difference is that it randomizes a
+* a direction that isn't the last direction it moved in and has a frequency 
+* of when to change direction.
+*/
+
 class KinematicEnemySteering :
 	public Steering
 {

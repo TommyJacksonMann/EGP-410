@@ -77,14 +77,12 @@ void GridGraph::init()
 					if (notDiagonal)
 					{
 						pConnection = new Connection(pFromNode, pToNode, 1.0f);//create a connection
+						mConnections.push_back(pConnection);
+						connections.push_back(pConnection);
 					}
-					else
-					{
-						pConnection = new Connection(pFromNode, pToNode, sqrt(2));//create a connection
-					}
+					
 					//add connection to connection vectors
-					mConnections.push_back( pConnection );
-					connections.push_back( pConnection );
+					
 				}
 			}
 
