@@ -9,6 +9,7 @@ Champlain College
 
 #include "Game.h"
 #include <vector>
+#include <Vector2D.h>
 
 
 //forward declarations
@@ -25,6 +26,7 @@ class InputSystem;
 class DijkstraPathFinder;
 class AStarPathFinder;
 class PathPool;
+//class Vector2D;
 
 enum ScoreType 
 {
@@ -90,6 +92,20 @@ public:
 	const float getEnemyChaseRange() const { return mEnemyChaseRange; }
 	const float getEnemyDirectionFrquency() const { return mEnemyChangeDirectionFrequency; }
 
+	 Vector2D getEnemySpawnOne()  { return mEnemySpawnOne; }
+	 Vector2D getEnemySpawnTwo()  { return mEnemySpawnTwo; }
+	 Vector2D getEnemySpawnThree()  { return mEnemySpawnThree; }
+	 Vector2D getEnemySpawnFour()  { return mEnemySpawnFour; }
+
+	const int getEnemySpawnFrequency() const { return mEnemySpawnFrequency; }
+	const float getLastEnemySpawned() const { return mLastEnemySpawned; }
+	void setLastEnemySpawned(const float time) { mLastEnemySpawned = time; }
+	const float getEnemySpawnTime() const { return mEnemySpawnTime; }
+
+	const int getCurrentEnemies() const { return mCurrentEnemies; }
+	void setCurrentEnemies(const int newNum) { mCurrentEnemies = newNum; }
+	const int getMaxEnemies() const { return mMaxEnemies; }
+
 	void AddScore(ScoreType);
 private:
 
@@ -127,8 +143,17 @@ private:
 	int mCoinFrequency = 0;
 	int mPowerUpFrequency = 0;
 
-	
+	Vector2D mEnemySpawnOne;
+	Vector2D mEnemySpawnTwo;
+	Vector2D mEnemySpawnThree;
+	Vector2D mEnemySpawnFour;
 
+	int mEnemySpawnFrequency = 0;
+	float mLastEnemySpawned = 0;
+	float mEnemySpawnTime = 0;
+
+	int mCurrentEnemies = 0;
+	int mMaxEnemies = 0;
 
 };
 

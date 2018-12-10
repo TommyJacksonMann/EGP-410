@@ -9,11 +9,11 @@
 * Also fires PowerUps
 */
 
-class SpawnCoinMessage : public GameMessage
+class SpawnItemMessage : public GameMessage
 {
 public:
-	SpawnCoinMessage();
-	~SpawnCoinMessage();
+	SpawnItemMessage();
+	~SpawnItemMessage();
 
 	void process();
 };

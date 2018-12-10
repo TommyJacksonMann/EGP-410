@@ -3,11 +3,16 @@
 
 
 RestartGameMessage::RestartGameMessage()
-	: GameMessage()
+	: GameMessage(RESET_GAME_MESSAGE)
 {
 }
 
 
 RestartGameMessage::~RestartGameMessage()
 {
+}
+
+void RestartGameMessage::process()
+{
+
 }

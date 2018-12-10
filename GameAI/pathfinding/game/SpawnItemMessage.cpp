@@ -9,18 +9,18 @@
 #include "./SteeringFiles/PositionComponent.h"
 
 
-SpawnCoinMessage::SpawnCoinMessage()
-	: GameMessage(SPAWN_COIN_MESSAGE)
+SpawnItemMessage::SpawnItemMessage()
+	: GameMessage(SPAWN_ITEM_MESSAGE)
 {
 
 }
 
-SpawnCoinMessage::~SpawnCoinMessage()
+SpawnItemMessage::~SpawnItemMessage()
 {
 
 }
 
-void SpawnCoinMessage::process()
+void SpawnItemMessage::process()
 {
 	GameApp* pGame = static_cast<GameApp*>(gpGame);
 	double currentTime = pGame->getCurrentTime();

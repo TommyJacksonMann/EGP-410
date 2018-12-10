@@ -113,8 +113,14 @@ bool GameApp::init()
 	mCoinFrequency = DataParser::getInstance()->ReadFile("CoinSpawnFrequency");
 	mCoinDelay = DataParser::getInstance()->ReadFile("CoinSpawnTime");
 
+	mEnemySpawnOne = Vector2D(DataParser::getInstance()->ReadFile("EnemySpawnOneX"), DataParser::getInstance()->ReadFile("EnemySpawnOneY"));
+	mEnemySpawnTwo = Vector2D(DataParser::getInstance()->ReadFile("EnemySpawnTwoX"), DataParser::getInstance()->ReadFile("EnemySpawnTwoY"));
+	mEnemySpawnThree = Vector2D(DataParser::getInstance()->ReadFile("EnemySpawnThreeX"), DataParser::getInstance()->ReadFile("EnemySpawnThreeY"));
+	mEnemySpawnFour = Vector2D(DataParser::getInstance()->ReadFile("EnemySpawnFourX"), DataParser::getInstance()->ReadFile("EnemySpawnFourY"));
 
-
+	mEnemySpawnFrequency = DataParser::getInstance()->ReadFile("EnemySpawnFrequency");
+	mEnemySpawnTime = DataParser::getInstance()->ReadFile("EnemySpawnTime");
+	mMaxEnemies = DataParser::getInstance()->ReadFile("MaxEnemies");
 
 	mpMasterTimer->start();
 	return true;
@@ -181,8 +187,10 @@ void GameApp::processLoop()
 bool GameApp::endLoop()
 {
 
-	GameMessage* pCoinMessage = new SpawnCoinMessage();
-	mpMessageManager->addMessage(pCoinMessage, 0);
+	GameMessage* pItemMessage = new SpawnItemMessage();
+	mpMessageManager->addMessage(pItemMessage, 0);
+	GameMessage* pEnemySpawnMessage = new SpawnEnemyMessage();
+	mpMessageManager->addMessage(pEnemySpawnMessage, 0);
 	return Game::endLoop();
 }
 
