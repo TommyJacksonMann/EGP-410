@@ -7,11 +7,18 @@
 #include "../SteeringFiles/Unit.h"
 #include "Sprite.h"
 #include "SpriteManager.h"
+#include "PlayerRunState.h"
+#include "PlayerAiRunState.h"
 
 using namespace std;
 
 void AiFleeState::onEntrance()
 {
+
+	GameApp* pGame = static_cast<GameApp*>(gpGame);
+	Unit* pOwner = pGame->getUnitManager()->getUnit(mOwner);
+	pOwner->setSteering(Steering::KINEMATIC_ENEMY_RUN, pOwner->getPositionComponent()->getPosition(), gpGame->getUnitManager()->getPlayerUnit()->getID());
+
 	mTransitionToChase = false;
 	mTransitionToWander = false;
 }
@@ -24,6 +31,25 @@ void AiFleeState::onExit()
 
 StateTransition* AiFleeState::update()
 {
+	GameApp* pGame = static_cast<GameApp*>(gpGame);
+
+	Unit* pOwner = gpGame->getUnitManager()->getUnit(mOwner);
+	Unit* pPlayer = gpGame->getUnitManager()->getPlayerUnit();
+
+	Vector2D diff = pOwner->getPositionComponent()->getPosition() - pPlayer->getPositionComponent()->getPosition();
+
+	if (diff.getLength() < pGame->getEnemyChaseRange())
+	{
+		if (typeid(*pPlayer->getStateMachine()->getCurrentState()) == typeid(PlayerRunState) || typeid(*pPlayer->getStateMachine()->getCurrentState()) == typeid(PlayerAiRunState))
+		{
+			mTransitionToChase = true;
+		}
+	}
+	else if (diff.getLength() > pGame->getEnemyChaseRange())
+	{
+		mTransitionToWander = true;
+
+	}
 	std::cout << "AI FFFFFFFFFLLLLLLLLLLLLLLLLEEEEEEEEEEEEEEEE\n";
 
 	if (mTransitionToChase == true)

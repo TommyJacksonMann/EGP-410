@@ -2,6 +2,7 @@
 
 #include <map>
 #include <Trackable.h>
+#include <Defines.h>
 
 /*Collection of base classes to implement a StateMachine.  Heavily borrowed from
 	Millington text.
@@ -31,7 +32,7 @@ typedef int SM_idType;
 class StateMachineState:public Trackable
 {
 public:
-	StateMachineState( const SM_idType& id ):mID(id){};
+	StateMachineState( const SM_idType& id, const UnitID owner ):mID(id), mOwner(owner){};
 	~StateMachineState();
 
 	void addTransition( StateTransition* pTransition );
@@ -44,6 +45,8 @@ public:
 protected:
 	SM_idType mID;
 	std::map<TransitionType, StateTransition*> mTransitions;
+
+	UnitID mOwner;
 };
 
 class StateTransition:public Trackable

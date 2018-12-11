@@ -27,4 +27,5 @@ void DeleteAllCoinsMessage::process()
 	}
 	pGame->setCoinsOnScreen(0);
 	pGame->setPowerUpsOnScreen(0);
+	
 }

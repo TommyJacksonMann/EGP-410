@@ -64,6 +64,9 @@ void HandleCollisionMessage::process()
 			UnitID enemyID = mpSecondUnit->getID();
 			pGame->AddScore(ScoreType::EAT_ENEMY_SCORE);
 			pGame->getUnitManager()->deleteUnit(enemyID);
+			int oldEnemyNum = pGame->getCurrentEnemies();
+			oldEnemyNum--;
+			pGame->setCurrentEnemies(oldEnemyNum);
 		}
 		else
 		{
@@ -86,6 +89,9 @@ void HandleCollisionMessage::process()
 			UnitID enemyID = mpFirstUnit->getID();
 			pGame->AddScore(ScoreType::EAT_ENEMY_SCORE);
 			pGame->getUnitManager()->deleteUnit(enemyID);
+			int oldEnemyNum = pGame->getCurrentEnemies();
+			oldEnemyNum--;
+			pGame->setCurrentEnemies(oldEnemyNum);
 		}
 		else
 		{
@@ -114,6 +120,8 @@ void HandleCollisionMessage::process()
 		int oldPowerUpNum = pGame->getCurrentPowerUpsOnScreen();
 		oldPowerUpNum--;
 		pGame->setPowerUpsOnScreen(oldPowerUpNum);
+
+		pGame->setLastPowerUpFired(pGame->getCurrentTime());
 	}
 	else if (mpFirstUnit->getUnitType() == UnitType::PLAYER && mpSecondUnit->getUnitType() == UnitType::POWER_UP)
 	{
@@ -128,6 +136,7 @@ void HandleCollisionMessage::process()
 		int oldPowerUpNum = pGame->getCurrentPowerUpsOnScreen();
 		oldPowerUpNum--;
 		pGame->setPowerUpsOnScreen(oldPowerUpNum);
+		pGame->setLastPowerUpFired(pGame->getCurrentTime());
 	}
 	else if (mpSecondUnit->getUnitType() == UnitType::POWER_UP && mpFirstUnit->getUnitType() == UnitType::POWER_UP)
 	{

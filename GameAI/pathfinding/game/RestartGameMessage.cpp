@@ -26,7 +26,6 @@ void RestartGameMessage::process()
 		pGame->AddScore(NO_SCORE);
 		pGame->setPlayerCurrentLives(pGame->getPlayerStartLives());
 
-		//RESET TIMES FOR EVERY FREQUENCY 
 	}
 
 	if (pGame->getPlayerLives() < 0)
@@ -41,5 +40,11 @@ void RestartGameMessage::process()
 	pGame->getMessageManager()->addMessage(pDeleteEnemies, 0);
 	GameMessage* pResetPos = new ResetPlayerStartPos();
 	pGame->getMessageManager()->addMessage(pResetPos, 0);
+
+
+	pGame->setLastCoinFired(pGame->getCurrentTime());
+	pGame->setLastPowerUpFired(pGame->getCurrentTime());
+	pGame->setLastEnemySpawned(pGame->getCurrentTime());
+
 
 }

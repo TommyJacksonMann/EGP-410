@@ -4,7 +4,7 @@
 class AiFleeState : public StateMachineState
 {
 public:
-	AiFleeState(const SM_idType& id) :StateMachineState(id) {};
+	AiFleeState(const SM_idType& id, const UnitID owner) :StateMachineState(id, owner) {};
 
 	virtual void onEntrance();
 	virtual void onExit();

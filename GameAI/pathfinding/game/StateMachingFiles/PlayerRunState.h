@@ -4,7 +4,7 @@
 class PlayerRunState : public StateMachineState
 {
 public:
-	PlayerRunState(const SM_idType& id) :StateMachineState(id) {};
+	PlayerRunState(const SM_idType& id, const UnitID owner) :StateMachineState(id, owner) {};
 
 	virtual void onEntrance();
 	virtual void onExit();

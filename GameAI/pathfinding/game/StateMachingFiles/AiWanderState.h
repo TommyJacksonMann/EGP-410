@@ -4,7 +4,7 @@
 class AiWanderState : public StateMachineState
 {
 public:
-	AiWanderState(const SM_idType& id) :StateMachineState(id) {};
+	AiWanderState(const SM_idType& id, const UnitID owner) :StateMachineState(id, owner) {};
 
 	virtual void onEntrance();
 	virtual void onExit();

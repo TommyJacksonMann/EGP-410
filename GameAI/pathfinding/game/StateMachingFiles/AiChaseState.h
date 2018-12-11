@@ -4,7 +4,7 @@
 class AiChaseState : public StateMachineState
 {
 public:
-	AiChaseState(const SM_idType& id) :StateMachineState(id) {};
+	AiChaseState(const SM_idType& id, const UnitID owner) :StateMachineState(id, owner) {};
 
 	virtual void onEntrance();
 	virtual void onExit();

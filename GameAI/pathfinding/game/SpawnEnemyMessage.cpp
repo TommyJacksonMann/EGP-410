@@ -73,9 +73,9 @@ void SpawnEnemyMessage::process()
 
 			pUnit->setUnitType(UnitType::ENEMY);
 
-			StateMachineState* pAiWanderState = new AiWanderState(0);
-			StateMachineState* pAiChaseState = new AiChaseState(1);
-			StateMachineState* pAiFleeState = new AiFleeState(2);
+			StateMachineState* pAiWanderState = new AiWanderState(0, pUnit->getID());
+			StateMachineState* pAiChaseState = new AiChaseState(1, pUnit->getID());
+			StateMachineState* pAiFleeState = new AiFleeState(2, pUnit->getID());
 
 			pAiWanderState->addTransition(pGame->getChaseTrans());
 			pAiWanderState->addTransition(pGame->getFleeTrans());
