@@ -3,9 +3,8 @@
 #include "Game.h"
 #include "GameApp.h"
 #include "./SteeringFiles/UnitManager.h"
-#include "ResetPlayerStartPosMessage.h"
 #include "GameMessageManager.h"
-#include "DeleteAllCoinsMessage.h"
+#include "RestartGameMessage.h"
 #include "PlayerAttackMessage.h"
 #include "PlayerRunMessage.h"
 #include "./StateMachingFiles/StateMachine.h"
@@ -68,10 +67,11 @@ void HandleCollisionMessage::process()
 		}
 		else
 		{
-			GameMessage* pMessage = new ResetPlayerStartPos();
+			GameMessage* pMessage = new RestartGameMessage();
 			pGame->getMessageManager()->addMessage(pMessage, 0);
-			GameMessage* pDeleteCoinMessage = new DeleteAllCoinsMessage();
-			pGame->getMessageManager()->addMessage(pDeleteCoinMessage, 0);
+			int lives = pGame->getPlayerLives();
+			lives--;
+			pGame->setPlayerCurrentLives(lives);
 			mpSecondUnit->getCollisionComponent()->resetLastCollided();
 		}
 
@@ -89,10 +89,11 @@ void HandleCollisionMessage::process()
 		}
 		else
 		{
-			GameMessage* pMessage = new ResetPlayerStartPos();
+			GameMessage* pMessage = new RestartGameMessage();
 			pGame->getMessageManager()->addMessage(pMessage, 0);
-			GameMessage* pDeleteCoinMessage = new DeleteAllCoinsMessage();
-			pGame->getMessageManager()->addMessage(pDeleteCoinMessage, 0);
+			int lives = pGame->getPlayerLives();
+			lives--;
+			pGame->setPlayerCurrentLives(lives);
 			mpFirstUnit->getCollisionComponent()->resetLastCollided();
 		}
 	}

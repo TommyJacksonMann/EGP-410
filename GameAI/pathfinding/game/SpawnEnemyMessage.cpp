@@ -32,7 +32,7 @@ void SpawnEnemyMessage::process()
 
 	if (testEnemyTime <= currentTime && (rand() % enemyFrequency == 0))
 	{
-		int currentEnemiesOnScreen = pGame->getCurrentEnemies();
+ 		int currentEnemiesOnScreen = pGame->getCurrentEnemies();
 		int maxEnemiesOnScreen = pGame->getMaxEnemies();
 		if (maxEnemiesOnScreen > currentEnemiesOnScreen)
 		{

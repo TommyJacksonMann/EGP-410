@@ -106,9 +106,17 @@ public:
 	void setCurrentEnemies(const int newNum) { mCurrentEnemies = newNum; }
 	const int getMaxEnemies() const { return mMaxEnemies; }
 
+	const int getPlayerLives() const { return mPlayerCurrentLives; }
+	void setPlayerCurrentLives(const int newLives) { mPlayerCurrentLives = newLives; }
+	const int getPlayerStartLives() const { return mPlayerStartLives; }
+
+	void setGameEnd() { mEndGame = !mEndGame; }
+
 	void AddScore(ScoreType);
 	void drawScore();
 private:
+
+	bool mEndGame = false;
 
 	InputSystem* mpInputSystem;
 	GameMessageManager* mpMessageManager;
@@ -124,9 +132,14 @@ private:
 	int mGameScore = 0;
 	int mCoinScore = 0;
 	int mPlayerEat = 0;
+	
+	int mCoinsCollected = 0;
+	int mEnemiesEaten = 0;
 
 	int mPlayerAttackTime = 0;
 	float mPlayerSpeed = 0;
+	int mPlayerStartLives = 0;
+	int mPlayerCurrentLives = 0;
 
 	float mEnemySpeed = 0;
 	float mEnemyChaseRange = 0;

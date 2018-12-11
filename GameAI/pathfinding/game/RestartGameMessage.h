@@ -4,9 +4,11 @@ class RestartGameMessage :
 	public GameMessage
 {
 public:
-	RestartGameMessage();
+	RestartGameMessage(bool restartGame = false);
 	~RestartGameMessage();
 
 	void process();
+private:
+	bool mResetOrRestart;
 };
 

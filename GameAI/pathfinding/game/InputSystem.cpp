@@ -22,6 +22,7 @@
 #include "SteeringFiles/SteeringComponent.h"
 #include "SpawnEnemyMessage.h"
 #include "ChangePlayerControlMessage.h"
+#include "RestartGameMessage.h"
 #include "StateMachingFiles/StateMachine.h"
 #include "StateMachingFiles/PlayerAiAttackState.h"
 #include "StateMachingFiles/PlayerAttackState.h"
@@ -70,9 +71,10 @@ void InputSystem::update()
 			}
 			if (mBitwiseKeyStates[KeyCode::SCANCODE_R] && getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED))
 			{
+				//CHANGE TO RESTART
 				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
-				GameMessage* pSpawnTestEnemyMessage = new SpawnEnemyMessage();
-				pGame->getMessageManager()->addMessage(pSpawnTestEnemyMessage, 0);
+				GameMessage* pRestartGame = new RestartGameMessage(true);
+				pGame->getMessageManager()->addMessage(pRestartGame, 0);
 			}
 			if (mBitwiseKeyStates[KeyCode::SCANCODE_C] && getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED))
 			{

@@ -1,5 +1,8 @@
 PlayerSpawnX (32)
 PlayerSpawnY (32)
+StartLives (3)
+EatEnemyPoints (100)
+CoinPoints (50)
 MaxCoins (25)
 MaxPowerUps (1)
 PowerUpTime (5000)
@@ -22,3 +25,4 @@ EnemySpawnFourY (640)
 EnemySpawnFrequency (20)
 EnemySpawnTime (5000)
 MaxEnemies (4)
+

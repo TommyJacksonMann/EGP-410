@@ -17,11 +17,14 @@ void DeleteAllCoinsMessage::process()
 	GameApp* pGame = static_cast<GameApp*>(gpGame);
 	while (iter != tempMap.end())
 	{
-		if (iter->second->getUnitType() == COIN)
+		if (iter->second->getUnitType() == COIN || iter->second->getUnitType() == POWER_UP)
 		{
 			pGame->getUnitManager()->deleteUnit(iter->second->getID());
-			pGame->setCoinsOnScreen(0);
+			
 		}
 		iter++;
+		
 	}
+	pGame->setCoinsOnScreen(0);
+	pGame->setPowerUpsOnScreen(0);
 }

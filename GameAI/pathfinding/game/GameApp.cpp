@@ -100,6 +100,7 @@ bool GameApp::init()
 
 	mCurrentCoinsOnScreen = 0;
 	mCurrentPowerUpsOnScreen = 0;
+	
 
 	mPlayerAttackTime = DataParser::getInstance()->ReadFile("PowerUpTime");
  	mPlayerSpeed = DataParser::getInstance()->ReadFile("PlayerSpeed");
@@ -122,6 +123,12 @@ bool GameApp::init()
 	mEnemySpawnFrequency = DataParser::getInstance()->ReadFile("EnemySpawnFrequency");
 	mEnemySpawnTime = DataParser::getInstance()->ReadFile("EnemySpawnTime");
 	mMaxEnemies = DataParser::getInstance()->ReadFile("MaxEnemies");
+
+	mPlayerStartLives = DataParser::getInstance()->ReadFile("StartLives");
+	mPlayerCurrentLives = mPlayerStartLives;
+
+	mPlayerEat = DataParser::getInstance()->ReadFile("EatEnemyPoints");
+	mCoinScore = DataParser::getInstance()->ReadFile("CoinPoints");
 
 
 	mpMasterTimer->start();
@@ -240,30 +247,36 @@ void GameApp::AddScore(ScoreType type)
 	{
 		case COIN_SCORE:
 		{
-			mCoinScore += 1;
+			mGameScore += mCoinScore;
+			mCoinsCollected++;
 			break;
 		}
 		case EAT_ENEMY_SCORE:
 		{
-			mPlayerEat += 1;
+			mGameScore += mPlayerEat;
+			mEnemiesEaten++;
 			break;
 		}
 		case NO_SCORE:
 		{
+			mGameScore = 0;
+			mEnemiesEaten = 0;
+			mCoinsCollected = 0;
+			break;
 		}
 		default:
 		{}
 	};
-	mGameScore = mPlayerEat + mCoinScore;
 }
 
 void GameApp::drawScore()
 {
 	std::string totalScore;
-	std::string coinScore = "CoinScore: " + std::to_string(mCoinScore);
-	std::string playerEatScore = "Ghosts Eaten: " + std::to_string(mPlayerEat);
+	std::string coinScore = "CoinScore: " + std::to_string(mCoinsCollected);
+	std::string playerEatScore = "Ghosts Eaten: " + std::to_string(mEnemiesEaten);
+	std::string lives = "Player Lives: " + std::to_string(mPlayerCurrentLives);
 	totalScore = "GameScore: " + std::to_string(mGameScore);
-	totalScore += "  "+coinScore+"  "+playerEatScore;
+	totalScore += "  " + coinScore + "  " + playerEatScore + " " + lives;
 
 	mpGraphicsSystem->writeText(*gpGame->getGraphicsSystem()->getBackBuffer(), 
 		*gpGame->getFont(), 0, 0, totalScore.c_str(), Color(255, 255, 255));
