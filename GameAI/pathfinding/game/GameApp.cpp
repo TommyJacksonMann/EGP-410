@@ -123,6 +123,7 @@ bool GameApp::init()
 	mEnemySpawnTime = DataParser::getInstance()->ReadFile("EnemySpawnTime");
 	mMaxEnemies = DataParser::getInstance()->ReadFile("MaxEnemies");
 
+
 	mpMasterTimer->start();
 	return true;
 }

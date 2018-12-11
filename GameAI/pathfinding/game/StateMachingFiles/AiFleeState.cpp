@@ -18,7 +18,8 @@ void AiFleeState::onEntrance()
 
 void AiFleeState::onExit()
 {
-	
+	mTransitionToChase = false;
+	mTransitionToWander = false;
 }
 
 StateTransition* AiFleeState::update()

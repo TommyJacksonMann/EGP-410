@@ -215,3 +215,18 @@ std::vector<Unit*> UnitManager::getUnitsOfType(Steering::SteeringType typeToLook
 	}
 	return unitsOfType;
 }
+
+std::vector<Unit*> UnitManager::getUnitsOfType(UnitType typeToLookFor)
+{
+	std::vector<Unit*> unitsOfType;
+
+	for (auto it = mUnitMap.begin(); it != mUnitMap.end(); ++it)
+	{
+
+		if (it->second->getUnitType() == typeToLookFor)
+		{
+			unitsOfType.push_back(it->second);
+		}
+	}
+	return unitsOfType;
+}

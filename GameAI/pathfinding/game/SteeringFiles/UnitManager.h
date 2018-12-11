@@ -37,6 +37,7 @@ public:
 
 	std::vector<Unit*> getUnitsWithinRadius(Vector2D center, float radius, Steering::SteeringType typeToLookFor);
 	std::vector<Unit*> getUnitsOfType(Steering::SteeringType typeToLookFor);
+	std::vector<Unit*> getUnitsOfType(UnitType typeToLookFor);
 	std::map<UnitID, Unit*> getUnitMap() const { return mUnitMap; }
 private:
 	static UnitID msNextUnitID;

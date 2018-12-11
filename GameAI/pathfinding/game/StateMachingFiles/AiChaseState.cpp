@@ -18,7 +18,8 @@ void AiChaseState::onEntrance()
 
 void AiChaseState::onExit()
 {
-
+	mTransitionToWander = false;
+	mTransitionToFlee = false;
 }
 
 StateTransition* AiChaseState::update()

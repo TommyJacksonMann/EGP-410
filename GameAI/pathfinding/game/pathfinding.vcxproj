@@ -94,6 +94,7 @@
     <ClInclude Include="AddAndRemoveUnitsMessage.h" />
     <ClInclude Include="AStarMessage.h" />
     <ClInclude Include="AStarPathFinder.h" />
+    <ClInclude Include="ChangeAIUnitStateMessage.h" />
     <ClInclude Include="CollisionComponent.h" />
     <ClInclude Include="Connection.h" />
     <ClInclude Include="DataParser.h" />
@@ -177,6 +178,7 @@
     <ClCompile Include="..\common\SpriteManager.cpp" />
     <ClCompile Include="AddAndRemoveUnitsMessage.cpp" />
     <ClCompile Include="AStarPathFinder.cpp" />
+    <ClCompile Include="ChangeAIUnitStateMessage.cpp" />
     <ClCompile Include="CollisionComponent.cpp" />
     <ClCompile Include="Connection.cpp" />
     <ClCompile Include="DataParser.cpp" />
