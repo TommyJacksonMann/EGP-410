@@ -4,8 +4,8 @@
 #include "./StateMachingFiles/StateMachine.h"
 #include "./StateMachingFiles/PlayerAttackState.h"
 #include "./StateMachingFiles/PlayerRunState.h"
-#include "./StateMachingFiles/AiAttackState.h"
-#include "./StateMachingFiles/AiRunState.h"
+#include "./StateMachingFiles/PlayerAiAttackState.h"
+#include "./StateMachingFiles/PlayerAiRunState.h"
 #include <typeinfo>
 
 void PlayerAttackMessage::process()
@@ -18,9 +18,9 @@ void PlayerAttackMessage::process()
 		PlayerRunState* pAttackState = static_cast<PlayerRunState*>(pCurrentState);
 		pAttackState->transitionToAttack();
 	}
-	else if (typeid(*pCurrentState) == typeid(AiRunState))
+	else if (typeid(*pCurrentState) == typeid(PlayerAiRunState))
 	{
-		AiRunState* pAttackState = static_cast<AiRunState*>(pCurrentState);
+		PlayerAiRunState* pAttackState = static_cast<PlayerAiRunState*>(pCurrentState);
 		pAttackState->transitionToAiAttack();
 	}
 }

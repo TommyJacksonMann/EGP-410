@@ -9,6 +9,11 @@
 #include "GraphicsSystem.h"
 #include "./SteeringFiles/PositionComponent.h"
 
+#include "./StateMachingFiles/StateMachine.h"
+#include "StateMachingFiles/AiChaseState.h"
+#include "StateMachingFiles/AiFleeState.h"
+#include "StateMachingFiles/AiWanderState.h"
+
 SpawnEnemyMessage::SpawnEnemyMessage()
 	:GameMessage(SPAWN_ENEMY_MESSAGE)
 {}
@@ -67,6 +72,24 @@ void SpawnEnemyMessage::process()
 			pUnit->setSteering(Steering::KINEMATIC_ENEMY_ARRIVE, newSpawn, gpGame->getUnitManager()->getPlayerUnit()->getID());
 
 			pUnit->setUnitType(UnitType::ENEMY);
+
+			StateMachineState* pAiWanderState = new AiWanderState(0);
+			StateMachineState* pAiChaseState = new AiChaseState(1);
+			StateMachineState* pAiFleeState = new AiFleeState(2);
+
+			pAiWanderState->addTransition(pGame->getChaseTrans());
+			pAiWanderState->addTransition(pGame->getFleeTrans());
+			pAiChaseState->addTransition(pGame->getWanderTrans());
+			pAiChaseState->addTransition(pGame->getFleeTrans());
+			pAiFleeState->addTransition(pGame->getChaseTrans());
+			pAiFleeState->addTransition(pGame->getWanderTrans());
+
+			pUnit->getStateMachine()->addState(pAiWanderState);
+			pUnit->getStateMachine()->addState(pAiChaseState);
+			pUnit->getStateMachine()->addState(pAiFleeState);
+
+			pUnit->getStateMachine()->setInitialStateID(0);
+
 			currentEnemiesOnScreen++;
 
 			lastEnemyFired = currentTime;

@@ -23,9 +23,9 @@
 #include "SpawnEnemyMessage.h"
 #include "ChangePlayerControlMessage.h"
 #include "StateMachingFiles/StateMachine.h"
-#include "StateMachingFiles/AiAttackState.h"
+#include "StateMachingFiles/PlayerAiAttackState.h"
 #include "StateMachingFiles/PlayerAttackState.h"
-#include "StateMachingFiles/AiRunState.h"
+#include "StateMachingFiles/PlayerAiRunState.h"
 #include "StateMachingFiles/PlayerRunState.h"
 
 #include <typeinfo>
@@ -163,7 +163,7 @@ void InputSystem::playerMovement(int currentKeyIndex)
 	GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
 	static KeyCode lastKeyPressed = KeyCode::NUM_SCANCODES;
 	StateMachineState* pCurrentPlayerState = pGame->getUnitManager()->getPlayerUnit()->getStateMachine()->getCurrentState();
-	if (typeid(*pCurrentPlayerState) != typeid(AiRunState) && typeid(*pCurrentPlayerState) != typeid(AiAttackState))
+	if (typeid(*pCurrentPlayerState) != typeid(PlayerAiRunState) && typeid(*pCurrentPlayerState) != typeid(PlayerAiAttackState))
 	{
 		if ((mBitwiseKeyStates[KeyCode::SCANCODE_UP] || mBitwiseKeyStates[KeyCode::SCANCODE_DOWN]
 			|| mBitwiseKeyStates[KeyCode::SCANCODE_LEFT] || mBitwiseKeyStates[KeyCode::SCANCODE_RIGHT])

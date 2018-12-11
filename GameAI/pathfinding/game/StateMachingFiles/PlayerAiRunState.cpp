@@ -1,5 +1,5 @@
 #include "Game.h"
-#include "AiAttackState.h"
+#include "PlayerAiRunState.h"
 #include <iostream>
 #include "Game.h"
 #include "../GameApp.h"
@@ -10,31 +10,29 @@
 
 using namespace std;
 
-void AiAttackState::onEntrance()
+void PlayerAiRunState::onEntrance()
 {
-	mTransitionToRun = false;
+	mTransitionToAttack = false;
 	mTransitionToPlayerControl = false;
 	GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
 	Unit* pPlayerUnit = pGame->getUnitManager()->getPlayerUnit();
-	pPlayerUnit->setSprite(*pGame->getSpriteManager()->getSprite(PLAYER_ATTACK_ICON_SPRITE_ID));
+	pPlayerUnit->setSprite(*pGame->getSpriteManager()->getSprite(PLAYER_ICON_SPRITE_ID));
 }
 
-void AiAttackState::onExit()
+void PlayerAiRunState::onExit()
 {
 
 	GameApp* pGame = static_cast<GameApp*>(gpGame);
 	pGame->setLastPowerUpFired(gpGame->getCurrentTime());
 }
 
-StateTransition* AiAttackState::update()
+StateTransition* PlayerAiRunState::update()
 {
-	std::cout << "AI ATTTTTTTTTAAAAAACKCKKKCKCKCKCKK\n";
-
-	if (mTransitionToRun == true)
+	if (mTransitionToAttack == true)
 	{
-		mTransitionToRun = false;
+		mTransitionToAttack = false;
 		//find the right transition
-		map<TransitionType, StateTransition*>::iterator iter = mTransitions.find(AI_TO_RUN_TRANSITION);
+		map<TransitionType, StateTransition*>::iterator iter = mTransitions.find(PLAYER_AI_TO_ATTACK_TRANSITION);
 		if (iter != mTransitions.end())//found?
 		{
 			StateTransition* pTransition = iter->second;
@@ -45,7 +43,7 @@ StateTransition* AiAttackState::update()
 	{
 		mTransitionToPlayerControl = false;
 		//find the right transition
-		map<TransitionType, StateTransition*>::iterator iter = mTransitions.find(PLAYER_TO_ATTACK_TRANSITION);
+		map<TransitionType, StateTransition*>::iterator iter = mTransitions.find(PLAYER_TO_RUN_TRANSITION);
 		if (iter != mTransitions.end())//found?
 		{
 			StateTransition* pTransition = iter->second;
@@ -59,12 +57,16 @@ StateTransition* AiAttackState::update()
 	return NULL;//no transition
 }
 
-void AiAttackState::transitionToPlayerControl()
+void PlayerAiRunState::transitionToPlayerControl()
 {
 	mTransitionToPlayerControl = true;
 }
 
-void AiAttackState::transitionToAiRun()
+void PlayerAiRunState::transitionToAiAttack()
 {
-	mTransitionToRun = true;
+	mTransitionToAttack = true;
+	GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
+	Sprite* pPlayerAttack = pGame->getSpriteManager()->getSprite(PLAYER_ICON_SPRITE_ID);
+	Unit* pPlayerUnit = pGame->getUnitManager()->getPlayerUnit();
+	pPlayerUnit->setSprite(*pPlayerAttack);
 }

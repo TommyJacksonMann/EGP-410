@@ -20,8 +20,8 @@
 #include "../game/StateMachingFiles/StateMachine.h"
 #include "../game/StateMachingFiles/PlayerAttackState.h"
 #include "../game/StateMachingFiles/PlayerRunState.h"
-#include "../game/StateMachingFiles/AiAttackState.h"
-#include "../game/StateMachingFiles/AiRunState.h"
+#include "../game/StateMachingFiles/PlayerAiAttackState.h"
+#include "../game/StateMachingFiles/PlayerAiRunState.h"
 
 
 
@@ -140,27 +140,31 @@ bool Game::init()
 	pUnit->setUnitType(UnitType::PLAYER);
 	StateMachineState* pPlayerRunState = new PlayerRunState(0);
 	StateMachineState* pPlayerAttackState = new PlayerAttackState(1);
-	StateMachineState* pAiRunState = new AiRunState(2);
-	StateMachineState* pAiAttackState = new AiAttackState(3);
+	StateMachineState* pPlayerAiRunState = new PlayerAiRunState(2);
+	StateMachineState* pPlayerAiAttackState = new PlayerAiAttackState(3);
 
 	mpToPlayerRunTrans = new StateTransition(PLAYER_TO_RUN_TRANSITION, 0);
 	mpToPlayerAttackTrans = new StateTransition(PLAYER_TO_ATTACK_TRANSITION, 1);
-	mpToAiRunTrans = new StateTransition(AI_TO_RUN_TRANSITION, 2);
-	mpToAiAttackTrans = new StateTransition(AI_TO_ATTACK_TRANSITION, 3);
+	mpToPlayerAiRunTrans = new StateTransition(PLAYER_AI_TO_RUN_TRANSITION, 2);
+	mpToPlayerAiAttackTrans = new StateTransition(PLAYER_AI_TO_ATTACK_TRANSITION, 3);
+
+	mpToAiWanderTrans = new StateTransition(AI_TO_WANDER_TRANSITION, 0);
+	mpToAiChaseTrans = new StateTransition(AI_TO_CHASE_TRANSITION, 1);
+	mpToAiFleeTrans = new StateTransition(AI_TO_FLEE_TRANSITION, 2);
 
 	pPlayerRunState->addTransition(mpToPlayerAttackTrans);
-	pPlayerRunState->addTransition(mpToAiRunTrans);
+	pPlayerRunState->addTransition(mpToPlayerAiRunTrans);
 	pPlayerAttackState->addTransition(mpToPlayerRunTrans);
-	pPlayerAttackState->addTransition(mpToAiAttackTrans);
-	pAiRunState->addTransition(mpToAiAttackTrans);
-	pAiRunState->addTransition(mpToPlayerRunTrans);
-	pAiAttackState->addTransition(mpToAiRunTrans);
-	pAiAttackState->addTransition(mpToPlayerAttackTrans);
+	pPlayerAttackState->addTransition(mpToPlayerAiAttackTrans);
+	pPlayerAiRunState->addTransition(mpToPlayerAiAttackTrans);
+	pPlayerAiRunState->addTransition(mpToPlayerRunTrans);
+	pPlayerAiAttackState->addTransition(mpToPlayerAiRunTrans);
+	pPlayerAiAttackState->addTransition(mpToPlayerAttackTrans);
 
 	pUnit->getStateMachine()->addState(pPlayerRunState);
 	pUnit->getStateMachine()->addState(pPlayerAttackState);
-	pUnit->getStateMachine()->addState(pAiRunState);
-	pUnit->getStateMachine()->addState(pAiAttackState);
+	pUnit->getStateMachine()->addState(pPlayerAiRunState);
+	pUnit->getStateMachine()->addState(pPlayerAiAttackState);
 
 	pUnit->getStateMachine()->setInitialStateID(0);
 
@@ -194,14 +198,21 @@ void Game::cleanup()
 	delete mpComponentManager;
 	mpComponentManager = NULL;
 
-	delete mpToAiAttackTrans;
-	mpToAiAttackTrans = NULL;
-	delete mpToAiRunTrans;
-	mpToAiRunTrans = NULL;
+	delete mpToPlayerAiAttackTrans;
+	mpToPlayerAiAttackTrans = NULL;
+	delete mpToPlayerAiRunTrans;
+	mpToPlayerAiRunTrans = NULL;
 	delete mpToPlayerAttackTrans;
 	mpToPlayerAttackTrans = NULL;
 	delete mpToPlayerRunTrans;
 	mpToPlayerRunTrans = NULL;
+
+	delete mpToAiChaseTrans;
+	mpToAiChaseTrans = NULL;
+	delete mpToAiWanderTrans;
+	mpToAiWanderTrans = NULL;
+	delete mpToAiFleeTrans;
+	mpToAiFleeTrans = NULL;
 
 	DataParser::cleanUpInstance();
 }

@@ -4,7 +4,7 @@
 #include "./StateMachingFiles/StateMachine.h"
 #include "./StateMachingFiles/PlayerAttackState.h"
 #include "./StateMachingFiles/PlayerRunState.h"
-#include "./StateMachingFiles/AiAttackState.h"
+#include "./StateMachingFiles/PlayerAiAttackState.h"
 #include <typeinfo>
 
 void PlayerRunMessage::process()
@@ -17,9 +17,9 @@ void PlayerRunMessage::process()
 		PlayerAttackState* pAttackState = static_cast<PlayerAttackState*>(pCurrentState);
 		pAttackState->transitionToRun();
 	}
-	else if (typeid(*pCurrentState) == typeid(AiAttackState))
+	else if (typeid(*pCurrentState) == typeid(PlayerAiAttackState))
 	{
-		AiAttackState* pAttackState = static_cast<AiAttackState*>(pCurrentState);
+		PlayerAiAttackState* pAttackState = static_cast<PlayerAiAttackState*>(pCurrentState);
 		pAttackState->transitionToAiRun();
 	}
 }

@@ -28,8 +28,6 @@ void PlayerAttackState::onExit()
 
 StateTransition* PlayerAttackState::update()
 {
-	std::cout << "PLAYER AAAAAAATTTTTTTTAAAAACCCCCKKKKK\n";
-
 	if (mTransitionToRun == true)
 	{
 		mTransitionToRun = false;
@@ -45,7 +43,7 @@ StateTransition* PlayerAttackState::update()
 	{
 		mTransitionToAiControl = false;
 		//find the right transition
-		map<TransitionType, StateTransition*>::iterator iter = mTransitions.find(AI_TO_ATTACK_TRANSITION);
+		map<TransitionType, StateTransition*>::iterator iter = mTransitions.find(PLAYER_AI_TO_ATTACK_TRANSITION);
 		if (iter != mTransitions.end())//found?
 		{
 			StateTransition* pTransition = iter->second;

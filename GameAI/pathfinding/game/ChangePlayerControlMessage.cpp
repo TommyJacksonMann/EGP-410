@@ -8,8 +8,8 @@
 #include "./StateMachingFiles/StateMachine.h"
 #include "./StateMachingFiles/PlayerAttackState.h"
 #include "./StateMachingFiles/PlayerRunState.h"
-#include "./StateMachingFiles/AiAttackState.h"
-#include "./StateMachingFiles/AiRunState.h"
+#include "./StateMachingFiles/PlayerAiAttackState.h"
+#include "./StateMachingFiles/PlayerAiRunState.h"
 
 #include <typeinfo>
 
@@ -38,15 +38,15 @@ void ChangePlayerControlMessage::process()
 		PlayerAttackState* pState = static_cast<PlayerAttackState*>(pCurrentPlayerState);
 		pState->transitionToAiControl();
 	}
-	else if (typeid(*pCurrentPlayerState) == typeid(AiRunState))
+	else if (typeid(*pCurrentPlayerState) == typeid(PlayerAiRunState))
 	{
-		AiRunState* pState = static_cast<AiRunState*>(pCurrentPlayerState);
+		PlayerAiRunState* pState = static_cast<PlayerAiRunState*>(pCurrentPlayerState);
 		pState->transitionToPlayerControl();
 
 	}
-	else if (typeid(*pCurrentPlayerState) == typeid(AiAttackState))
+	else if (typeid(*pCurrentPlayerState) == typeid(PlayerAiAttackState))
 	{
-		AiAttackState* pState = static_cast<AiAttackState*>(pCurrentPlayerState);
+		PlayerAiAttackState* pState = static_cast<PlayerAiAttackState*>(pCurrentPlayerState);
 		pState->transitionToPlayerControl();
 	}
 }

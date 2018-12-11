@@ -273,12 +273,6 @@
     <ClInclude Include="SpawnEnemyMessage.h">
       <Filter>Header Files\messaging</Filter>
     </ClInclude>
-    <ClInclude Include="StateMachingFiles\AiRunState.h">
-      <Filter>StateMachine\States</Filter>
-    </ClInclude>
-    <ClInclude Include="StateMachingFiles\AiAttackState.h">
-      <Filter>StateMachine\States</Filter>
-    </ClInclude>
     <ClInclude Include="ChangePlayerControlMessage.h">
       <Filter>Header Files\messaging</Filter>
     </ClInclude>
@@ -293,6 +287,21 @@
     </ClInclude>
     <ClInclude Include="DeleteAllEnemiesMessage.h">
       <Filter>Header Files\messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachingFiles\PlayerAiRunState.h">
+      <Filter>StateMachine\States</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachingFiles\PlayerAiAttackState.h">
+      <Filter>StateMachine\States</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachingFiles\AiChaseState.h">
+      <Filter>StateMachine\States</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachingFiles\AiFleeState.h">
+      <Filter>StateMachine\States</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachingFiles\AiWanderState.h">
+      <Filter>StateMachine\States</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -488,12 +497,6 @@
     <ClCompile Include="SpawnEnemyMessage.cpp">
       <Filter>Source Files\messaging</Filter>
     </ClCompile>
-    <ClCompile Include="StateMachingFiles\AiRunState.cpp">
-      <Filter>StateMachine\States</Filter>
-    </ClCompile>
-    <ClCompile Include="StateMachingFiles\AiAttackState.cpp">
-      <Filter>StateMachine\States</Filter>
-    </ClCompile>
     <ClCompile Include="ChangePlayerControlMessage.cpp">
       <Filter>Source Files\messaging</Filter>
     </ClCompile>
@@ -508,6 +511,21 @@
     </ClCompile>
     <ClCompile Include="DeleteAllEnemiesMessage.cpp">
       <Filter>Source Files\messaging</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachingFiles\PlayerAiRunState.cpp">
+      <Filter>StateMachine\States</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachingFiles\PlayerAiAttackState.cpp">
+      <Filter>StateMachine\States</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachingFiles\AiChaseState.cpp">
+      <Filter>StateMachine\States</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachingFiles\AiFleeState.cpp">
+      <Filter>StateMachine\States</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachingFiles\AiWanderState.cpp">
+      <Filter>StateMachine\States</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -10,8 +10,8 @@
 #include "PlayerRunMessage.h"
 #include "./StateMachingFiles/StateMachine.h"
 #include "./StateMachingFiles/PlayerAttackState.h"
-#include "./StateMachingFiles/AiAttackState.h"
-#include "./StateMachingFiles/AiRunState.h"
+#include "./StateMachingFiles/PlayerAiAttackState.h"
+#include "./StateMachingFiles/PlayerAiRunState.h"
 #include <typeinfo>
 
 HandleCollisionMessage::HandleCollisionMessage(Unit* firstUnit, Unit* secondUnit)
@@ -60,7 +60,7 @@ void HandleCollisionMessage::process()
 	else if (mpFirstUnit->getUnitType() == UnitType::PLAYER && mpSecondUnit->getUnitType() == UnitType::ENEMY)
 	{
 		GameApp* pGame = static_cast<GameApp*>(gpGame);
-		if (typeid(*mpFirstUnit->getStateMachine()->getCurrentState()) == typeid(PlayerAttackState)  || typeid(*mpFirstUnit->getStateMachine()->getCurrentState()) == typeid(AiAttackState))
+		if (typeid(*mpFirstUnit->getStateMachine()->getCurrentState()) == typeid(PlayerAttackState)  || typeid(*mpFirstUnit->getStateMachine()->getCurrentState()) == typeid(PlayerAiAttackState))
 		{
 			UnitID enemyID = mpSecondUnit->getID();
 			pGame->AddScore(ScoreType::EAT_ENEMY_SCORE);
@@ -81,7 +81,7 @@ void HandleCollisionMessage::process()
 	else if (mpSecondUnit->getUnitType() == UnitType::PLAYER && mpFirstUnit->getUnitType() == UnitType::ENEMY)
 	{
 		GameApp* pGame = static_cast<GameApp*>(gpGame);
-		if (typeid(*mpSecondUnit->getStateMachine()->getCurrentState()) == typeid(PlayerAttackState) || typeid(*mpSecondUnit->getStateMachine()->getCurrentState()) == typeid(AiAttackState))
+		if (typeid(*mpSecondUnit->getStateMachine()->getCurrentState()) == typeid(PlayerAttackState) || typeid(*mpSecondUnit->getStateMachine()->getCurrentState()) == typeid(PlayerAiAttackState))
 		{
 			UnitID enemyID = mpFirstUnit->getID();
 			pGame->AddScore(ScoreType::EAT_ENEMY_SCORE);

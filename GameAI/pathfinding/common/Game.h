@@ -61,6 +61,11 @@ public:
 	inline Font* getFont() const { return mpFont; };
 	inline void markForExit() { mShouldExit = true; };
 
+	StateTransition* getWanderTrans() { return mpToAiWanderTrans; }
+	StateTransition* getChaseTrans() { return mpToAiChaseTrans; }
+	StateTransition* getFleeTrans() { return mpToAiFleeTrans; }
+
+
 protected:
 	GraphicsSystem* mpGraphicsSystem;
 	GraphicsBufferManager* mpGraphicsBufferManager;
@@ -74,8 +79,13 @@ protected:
 
 	StateTransition* mpToPlayerRunTrans;
 	StateTransition * mpToPlayerAttackTrans;
-	StateTransition* mpToAiRunTrans; 
-	StateTransition* mpToAiAttackTrans; 
+	StateTransition* mpToPlayerAiRunTrans; 
+	StateTransition* mpToPlayerAiAttackTrans; 
+
+	StateTransition* mpToAiWanderTrans;
+	StateTransition* mpToAiFleeTrans;
+	StateTransition* mpToAiChaseTrans;
+
 	
 	Font* mpFont;
 

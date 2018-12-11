@@ -1,18 +1,18 @@
 #pragma once
 #include "StateMachine.h"
 
-class AiRunState : public StateMachineState
+class PlayerAiAttackState : public StateMachineState
 {
 public:
-	AiRunState(const SM_idType& id) :StateMachineState(id) {};
+	PlayerAiAttackState(const SM_idType& id) :StateMachineState(id) {};
 
 	virtual void onEntrance();
 	virtual void onExit();
 	virtual StateTransition* update();
 
 	void transitionToPlayerControl();
-	void transitionToAiAttack();
+	void transitionToAiRun();
 private:
 	bool mTransitionToPlayerControl;
-	bool mTransitionToAttack;
+	bool mTransitionToRun;
 };
