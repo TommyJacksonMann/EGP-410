@@ -60,6 +60,7 @@ public:
 	inline double getCurrentTime() const { return mpMasterTimer->getElapsedTime(); };
 	inline Font* getFont() const { return mpFont; };
 	inline void markForExit() { mShouldExit = true; };
+	inline void setGameEnd(const bool end) { mEndGame = end; }
 
 	StateTransition* getWanderTrans() { return mpToAiWanderTrans; }
 	StateTransition* getChaseTrans() { return mpToAiChaseTrans; }
@@ -76,6 +77,8 @@ protected:
 	Timer* mpMasterTimer;
 	float mLoopTargetTime;
 	bool mShouldExit;
+	bool mEndGame = false;
+
 
 	StateTransition* mpToPlayerRunTrans;
 	StateTransition * mpToPlayerAttackTrans;

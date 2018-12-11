@@ -138,10 +138,10 @@ bool Game::init()
 	pUnit->setSteering(Steering::KINEMATICARRIVE, playerSpawn);
 	pUnit->setCollision(CIRCLE, 5);
 	pUnit->setUnitType(UnitType::PLAYER);
-	StateMachineState* pPlayerRunState = new PlayerRunState(0);
-	StateMachineState* pPlayerAttackState = new PlayerAttackState(1);
-	StateMachineState* pPlayerAiRunState = new PlayerAiRunState(2);
-	StateMachineState* pPlayerAiAttackState = new PlayerAiAttackState(3);
+	StateMachineState* pPlayerRunState = new PlayerRunState(0, 0);
+	StateMachineState* pPlayerAttackState = new PlayerAttackState(1, 0);
+	StateMachineState* pPlayerAiRunState = new PlayerAiRunState(2, 0);
+	StateMachineState* pPlayerAiAttackState = new PlayerAiAttackState(3, 0);
 
 	mpToPlayerRunTrans = new StateTransition(PLAYER_TO_RUN_TRANSITION, 0);
 	mpToPlayerAttackTrans = new StateTransition(PLAYER_TO_ATTACK_TRANSITION, 1);
@@ -230,9 +230,12 @@ const float TARGET_ELAPSED_MS = LOOP_TARGET_TIME / 1000.0f;
 
 void Game::processLoop()
 {
-	mpUnitManager->updateAll(TARGET_ELAPSED_MS);
-	mpComponentManager->update(TARGET_ELAPSED_MS);
-	mpUnitManager->drawAll();
+	if (!mEndGame)
+	{
+		mpUnitManager->updateAll(TARGET_ELAPSED_MS);
+		mpComponentManager->update(TARGET_ELAPSED_MS);
+		mpUnitManager->drawAll();
+	}
 	mpGraphicsSystem->swap();
 	std::cout << mpLoopTimer->getElapsedTime() << std::endl;
 
