@@ -49,7 +49,7 @@ void SpawnItemMessage::process()
 			}
 			Unit* pUnit = gpGame->getUnitManager()->createUnit(*pGame->getSpriteManager()->getSprite(COIN_SPRITE_ID));
 			pUnit->getPositionComponent()->setPosition(Vector2D(posX, posY));
-			pUnit->setCollision(CIRCLE, 5);
+			pUnit->setCollision(CIRCLE, 10);
 
 			pUnit->setUnitType(UnitType::COIN);
 			currentCoinsOnScreen++;
@@ -85,7 +85,7 @@ void SpawnItemMessage::process()
 			}
 			Unit* pUnit = gpGame->getUnitManager()->createUnit(*pGame->getSpriteManager()->getSprite(AI_ICON_SPRITE_ID));
 			pUnit->getPositionComponent()->setPosition(Vector2D(posX, posY));
-			pUnit->setCollision(CIRCLE, 5);
+			pUnit->setCollision(CIRCLE, 10);
 
 			pUnit->setUnitType(UnitType::POWER_UP);
 			currentPowerUpsOnScreen++;
