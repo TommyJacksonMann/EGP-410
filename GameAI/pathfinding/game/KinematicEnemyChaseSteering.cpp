@@ -42,7 +42,7 @@ void KinematicEnemyChaseSteering::updatePath()
 
 	Vector2D unitPos = pOwner->getPositionComponent()->getPosition();
 	unitPos += Vector2D(16, 16);
-	
+		
 	int fromIndex = pGrid->getSquareIndexFromPixelXY((int)unitPos.getX(), (int)unitPos.getY());
 	int toIndex = pGrid->getSquareIndexFromPixelXY((int)mTargetPlayerPos.getX(), (int)mTargetPlayerPos.getY());
 
@@ -105,7 +105,7 @@ Steering* KinematicEnemyChaseSteering::getSteering()
 		else
 		{
 			mCurrentPathPosition++;
-			//setTargetLoc( pGrid->getULCornerOfSquare(mPath.peekNode(mCurrentPathPosition)->getId()) );
+			setTargetLoc( pGrid->getULCornerOfSquare(mPath.peekNode(mCurrentPathPosition)->getId()) );
 			/*if (!mJustChangedPath)
 			{*/
 				updatePath();
@@ -123,7 +123,7 @@ Steering* KinematicEnemyChaseSteering::getSteering()
 		targetVelocity *= mMovementFactor;
 		pOwner->getPositionComponent()->setPosition(pOwner->getPositionComponent()->getPosition() + targetVelocity);
 		float velocityDirection = atan2(diff.getY(), diff.getX()) + .5f*3.14;
-		pOwner->getPositionComponent()->setFacing(velocityDirection);
+		//pOwner->getPositionComponent()->setFacing(velocityDirection);
 	}
 
 	this->mData = data;

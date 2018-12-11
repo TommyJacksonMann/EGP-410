@@ -91,14 +91,14 @@ Steering* KinematicEnemyRunSteering::getSteering()
 				currentDirection = 1;
 				opDirection = 3;
 			}
-			if ((heuristicDirection.getY() <= -0.75 && heuristicDirection.getY() < 0) /*&& (heuristicDirection.getX() <= 0.5 || heuristicDirection.getX() >= -0.5)*/)
+			if ((heuristicDirection.getY() <= -0.6 && heuristicDirection.getY() < 0) /*&& (heuristicDirection.getX() <= 0.5 || heuristicDirection.getX() >= -0.5)*/)
 			{
 				//down
 				testDirection = Vector2D(0, -32);
 				currentDirection = 2;
 				opDirection = 0;
 			}
-			else if ((heuristicDirection.getY() > 0.75 && heuristicDirection.getY() >= 0)/* && (heuristicDirection.getX() <= 0.5 || heuristicDirection.getX() >= -0.5)*/)
+			else if ((heuristicDirection.getY() > 0.6 && heuristicDirection.getY() >= 0)/* && (heuristicDirection.getX() <= 0.5 || heuristicDirection.getX() >= -0.5)*/)
 			{
 				//up
 				testDirection = Vector2D(0, 32);
@@ -107,8 +107,8 @@ Steering* KinematicEnemyRunSteering::getSteering()
 			}
 
 
-			int wallTestIndex = pGrid->getSquareIndexFromPixelXY(newDestination.getX() + testDirection.getX(),
-				newDestination.getY() + testDirection.getY());
+			int wallTestIndex = pGrid->getSquareIndexFromPixelXY(newDestination.getX() + testDirection.getX() + 16,
+				newDestination.getY() + testDirection.getY() + 16);
 
 			pTestWall = pGridGraph->getNode(wallTestIndex);
 
@@ -155,8 +155,8 @@ Steering* KinematicEnemyRunSteering::getSteering()
 					default: {assert(true); } //how would this ever happen
 					}
 
-					int wallTestIndex = pGrid->getSquareIndexFromPixelXY(newDestination.getX() + testDirection.getX(),
-						newDestination.getY() + testDirection.getY());
+					int wallTestIndex = pGrid->getSquareIndexFromPixelXY(newDestination.getX() + testDirection.getX() + 16,
+						newDestination.getY() + testDirection.getY() + 16);
 					if (wallTestIndex < 0)
 						continue;
 					
@@ -197,7 +197,7 @@ Steering* KinematicEnemyRunSteering::getSteering()
 		targetVelocity *= mMovementFactor;
 		pOwner->getPositionComponent()->setPosition(pOwner->getPositionComponent()->getPosition() + targetVelocity);
 		float velocityDirection = atan2(targetDirection.getY(), targetDirection.getX()) + .5f*3.14;
-		pOwner->getPositionComponent()->setFacing(velocityDirection);
+		//pOwner->getPositionComponent()->setFacing(velocityDirection);
 	}
 
 	//data.vel = targetVelocity;

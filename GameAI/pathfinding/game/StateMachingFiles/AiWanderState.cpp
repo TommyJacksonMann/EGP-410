@@ -11,6 +11,8 @@
 #include "PlayerAiAttackState.h"
 #include "PlayerRunState.h"
 #include "PlayerAiRunState.h"
+#include "../SteeringFiles/Steering.h"
+#include "../SteeringFiles/SteeringComponent.h"
 
 using namespace std;
 
@@ -18,7 +20,7 @@ void AiWanderState::onEntrance()
 {
 	GameApp* pGame = static_cast<GameApp*>(gpGame);
 	Unit* pOwner = pGame->getUnitManager()->getUnit(mOwner);
-	pOwner->setSteering(Steering::KINEMATIC_ENEMY_ARRIVE, pOwner->getPositionComponent()->getPosition(), gpGame->getUnitManager()->getPlayerUnit()->getID());
+	pOwner->setSteering(Steering::KINEMATIC_ENEMY_ARRIVE, pOwner->getSteeringComponent()->getTargetLoc(), gpGame->getUnitManager()->getPlayerUnit()->getID());
 
 	mTransitionToChase = false;
 	mTransitionToFlee = false;
@@ -33,7 +35,6 @@ void AiWanderState::onExit()
 StateTransition* AiWanderState::update()
 {
 	GameApp* pGame = static_cast<GameApp*>(gpGame);
-	std::cout << "AI WANNNDDDDDEEEERRRRRRRRR\n";
 
 	Unit* pOwner = gpGame->getUnitManager()->getUnit(mOwner);
 	Unit* pPlayer = gpGame->getUnitManager()->getPlayerUnit();

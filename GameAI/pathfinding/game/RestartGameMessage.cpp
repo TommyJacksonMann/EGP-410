@@ -26,12 +26,13 @@ void RestartGameMessage::process()
 		pGame->AddScore(NO_SCORE);
 		pGame->setPlayerCurrentLives(pGame->getPlayerStartLives());
 
+		pGame->setGameEnd(false);
 	}
 
 	if (pGame->getPlayerLives() < 0)
 	{
 		//EndGame
-		pGame->setGameEnd();
+    		pGame->setGameEnd(true);
 	}
 
 	GameMessage* pDeleteCoins = new DeleteAllCoinsMessage();

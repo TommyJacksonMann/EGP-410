@@ -66,36 +66,36 @@ Steering* KinematicEnemySteering::getSteering()
 			* 2 = down
 			* 3 = left
 			*/
-			Vector2D testDirection;
+			Vector2D testDirection = Vector2D(0,0);
 
 			
 			switch (mLastDirection)
 			{
 			case 0:			//UP
 			{
-				testDirection += Vector2D(0, -32);
+				testDirection = Vector2D(0, -32);
 				break;
 			}
 			case 1:			//RIGHT
 			{
-				testDirection += Vector2D(32, 0);
+				testDirection = Vector2D(32, 0);
 				break;
 			}
 			case 2: 		//DOWN
 			{
-				testDirection += Vector2D(0, 32);
+				testDirection = Vector2D(0, 32);
 				break;
 			}
 			case 3: 	//LEFT
 			{
-				testDirection += Vector2D(-32, 0);
+				testDirection = Vector2D(-32, 0);
 				break;
 			}
 			default: {}
 			}
 
-			int testIfContinueIsWall = pGrid->getSquareIndexFromPixelXY(newDestination.getX() + testDirection.getX()
-				, newDestination.getY() + testDirection.getY());
+			int testIfContinueIsWall = pGrid->getSquareIndexFromPixelXY(newDestination.getX() + testDirection.getX() + 8
+				, newDestination.getY() + testDirection.getY() + 8);
 
 			pTestWall = pGridGraph->getNode(testIfContinueIsWall);
 
@@ -130,28 +130,28 @@ Steering* KinematicEnemySteering::getSteering()
 			{
 			case 0:			//UP
 			{
-				newDirection += Vector2D(0, -32);
+				newDirection = Vector2D(0, -32);
 				mLastDirection = 0;
 				mOppositeLastDirection = 2;
 				break;
 			}
 			case 1:			//RIGHT
 			{
-				newDirection += Vector2D(32, 0);
+				newDirection = Vector2D(32, 0);
 				mLastDirection = 1;
 				mOppositeLastDirection = 3;
 				break;
 			}
 			case 2: 		//DOWN
 			{
-				newDirection += Vector2D(0, 32);
+				newDirection = Vector2D(0, 32);
 				mLastDirection = 2;
 				mOppositeLastDirection = 0;
 				break;
 			}
 			case 3: 	//LEFT
 			{
-				newDirection += Vector2D(-32, 0);
+				newDirection = Vector2D(-32, 0);
 				mLastDirection = 3;
 				mOppositeLastDirection = 1;
 				break;
@@ -161,7 +161,7 @@ Steering* KinematicEnemySteering::getSteering()
 
 
 			int toIndex = pGrid->getSquareIndexFromPixelXY(newDestination.getX() + newDirection.getX()
-				, newDestination.getY() + newDirection.getY());
+				, newDestination.getY() + newDirection.getY() );
 
 			pToNode = pGridGraph->getNode(toIndex);
 			newDestination = Vector2D(newDestination.getX() + newDirection.getX()
@@ -184,7 +184,7 @@ Steering* KinematicEnemySteering::getSteering()
 		targetVelocity *= mMovementFactor;
 		pOwner->getPositionComponent()->setPosition(pOwner->getPositionComponent()->getPosition() + targetVelocity);
 		float velocityDirection = atan2(targetDirection.getY(), targetDirection.getX()) + .5f*3.14;
-		pOwner->getPositionComponent()->setFacing(velocityDirection);
+		//pOwner->getPositionComponent()->setFacing(velocityDirection);
 	}
 
 	//data.vel = targetVelocity;

@@ -76,36 +76,6 @@ void InputSystem::update()
 				GameMessage* pRestartGame = new RestartGameMessage(true);
 				pGame->getMessageManager()->addMessage(pRestartGame, 0);
 			}
-			if (mBitwiseKeyStates[KeyCode::SCANCODE_C] && getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED))
-			{
-				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
-				std::vector<Unit*> enemyUnits = pGame->getUnitManager()->getUnitsOfType(UnitType::ENEMY);
-				for (int i = 0; i < enemyUnits.size(); i++)
-				{
-					GameMessage* pChangeControl = new ChangeAIUnitStateMessage(enemyUnits[i]->getID(), StateType::CHASE);
-					pGame->getMessageManager()->addMessage(pChangeControl, 0);
-				}
-			}
-			if (mBitwiseKeyStates[KeyCode::SCANCODE_W] && getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED))
-			{
-				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
-				std::vector<Unit*> enemyUnits = pGame->getUnitManager()->getUnitsOfType(UnitType::ENEMY);
-				for (int i = 0; i < enemyUnits.size(); i++)
-				{
-					GameMessage* pChangeControl = new ChangeAIUnitStateMessage(enemyUnits[i]->getID(), StateType::WANDER);
-					pGame->getMessageManager()->addMessage(pChangeControl, 0);
-				}
-			}
-			if (mBitwiseKeyStates[KeyCode::SCANCODE_F] && getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED))
-			{
-				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
-				std::vector<Unit*> enemyUnits = pGame->getUnitManager()->getUnitsOfType(UnitType::ENEMY);
-				for (int i = 0; i < enemyUnits.size(); i++)
-				{
-					GameMessage* pChangeControl = new ChangeAIUnitStateMessage(enemyUnits[i]->getID(), StateType::FLEE);
-					pGame->getMessageManager()->addMessage(pChangeControl, 0);
-				}
-			}
 			playerMovement(i);
 			
 		}

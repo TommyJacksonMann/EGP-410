@@ -9,6 +9,8 @@
 #include "SpriteManager.h"
 #include "PlayerRunState.h"
 #include "PlayerAiRunState.h"
+#include "../SteeringFiles/Steering.h"
+#include "../SteeringFiles/SteeringComponent.h"
 
 using namespace std;
 
@@ -17,7 +19,7 @@ void AiFleeState::onEntrance()
 
 	GameApp* pGame = static_cast<GameApp*>(gpGame);
 	Unit* pOwner = pGame->getUnitManager()->getUnit(mOwner);
-	pOwner->setSteering(Steering::KINEMATIC_ENEMY_RUN, pOwner->getPositionComponent()->getPosition(), gpGame->getUnitManager()->getPlayerUnit()->getID());
+	pOwner->setSteering(Steering::KINEMATIC_ENEMY_RUN, pOwner->getSteeringComponent()->getTargetLoc(), gpGame->getUnitManager()->getPlayerUnit()->getID());
 
 	mTransitionToChase = false;
 	mTransitionToWander = false;
@@ -50,7 +52,6 @@ StateTransition* AiFleeState::update()
 		mTransitionToWander = true;
 
 	}
-	std::cout << "AI FFFFFFFFFLLLLLLLLLLLLLLLLEEEEEEEEEEEEEEEE\n";
 
 	if (mTransitionToChase == true)
 	{

@@ -172,14 +172,16 @@ void GameApp::beginLoop()
 
 void GameApp::processLoop()
 {
+	if (!mEndGame)
+	{
 	//get back buffer
 	GraphicsBuffer* pBackBuffer = mpGraphicsSystem->getBackBuffer();
 	//copy to back buffer
 	mpGridVisualizer->draw( *pBackBuffer );
-
-	mpDebugDisplay->draw( pBackBuffer );
-	//mpGridGraph->VisualizeNodeCosts(); //UNCOMMENT THIS TO SEE NODE COSTS AND NODE DIRECTIONS, FRAME RATE IS CHOO
-
+	
+		mpDebugDisplay->draw(pBackBuffer);
+		//mpGridGraph->VisualizeNodeCosts(); //UNCOMMENT THIS TO SEE NODE COSTS AND NODE DIRECTIONS, FRAME RATE IS CHOO
+	}
 	mpInputSystem->update();
 
 
@@ -196,11 +198,13 @@ void GameApp::processLoop()
 
 bool GameApp::endLoop()
 {
-
-	GameMessage* pItemMessage = new SpawnItemMessage();
-	mpMessageManager->addMessage(pItemMessage, 0);
-	GameMessage* pEnemySpawnMessage = new SpawnEnemyMessage();
-	mpMessageManager->addMessage(pEnemySpawnMessage, 0);
+	if (!mEndGame)
+	{
+		GameMessage* pItemMessage = new SpawnItemMessage();
+		mpMessageManager->addMessage(pItemMessage, 0);
+		GameMessage* pEnemySpawnMessage = new SpawnEnemyMessage();
+		mpMessageManager->addMessage(pEnemySpawnMessage, 0);
+	}
 	return Game::endLoop();
 }
 
@@ -271,13 +275,28 @@ void GameApp::AddScore(ScoreType type)
 
 void GameApp::drawScore()
 {
-	std::string totalScore;
-	std::string coinScore = "CoinScore: " + std::to_string(mCoinsCollected);
-	std::string playerEatScore = "Ghosts Eaten: " + std::to_string(mEnemiesEaten);
-	std::string lives = "Player Lives: " + std::to_string(mPlayerCurrentLives);
-	totalScore = "GameScore: " + std::to_string(mGameScore);
-	totalScore += "  " + coinScore + "  " + playerEatScore + " " + lives;
+		std::string totalScore;
+		std::string coinScore = "CoinScore: " + std::to_string(mCoinsCollected);
+		std::string playerEatScore = "Ghosts Eaten: " + std::to_string(mEnemiesEaten);
 
-	mpGraphicsSystem->writeText(*gpGame->getGraphicsSystem()->getBackBuffer(), 
-		*gpGame->getFont(), 0, 0, totalScore.c_str(), Color(255, 255, 255));
+		if (!mEndGame)
+		{
+		std::string lives = "Player Lives: " + std::to_string(mPlayerCurrentLives);
+		totalScore = "GameScore: " + std::to_string(mGameScore);
+		totalScore += "  " + coinScore + "  " + playerEatScore + " " + lives;
+
+		mpGraphicsSystem->writeText(*gpGame->getGraphicsSystem()->getBackBuffer(),
+			*gpGame->getFont(), 0, 0, totalScore.c_str(), Color(255, 255, 255));
+		}
+		else
+		{
+			totalScore = "GameScore: " + std::to_string(mGameScore) + "  " + coinScore + "  " + playerEatScore;
+			mpGraphicsSystem->writeText(*gpGame->getGraphicsSystem()->getBackBuffer(),
+				*gpGame->getFont(), 0, 0, totalScore.c_str(), Color(0, 0, 0));
+			mpGraphicsSystem->writeText(*gpGame->getGraphicsSystem()->getBackBuffer(),
+				*gpGame->getFont(), 100, 100, "GAME OVER", Color(0, 0, 0));
+			mpGraphicsSystem->writeText(*gpGame->getGraphicsSystem()->getBackBuffer(),
+				*gpGame->getFont(), 50, 200, "Press Escape to close, R to Resart", Color(0, 0, 0));
+
+		}
 }

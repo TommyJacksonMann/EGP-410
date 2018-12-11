@@ -110,13 +110,10 @@ public:
 	void setPlayerCurrentLives(const int newLives) { mPlayerCurrentLives = newLives; }
 	const int getPlayerStartLives() const { return mPlayerStartLives; }
 
-	void setGameEnd() { mEndGame = !mEndGame; }
 
 	void AddScore(ScoreType);
 	void drawScore();
 private:
-
-	bool mEndGame = false;
 
 	InputSystem* mpInputSystem;
 	GameMessageManager* mpMessageManager;
