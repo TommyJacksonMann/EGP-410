@@ -194,6 +194,9 @@ void CollisionComponent::update(CollisionComponent* pComponent)
 //Used for reseting movement
 void CollisionComponent::resetLastCollided()
 {
-	mLastCollidedID = INVALID_ID;
-	mJustCollided = false;
+	if (this)
+	{
+		mLastCollidedID = INVALID_ID;
+		mJustCollided = false;
+	}
 }

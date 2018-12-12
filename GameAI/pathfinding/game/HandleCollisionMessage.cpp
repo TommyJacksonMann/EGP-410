@@ -79,6 +79,11 @@ void HandleCollisionMessage::process()
 			UnitID enemyID = mpSecondUnit->getID();
 			pGame->AddScore(ScoreType::EAT_ENEMY_SCORE);
 			pGame->getUnitManager()->deleteUnit(enemyID);
+
+			if (typeid(*mpFirstUnit->getSteeringComponent()->getSteering()) == typeid(KinematicPlayerAiSteering))
+			{
+				mpFirstUnit->setSteering(Steering::KINEMATIC_PLAYER_AI, mpFirstUnit->getPositionComponent()->getPosition(), mpFirstUnit->getID());
+			}
 			int oldEnemyNum = pGame->getCurrentEnemies();
 			oldEnemyNum--;
 			pGame->setCurrentEnemies(oldEnemyNum);
@@ -104,6 +109,12 @@ void HandleCollisionMessage::process()
 			UnitID enemyID = mpFirstUnit->getID();
 			pGame->AddScore(ScoreType::EAT_ENEMY_SCORE);
 			pGame->getUnitManager()->deleteUnit(enemyID);
+
+			if (typeid(*mpSecondUnit->getSteeringComponent()->getSteering()) == typeid(KinematicPlayerAiSteering))
+			{
+				mpSecondUnit->setSteering(Steering::KINEMATIC_PLAYER_AI, mpSecondUnit->getPositionComponent()->getPosition(), mpSecondUnit->getID());
+			}
+
 			int oldEnemyNum = pGame->getCurrentEnemies();
 			oldEnemyNum--;
 			pGame->setCurrentEnemies(oldEnemyNum);

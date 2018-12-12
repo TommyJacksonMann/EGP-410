@@ -14,7 +14,7 @@ PlayerSpeed (5)
 EnemySpeed (2)
 EnemyChaseRange (300)
 EnemyRandomFrequency (2000)
-EnemySpawnOneX (160)
+EnemySpawnOneX (192)
 EnemySpawnOneY (192)
 EnemySpawnTwoX (800)
 EnemySpawnTwoY (192)
@@ -25,7 +25,7 @@ EnemySpawnFourY (608)
 EnemySpawnFrequency (20)
 EnemySpawnTime (5000)
 MaxEnemies (10)
-HighScore (3200)
+HighScore (4300)
 
 
 
@@ -57,6 +57,28 @@ HighScore (3200)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
  
  

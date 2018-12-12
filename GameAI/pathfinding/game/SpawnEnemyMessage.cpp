@@ -68,7 +68,7 @@ void SpawnEnemyMessage::process()
 			}
 			Unit* pUnit = gpGame->getUnitManager()->createUnit(*pGame->getSpriteManager()->getSprite(TARGET_SPRITE_ID));
 			pUnit->getPositionComponent()->setPosition(newSpawn);
-			pUnit->setCollision(CIRCLE, 10);
+			pUnit->setCollision(CIRCLE, 5);
 			pUnit->setSteering(Steering::KINEMATIC_ENEMY_ARRIVE, newSpawn, gpGame->getUnitManager()->getPlayerUnit()->getID());
 
 			pUnit->setUnitType(UnitType::ENEMY);

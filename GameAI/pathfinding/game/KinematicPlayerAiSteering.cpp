@@ -8,6 +8,11 @@
 #include <cassert>
 #include "PathPool.h"
 #include "GridPathfinder.h"
+#include "StateMachingFiles/StateMachine.h"
+#include "StateMachingFiles/PlayerAiAttackState.h"
+#include "StateMachingFiles/PlayerAiRunState.h"
+#include <typeinfo>
+
 
 
 KinematicPlayerAiSteering::KinematicPlayerAiSteering(const UnitID& ownerID, const Vector2D& targetLoc, const UnitID& targetID)
@@ -101,7 +106,9 @@ Steering* KinematicPlayerAiSteering::getSteering()
 			data.acc = ZERO_VECTOR2D;
 			data.rotAcc = 0;
 			data.rotVel = 0;
+			determineDestination();
 			updatePath();
+			std::cout << "Reached Destination ******************************** ";
 		}
 		else
 		{
@@ -124,7 +131,7 @@ Steering* KinematicPlayerAiSteering::getSteering()
 		targetVelocity *= mMovementFactor;
 		pOwner->getPositionComponent()->setPosition(pOwner->getPositionComponent()->getPosition() + targetVelocity);
 		float velocityDirection = atan2(diff.getY(), diff.getX()) + .5f*3.14;
-		pOwner->getPositionComponent()->setFacing(velocityDirection);
+		//pOwner->getPositionComponent()->setFacing(velocityDirection);
 	}
 
 	this->mData = data;
@@ -138,10 +145,50 @@ void KinematicPlayerAiSteering::determineDestination()
 
 	std::vector<Unit*> coinUnits = gpGame->getUnitManager()->getUnitsOfType(UnitType::COIN);
 	std::vector<Unit*> powerupUnits = gpGame->getUnitManager()->getUnitsOfType(UnitType::POWER_UP);
+	std::vector<Unit*> enemyUnits = gpGame->getUnitManager()->getUnitsOfType(UnitType::ENEMY);
+
 
 	bool foundNewDestination = false;
 	
-	if (powerupUnits.size() != 0)
+	if (typeid(*pOwner->getStateMachine()->getCurrentState()) == typeid(PlayerAiAttackState) && enemyUnits.size() != 0)
+	{
+		int nearestEnemyIndex = 0;
+		float shortestDist = 1000000; //high number because INFINITY doesn't work
+		for (int i = 0; i < enemyUnits.size(); i++)
+		{
+			Vector2D currentDiff = enemyUnits[i]->getPositionComponent()->getPosition() - pOwner->getPositionComponent()->getPosition();
+			Vector2D prevDiff = enemyUnits[nearestEnemyIndex]->getPositionComponent()->getPosition() - pOwner->getPositionComponent()->getPosition();
+
+			if (currentDiff.getLength() <= prevDiff.getLength() && enemyUnits[nearestEnemyIndex]->getID() != mTargetID)
+			{
+				foundNewDestination = true;
+				shortestDist = currentDiff.getLength();
+				nearestEnemyIndex = i;
+			}
+		}
+		setTargetID(enemyUnits[nearestEnemyIndex]->getID());
+		setTargetLoc(enemyUnits[nearestEnemyIndex]->getPositionComponent()->getPosition());
+	}
+	else if (typeid(*pOwner->getStateMachine()->getCurrentState()) == typeid(PlayerAiRunState) && enemyUnits.size() != 0)
+	{
+		int nearestEnemyIndex = 0;
+		float shortestDist = 1000000; //high number because INFINITY doesn't work
+		for (int i = 0; i < enemyUnits.size(); i++)
+		{
+			Vector2D currentDiff = enemyUnits[i]->getPositionComponent()->getPosition() - pOwner->getPositionComponent()->getPosition();
+			Vector2D prevDiff = enemyUnits[nearestEnemyIndex]->getPositionComponent()->getPosition() - pOwner->getPositionComponent()->getPosition();
+
+			if (currentDiff.getLength() <= prevDiff.getLength() && enemyUnits[nearestEnemyIndex]->getID() != mTargetID)
+			{
+				foundNewDestination = true;
+				shortestDist = currentDiff.getLength();
+				nearestEnemyIndex = i;
+			}
+		}
+		setTargetID(enemyUnits[nearestEnemyIndex]->getID());
+		setTargetLoc(enemyUnits[nearestEnemyIndex]->getPositionComponent()->getPosition());
+	}
+	else if (powerupUnits.size() != 0)
 	{
 		int nearestPowerUpIndex = 0;
 		float shortestDist = 1000000; //high number because INFINITY doesn't work

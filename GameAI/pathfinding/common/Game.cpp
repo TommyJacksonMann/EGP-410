@@ -136,7 +136,7 @@ bool Game::init()
 	pUnit->setShowTarget(false);
 	pUnit->getPositionComponent()->setPosition(playerSpawn);
 	pUnit->setSteering(Steering::KINEMATICARRIVE, playerSpawn);
-	pUnit->setCollision(CIRCLE, 10);
+	pUnit->setCollision(CIRCLE, 5);
 	pUnit->setUnitType(UnitType::PLAYER);
 	StateMachineState* pPlayerRunState = new PlayerRunState(0, 0);
 	StateMachineState* pPlayerAttackState = new PlayerAttackState(1, 0);
