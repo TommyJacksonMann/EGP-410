@@ -129,6 +129,7 @@ bool GameApp::init()
 
 	mPlayerEat = DataParser::getInstance()->ReadFile("EatEnemyPoints");
 	mCoinScore = DataParser::getInstance()->ReadFile("CoinPoints");
+	mHighScore = DataParser::getInstance()->ReadFile("HighScore");
 
 
 	mpMasterTimer->start();
@@ -204,6 +205,10 @@ bool GameApp::endLoop()
 		mpMessageManager->addMessage(pItemMessage, 0);
 		GameMessage* pEnemySpawnMessage = new SpawnEnemyMessage();
 		mpMessageManager->addMessage(pEnemySpawnMessage, 0);
+	}
+	if (mShouldExit)
+	{
+		DataParser::getInstance()->WriteToKey("HighScore", mHighScore);
 	}
 	return Game::endLoop();
 }
@@ -291,8 +296,11 @@ void GameApp::drawScore()
 		else
 		{
 			totalScore = "GameScore: " + std::to_string(mGameScore) + "  " + coinScore + "  " + playerEatScore;
+			std::string highScore = "HIGH SCORE " + std::to_string(mHighScore);
 			mpGraphicsSystem->writeText(*gpGame->getGraphicsSystem()->getBackBuffer(),
 				*gpGame->getFont(), 0, 0, totalScore.c_str(), Color(0, 0, 0));
+			mpGraphicsSystem->writeText(*gpGame->getGraphicsSystem()->getBackBuffer(),
+				*gpGame->getFont(), 0, 50, highScore.c_str(), Color(0, 0, 0));
 			mpGraphicsSystem->writeText(*gpGame->getGraphicsSystem()->getBackBuffer(),
 				*gpGame->getFont(), 100, 100, "GAME OVER", Color(0, 0, 0));
 			mpGraphicsSystem->writeText(*gpGame->getGraphicsSystem()->getBackBuffer(),

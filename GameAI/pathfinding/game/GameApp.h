@@ -110,7 +110,10 @@ public:
 	void setPlayerCurrentLives(const int newLives) { mPlayerCurrentLives = newLives; }
 	const int getPlayerStartLives() const { return mPlayerStartLives; }
 
+	const int getHighScore() const { return mHighScore; }
+	void setHighScore(const int newHighScore) { mHighScore = newHighScore; }
 
+	const int getScore() const { return mGameScore; }
 	void AddScore(ScoreType);
 	void drawScore();
 private:
@@ -129,6 +132,8 @@ private:
 	int mGameScore = 0;
 	int mCoinScore = 0;
 	int mPlayerEat = 0;
+
+	int mHighScore = 0;
 	
 	int mCoinsCollected = 0;
 	int mEnemiesEaten = 0;

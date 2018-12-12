@@ -18,7 +18,7 @@ public:
 	static void initInstance(std::string fileName = DEFAULT_FILE_NAME);
 
 	int ReadFile(std::string key);
-	void WriteToKey(int cohesion, int seperation, int alignment);
+	void WriteToKey(std::string key, int score);
 
 private:
 	static DataParser* mpsInstance;

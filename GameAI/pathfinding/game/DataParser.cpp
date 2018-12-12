@@ -1,5 +1,7 @@
 #include "DataParser.h"
 #include <fstream>
+#include <string>
+#include <sstream>
 
 DataParser * DataParser::mpsInstance = nullptr;
 
@@ -46,9 +48,38 @@ int DataParser::ReadFile(std::string key)
 	inputFile.close();
 }
 
-void DataParser::WriteToKey(int cohesion, int seperation, int alignment)
+void DataParser::WriteToKey(std::string key, int score)
 {
+	
+	std::stringstream output;
+	std::ifstream inputFile(mFileName);
+	while (!inputFile.eof())
+	{
+		std::string data;
+		std::getline(inputFile, data, ' ');
+
+		output << data;
+
+		if (data == key)
+		{
+			std::getline(inputFile, data, '(');
+			output << " " << data;
+			std::getline(inputFile, data, ')');
+			//data.replace(data.find(data), data.length(), std::to_string(score));
+			output << '(' << std::to_string(score) << ')';
+		}
+		else
+		{
+			getline(inputFile, data);
+			output << ' ' << data;
+		}
+		output << "\n";
+
+	}
+
 	std::ofstream outputFile(mFileName);
-	outputFile << "Cohesion (" << cohesion << ")\nSeperation (" << seperation << ")\nAlignment (" << alignment << ")\n";
+	outputFile << output.str();
 	outputFile.close();
+
+	inputFile.close();
 }

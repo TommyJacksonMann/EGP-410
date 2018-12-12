@@ -5,6 +5,7 @@
 #include "DeleteAllEnemiesMessage.h"
 #include "ResetPlayerStartPosMessage.h"
 #include "GameMessageManager.h"
+#include "DataParser.h"
 
 
 
@@ -32,7 +33,12 @@ void RestartGameMessage::process()
 	if (pGame->getPlayerLives() < 0)
 	{
 		//EndGame
-    		pGame->setGameEnd(true);
+		
+		if (pGame->getScore() > pGame->getHighScore())
+		{
+			pGame->setHighScore(pGame->getScore());
+		}
+    	pGame->setGameEnd(true);
 	}
 
 	GameMessage* pDeleteCoins = new DeleteAllCoinsMessage();
