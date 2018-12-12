@@ -306,6 +306,9 @@
     <ClInclude Include="ChangeAIUnitStateMessage.h">
       <Filter>Header Files\messaging</Filter>
     </ClInclude>
+    <ClInclude Include="KinematicPlayerAiSteering.h">
+      <Filter>Steering\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\common\Game.cpp">
@@ -532,6 +535,9 @@
     </ClCompile>
     <ClCompile Include="ChangeAIUnitStateMessage.cpp">
       <Filter>Source Files\messaging</Filter>
+    </ClCompile>
+    <ClCompile Include="KinematicPlayerAiSteering.cpp">
+      <Filter>Steering\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

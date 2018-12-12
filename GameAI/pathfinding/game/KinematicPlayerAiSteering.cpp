@@ -1,4 +1,4 @@
-#include "KinematicEnemyChaseSteering.h"
+#include "KinematicPlayerAiSteering.h"
 #include "Game.h"
 #include "GameApp.h"
 #include "./SteeringFiles/Unit.h"
@@ -10,26 +10,27 @@
 #include "GridPathfinder.h"
 
 
-KinematicEnemyChaseSteering::KinematicEnemyChaseSteering(const UnitID& ownerID, const Vector2D& targetLoc, const UnitID& targetID)
+KinematicPlayerAiSteering::KinematicPlayerAiSteering(const UnitID& ownerID, const Vector2D& targetLoc, const UnitID& targetID)
 	: Steering()
 {
-	mType = Steering::KINEMATIC_ENEMY_CHASE;
+	mType = Steering::KINEMATIC_PLAYER_AI;
 	setOwnerID(ownerID);
 	setTargetID(targetID);
 	setTargetLoc(targetLoc);
 
 	GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
-	mMovementFactor = pGame->getEnemySpeed();
+	mMovementFactor = pGame->getPlayerSpeed();
+
+	determineDestination();
 	updatePath();
 }
 
-void KinematicEnemyChaseSteering::updatePath()
+void KinematicPlayerAiSteering::updatePath()
 {
 	Unit* pOwner = gpGame->getUnitManager()->getUnit(mOwnerID);
 	GameApp* pGame = static_cast<GameApp*>(gpGame);
 	if (mTargetID != INVALID_UNIT_ID)
 	{
-		//seeking unit
 		Unit* pTarget = gpGame->getUnitManager()->getUnit(mTargetID);
 		assert(pTarget != NULL);
 		mTargetPlayerPos = pTarget->getPositionComponent()->getPosition();
@@ -42,8 +43,7 @@ void KinematicEnemyChaseSteering::updatePath()
 
 	Vector2D unitPos = pOwner->getPositionComponent()->getPosition();
 	unitPos += Vector2D(16, 16);
-	mTargetPlayerPos += Vector2D(16, 16);
-		
+
 	int fromIndex = pGrid->getSquareIndexFromPixelXY((int)unitPos.getX(), (int)unitPos.getY());
 	int toIndex = pGrid->getSquareIndexFromPixelXY((int)mTargetPlayerPos.getX(), (int)mTargetPlayerPos.getY());
 
@@ -66,7 +66,7 @@ void KinematicEnemyChaseSteering::updatePath()
 }
 
 
-Steering* KinematicEnemyChaseSteering::getSteering()
+Steering* KinematicPlayerAiSteering::getSteering()
 {
 
 	GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
@@ -89,11 +89,11 @@ Steering* KinematicEnemyChaseSteering::getSteering()
 
 	Grid* pGrid = dynamic_cast<GameApp*>(gpGame)->getGrid();
 	Vector2D currentTargetNodePosition = pGrid->getULCornerOfSquare(mPath.peekNode(mCurrentPathPosition)->getId());
-	
+
 	//Get the difference of the node position and the unit position
 	Vector2D diff = currentTargetNodePosition - pOwner->getPositionComponent()->getPosition();
 
- 	if (diff.getLength() < mMovementFactor)
+	if (diff.getLength() < mMovementFactor)
 	{
 		if (mCurrentPathPosition == mPath.getNumNodes() - 1)
 		{
@@ -106,13 +106,13 @@ Steering* KinematicEnemyChaseSteering::getSteering()
 		else
 		{
 			mCurrentPathPosition++;
-			setTargetLoc( pGrid->getULCornerOfSquare(mPath.peekNode(mCurrentPathPosition)->getId()) );
+			setTargetLoc(pGrid->getULCornerOfSquare(mPath.peekNode(mCurrentPathPosition)->getId()));
 			/*if (!mJustChangedPath)
 			{*/
-				updatePath();
+			updatePath();
 			//}
 		}
-		
+
 	}
 	else
 	{
@@ -124,10 +124,67 @@ Steering* KinematicEnemyChaseSteering::getSteering()
 		targetVelocity *= mMovementFactor;
 		pOwner->getPositionComponent()->setPosition(pOwner->getPositionComponent()->getPosition() + targetVelocity);
 		float velocityDirection = atan2(diff.getY(), diff.getX()) + .5f*3.14;
-		//pOwner->getPositionComponent()->setFacing(velocityDirection);
+		pOwner->getPositionComponent()->setFacing(velocityDirection);
 	}
 
 	this->mData = data;
 	return this;
 
+}
+
+void KinematicPlayerAiSteering::determineDestination()
+{
+	Unit* pOwner = gpGame->getUnitManager()->getUnit(mOwnerID);
+
+	std::vector<Unit*> coinUnits = gpGame->getUnitManager()->getUnitsOfType(UnitType::COIN);
+	std::vector<Unit*> powerupUnits = gpGame->getUnitManager()->getUnitsOfType(UnitType::POWER_UP);
+
+	bool foundNewDestination = false;
+	
+	if (powerupUnits.size() != 0)
+	{
+		int nearestPowerUpIndex = 0;
+		float shortestDist = 1000000; //high number because INFINITY doesn't work
+		for (int i = 0; i < powerupUnits.size(); i++)
+		{
+			Vector2D currentDiff = powerupUnits[i]->getPositionComponent()->getPosition() - pOwner->getPositionComponent()->getPosition();
+			Vector2D prevDiff = powerupUnits[nearestPowerUpIndex]->getPositionComponent()->getPosition() - pOwner->getPositionComponent()->getPosition();
+
+			if (currentDiff.getLength() <= prevDiff.getLength() && powerupUnits[nearestPowerUpIndex]->getID() != mTargetID)
+			{
+				foundNewDestination = true;
+				shortestDist = currentDiff.getLength();
+				nearestPowerUpIndex = i;
+			}
+		}
+		setTargetID(powerupUnits[nearestPowerUpIndex]->getID());
+		setTargetLoc(powerupUnits[nearestPowerUpIndex]->getPositionComponent()->getPosition());
+	}
+	else if (coinUnits.size() != 0)
+	{
+		int nearestCoinIndex = 0;
+		float shortestDist = 1000000; //high number because INFINITY DOESN'T WORK
+		for (int i = 0; i < coinUnits.size(); i++)
+		{
+			Vector2D currentDiff = coinUnits[i]->getPositionComponent()->getPosition() - pOwner->getPositionComponent()->getPosition();
+			Vector2D prevDiff = coinUnits[nearestCoinIndex]->getPositionComponent()->getPosition() - pOwner->getPositionComponent()->getPosition();
+
+			if (currentDiff.getLength() <= prevDiff.getLength() && coinUnits[nearestCoinIndex]->getID() != mTargetID)
+			{
+				foundNewDestination = true;
+				shortestDist = currentDiff.getLength();
+				nearestCoinIndex = i;
+			}
+		}
+		setTargetID(coinUnits[nearestCoinIndex]->getID());
+		setTargetLoc(coinUnits[nearestCoinIndex]->getPositionComponent()->getPosition());
+	}
+
+	if (foundNewDestination == false)
+	{
+		mTargetID = pOwner->getID();
+		mTargetLoc = pOwner->getPositionComponent()->getPosition();
+	}
+
+	//updatePath();
 }

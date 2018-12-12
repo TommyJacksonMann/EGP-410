@@ -1,4 +1,4 @@
-#include "KinematicEnemyChaseSteering.h"
+#include "KinematicFollowPathSteering.h"
 #include "Game.h"
 #include "GameApp.h"
 #include "./SteeringFiles/Unit.h"
@@ -10,7 +10,7 @@
 #include "GridPathfinder.h"
 
 
-KinematicEnemyChaseSteering::KinematicEnemyChaseSteering(const UnitID& ownerID, const Vector2D& targetLoc, const UnitID& targetID)
+KinematicFollowPathSteering::KinematicFollowPathSteering(const UnitID& ownerID, const Vector2D& targetLoc, const UnitID& targetID)
 	: Steering()
 {
 	mType = Steering::KINEMATIC_ENEMY_CHASE;
@@ -23,7 +23,7 @@ KinematicEnemyChaseSteering::KinematicEnemyChaseSteering(const UnitID& ownerID, 
 	updatePath();
 }
 
-void KinematicEnemyChaseSteering::updatePath()
+void KinematicFollowPathSteering::updatePath()
 {
 	Unit* pOwner = gpGame->getUnitManager()->getUnit(mOwnerID);
 	GameApp* pGame = static_cast<GameApp*>(gpGame);
@@ -42,8 +42,7 @@ void KinematicEnemyChaseSteering::updatePath()
 
 	Vector2D unitPos = pOwner->getPositionComponent()->getPosition();
 	unitPos += Vector2D(16, 16);
-	mTargetPlayerPos += Vector2D(16, 16);
-		
+
 	int fromIndex = pGrid->getSquareIndexFromPixelXY((int)unitPos.getX(), (int)unitPos.getY());
 	int toIndex = pGrid->getSquareIndexFromPixelXY((int)mTargetPlayerPos.getX(), (int)mTargetPlayerPos.getY());
 
@@ -66,7 +65,7 @@ void KinematicEnemyChaseSteering::updatePath()
 }
 
 
-Steering* KinematicEnemyChaseSteering::getSteering()
+Steering* KinematicFollowPathSteering::getSteering()
 {
 
 	GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
@@ -89,11 +88,11 @@ Steering* KinematicEnemyChaseSteering::getSteering()
 
 	Grid* pGrid = dynamic_cast<GameApp*>(gpGame)->getGrid();
 	Vector2D currentTargetNodePosition = pGrid->getULCornerOfSquare(mPath.peekNode(mCurrentPathPosition)->getId());
-	
+
 	//Get the difference of the node position and the unit position
 	Vector2D diff = currentTargetNodePosition - pOwner->getPositionComponent()->getPosition();
 
- 	if (diff.getLength() < mMovementFactor)
+	if (diff.getLength() < mMovementFactor)
 	{
 		if (mCurrentPathPosition == mPath.getNumNodes() - 1)
 		{
@@ -106,13 +105,13 @@ Steering* KinematicEnemyChaseSteering::getSteering()
 		else
 		{
 			mCurrentPathPosition++;
-			setTargetLoc( pGrid->getULCornerOfSquare(mPath.peekNode(mCurrentPathPosition)->getId()) );
+			//setTargetLoc( pGrid->getULCornerOfSquare(mPath.peekNode(mCurrentPathPosition)->getId()) );
 			/*if (!mJustChangedPath)
 			{*/
-				updatePath();
+			updatePath();
 			//}
 		}
-		
+
 	}
 	else
 	{
@@ -124,7 +123,7 @@ Steering* KinematicEnemyChaseSteering::getSteering()
 		targetVelocity *= mMovementFactor;
 		pOwner->getPositionComponent()->setPosition(pOwner->getPositionComponent()->getPosition() + targetVelocity);
 		float velocityDirection = atan2(diff.getY(), diff.getX()) + .5f*3.14;
-		//pOwner->getPositionComponent()->setFacing(velocityDirection);
+		pOwner->getPositionComponent()->setFacing(velocityDirection);
 	}
 
 	this->mData = data;

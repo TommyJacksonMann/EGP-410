@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{09059697-DB0D-44AE-B867-2437B1E3D875}</ProjectGuid>
     <RootNamespace>pathfinding</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -124,6 +124,7 @@
     <ClInclude Include="KinematicEnemyChaseSteering.h" />
     <ClInclude Include="KinematicEnemyRunSteering.h" />
     <ClInclude Include="KinematicEnemySteering.h" />
+    <ClInclude Include="KinematicPlayerAiSteering.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="NodeRecord.h" />
     <ClInclude Include="Path.h" />
@@ -202,6 +203,7 @@
     <ClCompile Include="KinematicEnemyChaseSteering.cpp" />
     <ClCompile Include="KinematicEnemySteering.cpp" />
     <ClCompile Include="KinematicEnemyRunSteering.cpp" />
+    <ClCompile Include="KinematicPlayerAiSteering.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Path.cpp" />

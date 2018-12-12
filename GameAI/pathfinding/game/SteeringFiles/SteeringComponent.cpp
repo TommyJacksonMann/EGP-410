@@ -7,6 +7,7 @@
 #include "../KinematicEnemySteering.h"
 #include "../KinematicEnemyRunSteering.h"
 #include "../KinematicEnemyChaseSteering.h"
+#include "../KinematicPlayerAiSteering.h"
 
 SteeringComponent::SteeringComponent(const ComponentID& id, const ComponentID& physicsComponentID) 
 	:Component(id)
@@ -49,6 +50,12 @@ void SteeringComponent::setData(const SteeringData& data)
 		{
 			delete mpSteering;
 			mpSteering = new KinematicArriveSteering(data.ownerID, data.targetLoc, data.targetID, false);
+			break;
+		}
+		case Steering::KINEMATIC_PLAYER_AI:
+		{
+			delete mpSteering;
+			mpSteering = new KinematicPlayerAiSteering(data.ownerID, data.targetLoc, data.targetID);
 			break;
 		}
 		case Steering::KINEMATIC_ENEMY_ARRIVE:

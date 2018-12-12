@@ -11,6 +11,9 @@
 #include "./StateMachingFiles/PlayerAttackState.h"
 #include "./StateMachingFiles/PlayerAiAttackState.h"
 #include "./StateMachingFiles/PlayerAiRunState.h"
+#include "./SteeringFiles/SteeringComponent.h"
+#include "./SteeringFiles/Steering.h"
+#include "KinematicPlayerAiSteering.h"
 #include <typeinfo>
 
 HandleCollisionMessage::HandleCollisionMessage(Unit* firstUnit, Unit* secondUnit)
@@ -29,6 +32,12 @@ void HandleCollisionMessage::process()
 		pGame->AddScore(ScoreType::COIN_SCORE);
 		UnitID coinID = mpSecondUnit->getID();
 		pGame->getUnitManager()->deleteUnit(coinID);
+
+		if (typeid(*mpFirstUnit->getSteeringComponent()->getSteering()) == typeid(KinematicPlayerAiSteering))
+		{
+			mpFirstUnit->setSteering(Steering::KINEMATIC_PLAYER_AI, mpFirstUnit->getPositionComponent()->getPosition(), mpFirstUnit->getID());
+		}
+
 		int oldCoinNum = pGame->getCurrentCoinsOnScreen();
 		oldCoinNum--;
 		pGame->setCoinsOnScreen(oldCoinNum);
@@ -40,6 +49,12 @@ void HandleCollisionMessage::process()
 		pGame->AddScore(ScoreType::COIN_SCORE);
  		UnitID coinID = mpFirstUnit->getID();
 		pGame->getUnitManager()->deleteUnit(coinID);
+
+		if (typeid(*mpSecondUnit->getSteeringComponent()->getSteering()) == typeid(KinematicPlayerAiSteering))
+		{
+			mpSecondUnit->setSteering(Steering::KINEMATIC_PLAYER_AI, mpSecondUnit->getPositionComponent()->getPosition(), mpSecondUnit->getID());
+		}
+
 		int oldCoinNum = pGame->getCurrentCoinsOnScreen();
 		oldCoinNum--;
 		pGame->setCoinsOnScreen(oldCoinNum);
@@ -117,6 +132,12 @@ void HandleCollisionMessage::process()
 		mpSecondUnit->getCollisionComponent()->resetLastCollided();
 		UnitID powerUpID = mpFirstUnit->getID();
 		pGame->getUnitManager()->deleteUnit(powerUpID);
+
+		if (typeid(*mpSecondUnit->getSteeringComponent()->getSteering()) == typeid(KinematicPlayerAiSteering))
+		{
+			mpSecondUnit->setSteering(Steering::KINEMATIC_PLAYER_AI, mpSecondUnit->getPositionComponent()->getPosition(), mpSecondUnit->getID());
+		}
+
 		int oldPowerUpNum = pGame->getCurrentPowerUpsOnScreen();
 		oldPowerUpNum--;
 		pGame->setPowerUpsOnScreen(oldPowerUpNum);
@@ -133,6 +154,12 @@ void HandleCollisionMessage::process()
 		mpFirstUnit->getCollisionComponent()->resetLastCollided();
 		UnitID powerUpID = mpSecondUnit->getID();
 		pGame->getUnitManager()->deleteUnit(powerUpID);
+
+		if (typeid(*mpFirstUnit->getSteeringComponent()->getSteering()) == typeid(KinematicPlayerAiSteering))
+		{
+			mpFirstUnit->setSteering(Steering::KINEMATIC_PLAYER_AI, mpFirstUnit->getPositionComponent()->getPosition(), mpFirstUnit->getID());
+		}
+
 		int oldPowerUpNum = pGame->getCurrentPowerUpsOnScreen();
 		oldPowerUpNum--;
 		pGame->setPowerUpsOnScreen(oldPowerUpNum);

@@ -27,7 +27,15 @@ ChangePlayerControlMessage::~ChangePlayerControlMessage()
 void ChangePlayerControlMessage::process()
 {
 	GameApp* pGame = static_cast<GameApp*>(gpGame);
+	Unit* pPlayerUnit = pGame->getUnitManager()->getPlayerUnit();
 	StateMachineState* pCurrentPlayerState = pGame->getUnitManager()->getPlayerUnit()->getStateMachine()->getCurrentState();
+	Vector2D playerPos = pPlayerUnit->getPositionComponent()->getPosition();
+	int offsetX = playerPos.getX();
+	offsetX %= 32;
+	int offsetY = playerPos.getY();
+	offsetY %= 32;
+	Vector2D posWithOffset(playerPos.getX() - offsetX , playerPos.getY() - offsetY);
+	pPlayerUnit->getPositionComponent()->setPosition( posWithOffset );
 	if (typeid(*pCurrentPlayerState) == typeid(PlayerRunState))
 	{
 		PlayerRunState* pState = static_cast<PlayerRunState*>(pCurrentPlayerState);
@@ -42,11 +50,13 @@ void ChangePlayerControlMessage::process()
 	{
 		PlayerAiRunState* pState = static_cast<PlayerAiRunState*>(pCurrentPlayerState);
 		pState->transitionToPlayerControl();
+		pPlayerUnit->setSteering(Steering::KINEMATICARRIVE, pPlayerUnit->getPositionComponent()->getPosition(), pPlayerUnit->getID());
 
 	}
 	else if (typeid(*pCurrentPlayerState) == typeid(PlayerAiAttackState))
 	{
 		PlayerAiAttackState* pState = static_cast<PlayerAiAttackState*>(pCurrentPlayerState);
 		pState->transitionToPlayerControl();
+		pPlayerUnit->setSteering(Steering::KINEMATICARRIVE, pPlayerUnit->getPositionComponent()->getPosition(), pPlayerUnit->getID());
 	}
 }

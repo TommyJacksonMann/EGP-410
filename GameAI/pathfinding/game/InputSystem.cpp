@@ -76,6 +76,13 @@ void InputSystem::update()
 				GameMessage* pRestartGame = new RestartGameMessage(true);
 				pGame->getMessageManager()->addMessage(pRestartGame, 0);
 			}
+			if (mBitwiseKeyStates[KeyCode::SCANCODE_RETURN] && getHasByte(mBitwiseKeyStates[i], StateBitValues::JUST_PRESSED))
+			{
+				//CHANGE TO RESTART
+				GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
+				GameMessage* pPlayerControl = new ChangePlayerControlMessage();
+				pGame->getMessageManager()->addMessage(pPlayerControl, 0);
+			}
 			playerMovement(i);
 			
 		}

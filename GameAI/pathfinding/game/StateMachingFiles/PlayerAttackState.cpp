@@ -8,6 +8,10 @@
 #include "Sprite.h"
 #include "SpriteManager.h"
 
+#include "../KinematicPlayerAiSteering.h"
+#include "../SteeringFiles/Steering.h"
+#include "../SteeringFiles/SteeringComponent.h"
+
 using namespace std;
 
 void PlayerAttackState::onEntrance()
@@ -17,6 +21,10 @@ void PlayerAttackState::onEntrance()
 	GameApp* pGame = dynamic_cast<GameApp*>(gpGame);
 	Unit* pPlayerUnit = pGame->getUnitManager()->getPlayerUnit();
 	pPlayerUnit->setSprite(*pGame->getSpriteManager()->getSprite(PLAYER_ATTACK_ICON_SPRITE_ID));
+
+	Vector2D targetLoc = pPlayerUnit->getSteeringComponent()->getTargetLoc();
+	int targetID = pPlayerUnit->getSteeringComponent()->getTargetID();
+	pPlayerUnit->setSteering(Steering::KINEMATICARRIVE, targetLoc, targetID);
 }
 
 void PlayerAttackState::onExit()
