@@ -89,6 +89,8 @@ Steering* KinematicPlayerAiSteering::getSteering()
 
 	if (mCurrentPathPosition > mPath.getNumNodes() || !mPath.peekNode(mCurrentPathPosition))
 	{
+		determineDestination();
+		updatePath();
 		return this;
 	}
 
@@ -108,7 +110,6 @@ Steering* KinematicPlayerAiSteering::getSteering()
 			data.rotVel = 0;
 			determineDestination();
 			updatePath();
-			std::cout << "Reached Destination ******************************** ";
 		}
 		else
 		{
@@ -151,25 +152,6 @@ void KinematicPlayerAiSteering::determineDestination()
 	bool foundNewDestination = false;
 	
 	if (typeid(*pOwner->getStateMachine()->getCurrentState()) == typeid(PlayerAiAttackState) && enemyUnits.size() != 0)
-	{
-		int nearestEnemyIndex = 0;
-		float shortestDist = 1000000; //high number because INFINITY doesn't work
-		for (int i = 0; i < enemyUnits.size(); i++)
-		{
-			Vector2D currentDiff = enemyUnits[i]->getPositionComponent()->getPosition() - pOwner->getPositionComponent()->getPosition();
-			Vector2D prevDiff = enemyUnits[nearestEnemyIndex]->getPositionComponent()->getPosition() - pOwner->getPositionComponent()->getPosition();
-
-			if (currentDiff.getLength() <= prevDiff.getLength() && enemyUnits[nearestEnemyIndex]->getID() != mTargetID)
-			{
-				foundNewDestination = true;
-				shortestDist = currentDiff.getLength();
-				nearestEnemyIndex = i;
-			}
-		}
-		setTargetID(enemyUnits[nearestEnemyIndex]->getID());
-		setTargetLoc(enemyUnits[nearestEnemyIndex]->getPositionComponent()->getPosition());
-	}
-	else if (typeid(*pOwner->getStateMachine()->getCurrentState()) == typeid(PlayerAiRunState) && enemyUnits.size() != 0)
 	{
 		int nearestEnemyIndex = 0;
 		float shortestDist = 1000000; //high number because INFINITY doesn't work
