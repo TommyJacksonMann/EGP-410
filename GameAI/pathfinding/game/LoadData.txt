@@ -25,7 +25,7 @@ EnemySpawnFourY (608)
 EnemySpawnFrequency (20)
 EnemySpawnTime (5000)
 MaxEnemies (10)
-HighScore (4300)
+HighScore (6150)
 
 
 
@@ -81,6 +81,10 @@ HighScore (4300)
 
 
 
+
+
+ 
+ 
  
  
  
