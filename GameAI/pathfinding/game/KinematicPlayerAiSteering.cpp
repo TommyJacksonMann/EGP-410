@@ -132,7 +132,7 @@ Steering* KinematicPlayerAiSteering::getSteering()
 		targetVelocity *= mMovementFactor;
 		pOwner->getPositionComponent()->setPosition(pOwner->getPositionComponent()->getPosition() + targetVelocity);
 		float velocityDirection = atan2(diff.getY(), diff.getX()) + .5f*3.14;
-		//pOwner->getPositionComponent()->setFacing(velocityDirection);
+		pOwner->getPositionComponent()->setFacing(velocityDirection);
 	}
 
 	this->mData = data;

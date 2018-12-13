@@ -175,12 +175,12 @@ void GameApp::processLoop()
 {
 	if (!mEndGame)
 	{
-	//get back buffer
-	GraphicsBuffer* pBackBuffer = mpGraphicsSystem->getBackBuffer();
-	//copy to back buffer
-	mpGridVisualizer->draw( *pBackBuffer );
+		//get back buffer
+		GraphicsBuffer* pBackBuffer = mpGraphicsSystem->getBackBuffer();
+		//copy to back buffer
+		mpGridVisualizer->draw( *pBackBuffer );
 	
-		mpDebugDisplay->draw(pBackBuffer);
+		//mpDebugDisplay->draw(pBackBuffer);
 		//mpGridGraph->VisualizeNodeCosts(); //UNCOMMENT THIS TO SEE NODE COSTS AND NODE DIRECTIONS, FRAME RATE IS CHOO
 	}
 	mpInputSystem->update();

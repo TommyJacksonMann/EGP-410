@@ -9,11 +9,11 @@ PowerUpTime (5000)
 CoinSpawnFrequency (4)
 CoinSpawnTime (80)
 PowerUpSpawnFrequency (3)
-PowerUpSpawnTime (10000)
+PowerUpSpawnTime (800)
 PlayerSpeed (5)
 EnemySpeed (2)
 EnemyChaseRange (300)
-EnemyRandomFrequency (2000)
+EnemyRandomFrequency (10000)
 EnemySpawnOneX (192)
 EnemySpawnOneY (192)
 EnemySpawnTwoX (800)
@@ -83,6 +83,8 @@ HighScore (6150)
 
 
 
+
+ 
  
  
  
