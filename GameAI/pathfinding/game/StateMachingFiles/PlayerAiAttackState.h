@@ -1,6 +1,10 @@
 #pragma once
 #include "StateMachine.h"
 
+/*
+Class created by Tommy Mann
+
+/**/
 class PlayerAiAttackState : public StateMachineState
 {
 public:

@@ -4,6 +4,10 @@
 
 const float DEFAULT_MOVEMENT_FACTOR = 5;
 
+/*
+Class created by Tommy Mann
+An arrive pattern that doesn't use physics component
+/**/
 class KinematicArriveSteering : public Steering
 {
 public:

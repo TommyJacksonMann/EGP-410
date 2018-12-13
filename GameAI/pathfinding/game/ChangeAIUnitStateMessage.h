@@ -2,6 +2,12 @@
 #include "GameMessage.h"
 #include <typeinfo>
 
+
+/*
+Class created by Tommy Mann
+Used to change the enemy AI's states
+/**/
+
 enum StateType{
 	WANDER,
 	CHASE,

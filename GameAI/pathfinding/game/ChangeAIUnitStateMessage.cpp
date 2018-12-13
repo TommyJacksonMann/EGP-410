@@ -12,6 +12,10 @@
 #include "./StateMachingFiles/AiFleeState.h"
 
 
+/*
+Class created by Tommy Mann
+
+/**/
 ChangeAIUnitStateMessage::ChangeAIUnitStateMessage(int id, StateType stateType)
 	:GameMessage(CHANGE_AI_UNIT_STATE_MESSAGE)
 	, mUnitID(id)

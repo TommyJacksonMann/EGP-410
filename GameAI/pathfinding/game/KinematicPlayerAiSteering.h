@@ -3,7 +3,11 @@
 #include "./SteeringFiles/Steering.h"
 #include "Path.h"
 
-
+/*
+Class created by Tommy Mann
+It is essentially a follow path steering behaviour with AI behaviours in that it decides where it should path find to when it is constructed.
+The updatePath() and getSteering() are based off/copied from of RJ's KinematicEnemyChaseSteering functions
+/**/
 class KinematicPlayerAiSteering : public Steering
 {
 public:

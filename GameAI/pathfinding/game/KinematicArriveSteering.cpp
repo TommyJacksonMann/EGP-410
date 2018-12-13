@@ -28,6 +28,11 @@ KinematicArriveSteering::KinematicArriveSteering(const UnitID& ownerID, const Ve
 	mMovementFactor = pGame->getPlayerSpeed();
 }
 
+
+/*
+	Moves a certain amount each frame and once the distance between the unit 
+	and its target is less than the movementfactor it sets it position equal to its target position
+/**/
 Steering* KinematicArriveSteering::getSteering()
 {
 	Vector2D targetDirection;

@@ -140,6 +140,16 @@ Steering* KinematicPlayerAiSteering::getSteering()
 
 }
 
+/*
+	Determines where it should path find too 
+	the priority of where to path find to is as follows
+
+	While in PlayerAiRunState
+		PowerUp > Coin
+
+	While in PlayerAiAttackState
+		Enemy > PowerUp > Coin
+/**/
 void KinematicPlayerAiSteering::determineDestination()
 {
 	Unit* pOwner = gpGame->getUnitManager()->getUnit(mOwnerID);
